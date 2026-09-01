@@ -9,30 +9,31 @@ const nextStepLink = document.getElementById('nextStepLink');
 const storageKey = 'typeTowerRoadmapChecksV2';
 
 const steps = [
-  { title: '4画面の箱だけ作る', text: 'HOME / SELECT / GAME / RESULT の4画面を、見た目を作り込まずに用意する。' },
+  { title: '4画面の箱だけ作る', text: 'HOME / SELECT / GAME / RESULT の4画面を用意し、GAME画面には後で使うHUDの置き場所だけ作る。' },
   { title: '漢字問題を表示する', text: 'まず漢字モードだけ。kanji.jsonから問題を読み込み、GAME画面へ1問ずつ表示する。' },
   { title: 'タイピング判定を完成させる', text: '入力 → Enter → 正解 / MISS → 次の問題、を連続して遊べる状態にする。' },
-  { title: 'タワーの上下とクリアをつなぐ', text: '正解で+1F、MISSで-1F、10FでCLEAR。このゲーム独自のルールをここで完成させる。' },
+  { title: 'タワーの上下とクリアをつなぐ', text: '正解で+1F、MISSで-1F、10FでCLEAR。左側の階数表示もここで機能させる。' },
   { title: '最初から最後まで遊べる状態にする', text: 'HOMEからRESULTまで通しで遊べる状態にする。ここまでは新機能より完成を優先。' },
-  { title: 'タイマー・コンボ・難易度を追加する', text: 'ゲームの芯を壊さず、時間制限・コンボ・3段階難易度を追加する。' },
+  { title: 'タイマー・コンボ・難易度を追加する', text: 'ゲームの芯を壊さず、画像案にあるTIME・COMBO・難易度を機能として追加する。' },
   { title: '残り2モードを追加する', text: '漢字で完成した仕組みを使って、日本語→英語・英語→日本語を追加する。' },
   { title: 'RESULTと記録保存を完成させる', text: '正答率・最大コンボ・クリア時間・ハイスコアを表示し、localStorageへ保存する。' },
-  { title: '見た目と演出を本格的に仕上げる', text: 'タワー、正解/MISS演出、アニメーション、効果音、レスポンシブを整える。' },
+  { title: '画像案を基準にGAME画面を仕上げる', text: '塔の断面・左右の空・問題の後ろの敵・左の階数・右上TIME・中央問題・下の入力欄を順番に実装する。' },
   { title: '問題追加・テスト・発表準備', text: '問題数を増やし、3人で通しテスト。重大バグを直し、14日目は新機能を追加しない。' }
 ];
 
 const implementationGuides = [
   {
     title: 'STEP 1：4画面の箱を作る',
-    summary: '最初は1つのHTMLの中に4画面を置き、JavaScriptで表示する画面だけ切り替えます。ページを4個に分けるより、初心者でも状態管理が分かりやすくなります。',
+    summary: '最初は1つのHTMLの中に4画面を置き、JavaScriptで表示する画面だけ切り替えます。GAME画面は完成デザインを作らず、後で画像案のUIを置ける骨組みだけ準備します。',
     tools: ['HTML', 'CSS', 'JavaScript'],
     files: ['game/index.html', 'game/css/style.css', 'game/js/main.js'],
     tasks: [
       'game/ フォルダを作り、その中をゲーム本体専用にする。制作ガイドのファイルと混ぜない。',
       'index.html に HOME / SELECT / GAME / RESULT の4つの section を作る。',
       '最初はHOMEだけ表示し、それ以外には hidden を付ける。',
+      'GAMEには floor / timer / enemy / question / answer / combo の置き場所だけ作る。中身と装飾はまだ最低限でよい。',
       'main.js に showScreen(name) を作り、STARTや戻るボタンで表示画面を切り替える。',
-      'CSSは文字・余白・ボタン程度だけ。ここではデザインを作り込まない。'
+      'CSSは文字・余白・ボタン程度だけ。塔や空などの完成背景はSTEP 9まで作り込まない。'
     ],
     code: "function showScreen(name) {\n  document.querySelectorAll('[data-screen]').forEach(screen => {\n    screen.hidden = screen.dataset.screen !== name;\n  });\n}"
   },
@@ -66,17 +67,18 @@ const implementationGuides = [
   },
   {
     title: 'STEP 4：タワーの上下とクリアをつなぐ',
-    summary: 'ゲームの状態は変数で持ちます。まず floor だけ追加し、正解・MISS処理から値を変更して画面表示へ反映します。',
-    tools: ['JavaScript state', 'Math.max()', 'DOM更新'],
+    summary: 'ゲームの状態は変数で持ちます。画像案の左側にある1F〜10F表示もこの段階で機能だけ完成させ、見た目は後で整えます。',
+    tools: ['JavaScript state', 'Math.max()', 'DOM更新', 'data属性'],
     files: ['game/js/game.js', 'game/index.html'],
     tasks: [
       'floor を1で初期化する。',
+      '左側に1F〜10Fの階数リストをHTMLで用意する。',
       'handleCorrect() で floor += 1、handleMiss() で floor = Math.max(1, floor - 1) とする。',
-      'updateHUD() を作り、現在階を画面へ表示する。',
+      'updateHUD() で中央の現在階と、左側の現在階ハイライトを同時に更新する。',
       'floor >= 10 になったらゲームを止めてRESULTへ進む。',
       '階数変更・画面表示・クリア判定を別々の場所へ重複して書かない。'
     ],
-    code: "function handleMiss() {\n  floor = Math.max(1, floor - 1);\n  updateHUD();\n}\n\nif (floor >= 10) finishGame();"
+    code: "function updateFloorUI() {\n  floorText.textContent = `${floor}F`;\n  document.querySelectorAll('[data-floor]').forEach(item => {\n    item.classList.toggle('is-current', Number(item.dataset.floor) === floor);\n  });\n}"
   },
   {
     title: 'STEP 5：最初から最後まで遊べる状態にする',
@@ -94,12 +96,13 @@ const implementationGuides = [
   },
   {
     title: 'STEP 6：タイマー・コンボ・難易度を追加する',
-    summary: '完成したゲームループへ3機能を足します。特にタイマーは重複起動するとバグになりやすいので、次の問題へ行く前に必ず前のタイマーを止めます。',
+    summary: '完成したゲームループへ3機能を足します。画像案ではTIMEは右上、COMBOは入力欄の下にあります。この段階で機能と表示だけ作り、色や装飾はSTEP 9で合わせます。',
     tools: ['setInterval()', 'clearInterval()', 'JavaScript state', 'JSON difficulty'],
     files: ['game/js/game.js', 'game/data/kanji.json', 'game/index.html'],
     tasks: [
       'combo と maxCombo を追加し、正解で+1、MISSで0に戻す。',
       'timeLeft と timerId を持ち、1問ごとにタイマーを開始する。',
+      'TIME表示はGAME画面右上、COMBO表示は入力欄の下に置く。まず配置だけ合わせる。',
       '次の問題を出す前に clearInterval(timerId) を必ず呼ぶ。',
       '時間が0になったら handleMiss() を呼び、次の問題へ進む。',
       'JSONの difficulty を easy / normal / hard にし、選択された難易度だけ filter() する。'
@@ -135,18 +138,31 @@ const implementationGuides = [
     code: "try {\n  localStorage.setItem('typeTowerRecords', JSON.stringify(records));\n} catch (error) {\n  console.warn('記録を保存できませんでした');\n}"
   },
   {
-    title: 'STEP 9：見た目と演出を仕上げる',
-    summary: '機能が完成してからCSSと演出を整えます。正解・MISS・現在階が一瞬で分かり、演出中も入力を邪魔しないことを優先します。',
-    tools: ['CSS', '@keyframes', 'CSS variables', 'Audio'],
-    files: ['game/css/style.css', 'game/js/effects.js', 'game/assets/sounds/'],
+    title: 'STEP 9：画像案を基準にGAME画面を仕上げる',
+    summary: '今回作ったカラー案を「完成イメージの方向」として使います。完全コピーではなく、塔を断面的に見た中央ステージ、左右の空、問題カードの後ろにいる敵、左の階数、右上TIME、中央の問題、下の入力欄という構造を基準に実装します。',
+    tools: ['HTML/CSS', 'CSS Grid', 'position / z-index', 'CSS variables', '@keyframes', '画像素材', 'Audio'],
+    files: ['game/index.html', 'game/css/style.css', 'game/js/effects.js', 'game/assets/images/tower/', 'game/assets/images/enemies/', 'game/assets/sounds/'],
     tasks: [
-      'まずGAME画面の問題・入力欄・階数・タイマーの優先順位を整える。',
-      '正解とMISSは色だけに頼らず、文字と短いアニメーションでも伝える。',
-      'CSS @keyframes で短い上昇・落下・フィードバック演出を作る。',
-      '効果音は必要なら Audio を使い、鳴らなくてもゲーム進行は止めない。',
-      'prefers-reduced-motion では大きなアニメーションを減らす。PCと狭い画面の両方を確認する。'
+      '最初に色なしでGAME画面の配置を決める。左=階数、中央=ステージ、右上=TIME、中央下=問題→入力→COMBOの順に置く。',
+      '中央ステージの背景を「塔の断面」にする。中央は石造りの塔内部、左右の外側は青空が見える構造にする。',
+      '敵用レイヤーを問題カードより後ろに置く。頭・目・腕などがカードの外から少し見える程度にし、漢字を絶対に隠さない。',
+      '問題カードと入力欄を前面レイヤーに置き、ゲーム中に最も目立つのは敵ではなく問題と入力欄にする。',
+      '左の1F〜10Fを縦に並べ、現在階だけ濃い青+金などで強調する。中央上にも大きく現在階を表示する。',
+      '右上にTIME、入力欄の下にCOMBOと「MISS -1F / 正解 +1F」を置く。情報を増やしすぎない。',
+      '色は「明るい青空 / 薄いベージュ石材 / 濃紺 / 金」を基本にし、敵は濃い紫〜黒、目だけ赤〜橙のアクセントにする。',
+      '最後に正解時の短い上昇、MISS時の短い落下、敵へのヒット反応を追加する。演出中も入力やタイマーを止めない。',
+      '狭い画面では左右の空や装飾を減らし、問題・入力・TIME・階数を優先して残す。'
     ],
-    code: "@media (prefers-reduced-motion: reduce) {\n  *, *::before, *::after {\n    animation-duration: 0.01ms !important;\n  }\n}"
+    visualSteps: [
+      '① 配置だけ：白黒の箱で「左の階数 / 中央ステージ / TIME / 問題 / 入力」を決める',
+      '② 背景：塔を横から切ったような内部を中央に作り、左右へ空を見せる',
+      '③ 敵：問題カードの後ろに敵レイヤーを追加し、カード外から顔や手だけ見せる',
+      '④ HUD：7F・TIME・COMBO・MISS/正解ルールを配置する',
+      '⑤ 色：青空、石材ベージュ、濃紺、金、敵の暗色を入れる',
+      '⑥ 演出：階移動・正解/MISS・敵ヒットを短いアニメーションで追加する',
+      '⑦ 最終確認：問題と入力欄が背景や敵より常に読みやすいか確認する'
+    ],
+    code: ".game-stage {\n  display: grid;\n  grid-template-columns: 110px minmax(0, 1fr) 120px;\n  position: relative;\n}\n\n.enemy-layer {\n  position: absolute;\n  inset: 16% 20% auto;\n  z-index: 1;\n}\n\n.question-card, .answer-form {\n  position: relative;\n  z-index: 2;\n}"
   },
   {
     title: 'STEP 10：問題追加・テスト・発表準備',
@@ -158,9 +174,10 @@ const implementationGuides = [
       'TEST.md に「開始・正解・MISS・時間切れ・10F・再挑戦・3モード・リロード」を並べて確認する。',
       '3人が別々に通しプレイし、見つけたバグを小さく直す。',
       '修正はPull Requestで差分を確認してからmainへMergeする。',
+      '見た目は、塔の断面・左右の空・敵・問題カード・入力欄の重なりが崩れていないかPC画面で確認する。',
       '14日目は新機能を追加せず、発表内容・操作手順・デモ用ルートを確認する。'
     ],
-    code: "最低テスト例\n- START → GAMEへ進める\n- 正解で +1F\n- MISSで -1F（1F未満にならない）\n- 時間切れでMISS\n- 10FでRESULT\n- もう一度遊べる"
+    code: "最低テスト例\n- START → GAMEへ進める\n- 正解で +1F\n- MISSで -1F（1F未満にならない）\n- 時間切れでMISS\n- 10FでRESULT\n- もう一度遊べる\n- 敵が問題文を隠さない\n- 画面幅を変えても入力欄が切れない"
   }
 ];
 
@@ -247,11 +264,15 @@ function createImplementationDialog() {
         <h3>この順番で作る</h3>
         <ol id="implementationTasks"></ol>
       </div>
+      <div class="implementation-section" id="implementationVisualSection" hidden>
+        <h3>完成イメージへ近づける順番</h3>
+        <ol id="implementationVisual"></ol>
+      </div>
       <div class="implementation-section">
         <h3>コードの形</h3>
         <pre><code id="implementationCode"></code></pre>
       </div>
-      <p class="implementation-note">このコードは完成版を丸ごとコピーするためではなく、「何を使って作るか」を理解するための最小例です。</p>
+      <p class="implementation-note">コード例は丸ごとコピー用ではなく、「何を使って作るか」を理解するための最小例です。画像案は構造と雰囲気の基準として使い、文字の読みやすさと操作性を優先します。</p>
     </div>`;
 
   document.body.append(dialog);
@@ -273,6 +294,8 @@ function setupImplementationGuides() {
   const tools = dialog.querySelector('#implementationTools');
   const files = dialog.querySelector('#implementationFiles');
   const tasks = dialog.querySelector('#implementationTasks');
+  const visualSection = dialog.querySelector('#implementationVisualSection');
+  const visual = dialog.querySelector('#implementationVisual');
   const code = dialog.querySelector('#implementationCode');
   let opener = null;
 
@@ -288,7 +311,7 @@ function setupImplementationGuides() {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'implementation-open';
-    button.textContent = '実装のしかたを見る';
+    button.textContent = index === 8 ? '画像案からの作り方を見る' : '実装のしかたを見る';
     button.setAttribute('aria-label', `${guide.title}の実装詳細を開く`);
 
     const stageCheck = roadStep.querySelector('.stage-check');
@@ -313,6 +336,15 @@ function setupImplementationGuides() {
         li.textContent = item;
         return li;
       }));
+
+      const visualSteps = guide.visualSteps || [];
+      visualSection.hidden = visualSteps.length === 0;
+      visual.replaceChildren(...visualSteps.map(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        return li;
+      }));
+
       code.textContent = guide.code;
 
       if (typeof dialog.showModal === 'function') dialog.showModal();
