@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">TYPE TOWER GAME画面 完成イメージ</title>
+  <desc id="desc">塔の断面を舞台に、左右に空、中央に敵、左に階数、右上にタイマー、中央に漢字問題と入力欄を置いたゲーム画面の参考デザイン。</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2498f3"/>
+      <stop offset="1" stop-color="#9ddcff"/>
+    </linearGradient>
+    <linearGradient id="stone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f0e5d3"/>
+      <stop offset="1" stop-color="#cdbda5"/>
+    </linearGradient>
+    <linearGradient id="enemy" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#44325f"/>
+      <stop offset="1" stop-color="#191529"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0b1730" flood-opacity=".15"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="#fffdf8"/>
+
+  <!-- sky outside the cutaway tower -->
+  <rect x="0" y="96" width="260" height="804" fill="url(#sky)"/>
+  <rect x="1340" y="96" width="260" height="804" fill="url(#sky)"/>
+  <g fill="#fff" opacity=".82">
+    <ellipse cx="95" cy="240" rx="95" ry="34"/><ellipse cx="180" cy="280" rx="120" ry="42"/>
+    <ellipse cx="1485" cy="250" rx="108" ry="37"/><ellipse cx="1400" cy="318" rx="128" ry="46"/>
+    <ellipse cx="80" cy="645" rx="120" ry="38"/><ellipse cx="1520" cy="665" rx="120" ry="40"/>
+  </g>
+  <path d="M0 760 L105 675 190 720 260 650 260 900 0 900Z" fill="#6ca7d9" opacity=".65"/>
+  <path d="M1340 720 L1430 635 1510 705 1600 640 1600 900 1340 900Z" fill="#6ca7d9" opacity=".65"/>
+
+  <!-- top brand bar -->
+  <rect x="0" y="0" width="1600" height="116" fill="#fffdf8"/>
+  <path d="M0 112 H1600" stroke="#d5b46c" stroke-width="3"/>
+  <g transform="translate(588 24)" fill="#b8862c">
+    <rect x="0" y="18" width="36" height="52" rx="3"/>
+    <rect x="-6" y="68" width="48" height="7" rx="3"/>
+    <rect x="4" y="5" width="7" height="16"/><rect x="15" y="0" width="7" height="21"/><rect x="26" y="5" width="7" height="16"/>
+  </g>
+  <text x="650" y="63" font-family="Arial, sans-serif" font-size="48" font-weight="800" fill="#101f43" letter-spacing="2">TYPE TOWER</text>
+  <text x="690" y="94" font-family="Arial, sans-serif" font-size="20" fill="#27324d">— Kanji Typing Game —</text>
+
+  <!-- tower interior -->
+  <path d="M220 115 H1380 V790 C1250 848 350 848 220 790 Z" fill="url(#stone)" stroke="#b9a78c" stroke-width="3"/>
+  <rect x="245" y="150" width="85" height="595" fill="#e5d6c2" stroke="#b4a085" stroke-width="2"/>
+  <rect x="1270" y="150" width="85" height="595" fill="#e5d6c2" stroke="#b4a085" stroke-width="2"/>
+  <path d="M330 148 H1270" stroke="#b8a78d" stroke-width="4"/>
+  <path d="M335 720 C560 655 1040 655 1265 720" fill="none" stroke="#a99778" stroke-width="3"/>
+  <path d="M340 735 C560 820 1040 820 1260 735" fill="#ded0ba" stroke="#b9a688" stroke-width="2"/>
+
+  <!-- banners -->
+  <g>
+    <path d="M365 165 H438 V400 L401 446 365 400Z" fill="#123b7b" stroke="#c99738" stroke-width="5"/>
+    <path d="M1162 165 H1235 V400 L1198 446 1162 400Z" fill="#123b7b" stroke="#c99738" stroke-width="5"/>
+    <g fill="#c99738">
+      <rect x="389" y="258" width="24" height="42"/><rect x="384" y="298" width="34" height="7"/>
+      <rect x="1186" y="258" width="24" height="42"/><rect x="1181" y="298" width="34" height="7"/>
+    </g>
+  </g>
+
+  <!-- floor rail -->
+  <g font-family="Arial, sans-serif" font-size="23" text-anchor="middle">
+    <g fill="#fffaf0" stroke="#e3c98c" stroke-width="2">
+      <rect x="55" y="205" width="115" height="58" rx="10"/><rect x="55" y="269" width="115" height="58" rx="10"/>
+      <rect x="55" y="333" width="115" height="58" rx="10"/><rect x="55" y="461" width="115" height="58" rx="10"/>
+      <rect x="55" y="525" width="115" height="58" rx="10"/><rect x="55" y="589" width="115" height="58" rx="10"/>
+      <rect x="55" y="653" width="115" height="58" rx="10"/><rect x="55" y="717" width="115" height="58" rx="10"/>
+      <rect x="55" y="781" width="115" height="58" rx="10"/>
+    </g>
+    <path d="M49 397 H170 L194 426 170 455 H49Z" fill="#123b7b" stroke="#d3a341" stroke-width="3"/>
+    <g fill="#172034">
+      <text x="112" y="242">10F</text><text x="112" y="306">9F</text><text x="112" y="370">8F</text>
+      <text x="112" y="498">6F</text><text x="112" y="562">5F</text><text x="112" y="626">4F</text>
+      <text x="112" y="690">3F</text><text x="112" y="754">2F</text><text x="112" y="818">1F</text>
+    </g>
+    <text x="118" y="437" fill="#f6cb66" font-weight="800">7F</text>
+  </g>
+  <g transform="translate(85 144)" fill="#172034"><rect x="0" y="18" width="38" height="42"/><rect x="-6" y="57" width="50" height="7"/><path d="M5 19 L19 5 33 19Z"/><rect x="26" y="0" width="4" height="14"/><path d="M30 0 L45 5 30 10Z"/></g>
+
+  <!-- current floor -->
+  <text x="800" y="247" text-anchor="middle" font-family="Arial, sans-serif" font-size="86" font-weight="800" fill="#102a65">7F</text>
+  <path d="M560 215 H700 M900 215 H1040" stroke="#c89a38" stroke-width="3"/>
+  <path d="M700 215 l10 -10 10 10 -10 10Z M880 215 l10 -10 10 10 -10 10Z" fill="#c89a38"/>
+
+  <!-- enemy behind the card -->
+  <g filter="url(#softShadow)">
+    <path d="M655 382 C650 315 705 263 760 285 C778 235 820 235 840 285 C903 261 955 319 947 382 L915 510 H690Z" fill="url(#enemy)"/>
+    <path d="M700 323 L655 270 662 346Z M900 323 L946 270 937 350Z" fill="#302341"/>
+    <path d="M700 430 C638 420 610 442 595 492 C630 480 659 486 690 510Z" fill="#262037"/>
+    <path d="M900 430 C963 420 991 442 1005 492 C971 480 941 486 910 510Z" fill="#262037"/>
+    <path d="M755 335 l37 15 -30 17Z" fill="#ff5d32"/><path d="M845 335 l-37 15 30 17Z" fill="#ff5d32"/>
+  </g>
+
+  <!-- question card -->
+  <g filter="url(#softShadow)">
+    <rect x="505" y="350" width="590" height="266" rx="22" fill="#fffaf0" stroke="#d6b564" stroke-width="3"/>
+    <text x="800" y="398" text-anchor="middle" font-family="'Noto Sans JP', Arial, sans-serif" font-size="23" font-weight="700" fill="#7f5a17">— 問題の漢字 —</text>
+    <text x="800" y="545" text-anchor="middle" font-family="'Noto Sans JP', 'Yu Gothic', sans-serif" font-size="104" font-weight="800" fill="#121212">躊躇</text>
+  </g>
+
+  <!-- input -->
+  <g filter="url(#softShadow)">
+    <rect x="400" y="642" width="800" height="100" rx="18" fill="#ffffff" stroke="#c8a04a" stroke-width="3"/>
+    <text x="760" y="707" text-anchor="middle" font-family="'Noto Sans JP', Arial, sans-serif" font-size="40" fill="#9b9b9b">ちゅうちょを入力</text>
+    <path d="M1100 660 V723" stroke="#d7d7d7" stroke-width="2"/>
+    <rect x="1124" y="675" width="42" height="30" rx="5" fill="none" stroke="#153f7f" stroke-width="3"/>
+    <g fill="#153f7f"><circle cx="1133" cy="684" r="2"/><circle cx="1141" cy="684" r="2"/><circle cx="1149" cy="684" r="2"/><circle cx="1157" cy="684" r="2"/><rect x="1133" y="691" width="24" height="3" rx="1"/></g>
+  </g>
+
+  <!-- timer -->
+  <g filter="url(#softShadow)">
+    <rect x="1390" y="165" width="155" height="108" rx="18" fill="#fffaf0" stroke="#d6b564" stroke-width="3"/>
+    <circle cx="1425" cy="219" r="22" fill="none" stroke="#172034" stroke-width="4"/>
+    <path d="M1425 205 V220 L1437 226" fill="none" stroke="#172034" stroke-width="4" stroke-linecap="round"/>
+    <text x="1492" y="206" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#172034">TIME</text>
+    <text x="1492" y="247" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="800" fill="#102a65">09</text>
+  </g>
+
+  <!-- status chips -->
+  <g font-family="Arial, 'Noto Sans JP', sans-serif" font-size="22" font-weight="700">
+    <rect x="520" y="765" width="245" height="64" rx="32" fill="#fff" stroke="#d6b564" stroke-width="3"/>
+    <circle cx="560" cy="797" r="16" fill="none" stroke="#1546a2" stroke-width="4"/><circle cx="560" cy="797" r="7" fill="#1546a2"/>
+    <text x="650" y="805" text-anchor="middle" fill="#123b7b">COMBO x4</text>
+    <rect x="790" y="765" width="345" height="64" rx="32" fill="#151515" stroke="#d6b564" stroke-width="3"/>
+    <text x="962" y="805" text-anchor="middle" fill="#fff">MISSで-1F / 正解で+1F</text>
+  </g>
+</svg>
