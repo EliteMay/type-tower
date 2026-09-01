@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>TYPE TOWER | GitHub超入門</title>
+  <link rel="stylesheet" href="github-guide.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html">TYPE TOWER</a>
+      <nav aria-label="ページ内ナビゲーション">
+        <a href="#start">最初にやること</a>
+        <a href="#words">用語</a>
+        <a href="#github-edit">GitHub編集</a>
+        <a href="#github-dev">github.dev</a>
+        <a href="#team-flow">3人開発</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <p class="kicker">GitHubが初めてでも、このページの順番だけでOK</p>
+      <h1>TYPE TOWER<br>GitHub超入門</h1>
+      <p class="lead">GitHubを知らない人向けに、「GitHubとは何か」から、コードの書き方、保存、3人で同時に作業する流れまでをまとめています。</p>
+      <div class="hero-actions">
+        <a class="button primary" href="#start">ここから始める</a>
+        <a class="button" href="index.html">制作ロードマップへ</a>
+      </div>
+    </section>
+
+    <section class="section wrap" id="start">
+      <div class="section-head">
+        <span>START</span>
+        <h2>最初に3人でやること</h2>
+        <p>コードを書く前に、ここだけ終わらせます。</p>
+      </div>
+
+      <ol class="steps big-steps">
+        <li>
+          <strong>GitHubアカウントを作る</strong>
+          <p>3人ともGitHubへ登録してログインします。すでにアカウントがある人はそのままでOKです。</p>
+        </li>
+        <li>
+          <strong>2人のGitHubユーザー名をリポジトリ所有者へ送る</strong>
+          <p>ユーザー名はプロフィールに表示される名前です。メールアドレスではなくGitHubのユーザー名を共有します。</p>
+        </li>
+        <li>
+          <strong>2人をCollaboratorへ追加する</strong>
+          <p>所有者が <b>type-tower → Settings → Collaborators → Add people</b> から2人を招待します。招待された2人はメールまたはGitHub上で招待を承認します。</p>
+        </li>
+        <li>
+          <strong>3人ともtype-towerを開けるか確認する</strong>
+          <p>ファイル一覧が見えて、ブランチを作れる状態なら準備完了です。</p>
+        </li>
+      </ol>
+
+      <div class="note important">
+        <strong>このチームの基本ルール</strong>
+        <p><code>main</code> は完成版を置く場所です。3人が同時に作業するときは、原則として <b>mainを直接書き換えず、自分の作業用Branchを作ってから編集</b>します。</p>
+      </div>
+    </section>
+
+    <section class="section soft" id="words">
+      <div class="wrap">
+        <div class="section-head">
+          <span>BASIC WORDS</span>
+          <h2>まずこの6個だけ覚える</h2>
+          <p>GitHubの用語を全部覚える必要はありません。</p>
+        </div>
+
+        <div class="word-grid">
+          <article><h3>Repository</h3><p><b>プロジェクトの共有フォルダ。</b><br>今回なら <code>type-tower</code> 全体のこと。</p></article>
+          <article><h3>main</h3><p><b>完成版・基準版。</b><br>基本的に動く状態を置いておくBranch。</p></article>
+          <article><h3>Branch</h3><p><b>作業用のコピー。</b><br>mainを壊さずに各自がコードを書ける場所。</p></article>
+          <article><h3>Commit</h3><p><b>変更のセーブ。</b><br>「ここまで変更した」という記録をGitHubへ残す。</p></article>
+          <article><h3>Pull Request</h3><p><b>mainへ入れていい？という申請。</b><br>変更内容を確認してから統合するために使う。</p></article>
+          <article><h3>Merge</h3><p><b>Branchの変更をmainへ合体すること。</b><br>Pull Requestを確認して問題なければMergeする。</p></article>
+        </div>
+
+        <div class="flow-line" aria-label="GitHubの基本の流れ">
+          <span>main</span><b>→</b><span>Branchを作る</span><b>→</b><span>コードを書く</span><b>→</b><span>Commit</span><b>→</b><span>Pull Request</span><b>→</b><span>Merge</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="branch">
+      <div class="section-head">
+        <span>BEFORE CODING</span>
+        <h2>コードを書く前にBranchを作る</h2>
+        <p>1人1個ではなく、<b>1つの作業につき1Branch</b>にします。</p>
+      </div>
+
+      <ol class="steps">
+        <li><strong>type-towerのトップを開く</strong><p>ファイル一覧が見える画面へ戻ります。</p></li>
+        <li><strong>Branch欄の「main」を押す</strong><p>ファイル一覧の上や左側にあるBranch選択を開きます。</p></li>
+        <li><strong>新しいBranch名を入力する</strong><p>例：<code>feature/step1-screen</code>、<code>feature/step2-kanji</code>、<code>fix/result-bug</code></p></li>
+        <li><strong>Create branchを押す</strong><p>作成元は基本 <code>main</code> にします。</p></li>
+        <li><strong>画面に新しいBranch名が表示されているか確認する</strong><p><code>main</code> のままなら編集を始めないでください。</p></li>
+      </ol>
+
+      <div class="note">
+        <strong>Branch名のおすすめ</strong>
+        <p><code>feature/step1-screen</code> のように、何の作業か分かる名前にします。「test」「aaa」「new」だけの名前は避けます。</p>
+      </div>
+    </section>
+
+    <section class="section soft" id="github-edit">
+      <div class="wrap">
+        <div class="section-head">
+          <span>METHOD 1</span>
+          <h2>GitHubの画面で直接コードを書く</h2>
+          <p><b>1ファイルだけの小さい修正</b>に向いています。</p>
+        </div>
+
+        <div class="use-case"><b>使う場面：</b>文章修正、JSONの問題追加、CSSの数行修正、README修正など。</div>
+
+        <ol class="steps">
+          <li><strong>先に自分のBranchへ切り替える</strong><p>上に表示されているBranch名が <code>main</code> ではないことを確認します。</p></li>
+          <li><strong>変更したいファイルを開く</strong><p>例：<code>index.html</code>、<code>styles.css</code>、<code>data/kanji.json</code></p></li>
+          <li><strong>右上の鉛筆マークを押す</strong><p>GitHubのファイルエディターが開きます。</p></li>
+          <li><strong>コードを書き換える</strong><p>変更した場所をもう一度見て、消してはいけないコードを消していないか確認します。</p></li>
+          <li><strong>Commit changesを押す</strong><p>Commit messageには変更内容を書きます。例：<code>Add 10 easy kanji questions</code></p></li>
+          <li><strong>自分のBranchへCommitする</strong><p>mainへ直接入れず、今作業しているBranchへ保存します。</p></li>
+          <li><strong>作業が終わったらPull Requestを作る</strong><p>後述の「3人開発の流れ」に進みます。</p></li>
+        </ol>
+
+        <div class="mini-guide">
+          <h3>新しいファイルを作りたいとき</h3>
+          <p>リポジトリのファイル一覧で <b>Add file → Create new file</b> を使います。ファイル名を入力して内容を書き、最後にCommitします。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="github-dev">
+      <div class="section-head">
+        <span>METHOD 2</span>
+        <h2>github.devでVS Codeみたいに書く</h2>
+        <p><b>HTML・CSS・JavaScriptを複数ファイル触る普段の作業</b>はこちらがおすすめです。</p>
+      </div>
+
+      <div class="use-case"><b>使う場面：</b>画面制作、ゲーム処理、複数ファイルの修正、新しい機能の追加。</div>
+
+      <ol class="steps">
+        <li><strong>先に自分のBranchへ切り替える</strong><p>GitHubの通常画面で作業用Branchを作って、そのBranchを表示しておきます。</p></li>
+        <li><strong>キーボードの「.」を押す</strong><p>github.devが同じタブで開きます。開かない場合はURLの <code>github.com</code> を <code>github.dev</code> に変えて開けます。</p></li>
+        <li><strong>左のExplorerからファイルを開く</strong><p>VS Codeとほぼ同じ感覚で、HTML / CSS / JavaScript / JSONを複数開いて編集できます。</p></li>
+        <li><strong>必要なら新しいファイル・フォルダを作る</strong><p>Explorerの新規ファイル・新規フォルダのボタンを使います。</p></li>
+        <li><strong>こまめに保存する</strong><p>編集途中の内容はブラウザ側に残りますが、GitHubへ確実に残すにはCommitが必要です。</p></li>
+        <li><strong>左のSource Controlを開く</strong><p>枝分かれしたようなアイコンを押します。変更したファイル一覧が表示されます。</p></li>
+        <li><strong>変更をStageする</strong><p>変更ファイル横の <b>＋</b>、またはChanges横の <b>＋</b> を押します。</p></li>
+        <li><strong>Commit messageを書く</strong><p>例：<code>Add typing answer validation</code></p></li>
+        <li><strong>Commit &amp; Pushを押す</strong><p>変更が自分のBranchへGitHub上で保存されます。</p></li>
+        <li><strong>Pull Requestを作る</strong><p>Source Control上部のPull Requestアイコンから作るか、GitHubの通常画面へ戻って作ります。</p></li>
+      </ol>
+
+      <div class="note important">
+        <strong>github.devでできないこと</strong>
+        <p>github.devには通常のターミナルや実行用PC環境がありません。コードを書く・検索する・Commitする用途が中心です。今回のHTML/CSS/JS制作ではかなり使えますが、最終的な動作確認はブラウザで行います。</p>
+      </div>
+    </section>
+
+    <section class="section soft" id="team-flow">
+      <div class="wrap">
+        <div class="section-head">
+          <span>TEAM WORK</span>
+          <h2>3人で作るときは毎回この流れ</h2>
+          <p>迷ったら、この8個を上から順番にやります。</p>
+        </div>
+
+        <ol class="team-steps">
+          <li><span>1</span><div><strong>制作ロードマップで今のSTEPを確認</strong><p>3人で「今回どこまで作るか」を合わせる。</p></div></li>
+          <li><span>2</span><div><strong>mainから作業用Branchを作る</strong><p>1つの作業につき1Branch。</p></div></li>
+          <li><span>3</span><div><strong>GitHub編集 または github.devでコードを書く</strong><p>1ファイルの軽い修正はGitHub、通常の開発はgithub.dev。</p></div></li>
+          <li><span>4</span><div><strong>Commitする</strong><p>「何を変えたか」が分かるメッセージを付ける。</p></div></li>
+          <li><span>5</span><div><strong>Pull Requestを作る</strong><p>baseは <code>main</code>、compareは自分のBranchになっているか確認。</p></div></li>
+          <li><span>6</span><div><strong>別の1人が変更内容を見る</strong><p>Files changedを見て、関係ないコードを大量に消していないか確認。</p></div></li>
+          <li><span>7</span><div><strong>問題なければMerge</strong><p>Merge pull request → Confirm merge。終わったBranchは削除してOK。</p></div></li>
+          <li><span>8</span><div><strong>mainで動作確認して次のSTEPへ</strong><p>ブラウザで確認して、壊れていたら次へ進まない。</p></div></li>
+        </ol>
+
+        <div class="rules-grid">
+          <article>
+            <h3>やる</h3>
+            <ul>
+              <li>作業前にBranch名を確認</li>
+              <li>小さめにCommitする</li>
+              <li>Pull Requestで変更を見る</li>
+              <li>同じファイルを触るなら先に共有</li>
+              <li>Merge後にブラウザで確認</li>
+            </ul>
+          </article>
+          <article>
+            <h3>やらない</h3>
+            <ul>
+              <li>3人でmainを直接編集し続ける</li>
+              <li>他人のBranchを勝手に書き換える</li>
+              <li>分からない競合を適当に消して直す</li>
+              <li>大量変更を説明なしでMergeする</li>
+              <li>動作確認せず次のSTEPへ進む</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="pr">
+      <div class="section-head">
+        <span>PULL REQUEST</span>
+        <h2>Pull Requestの作り方</h2>
+        <p>Branchで作った変更をmainへ入れる前の確認画面です。</p>
+      </div>
+
+      <ol class="steps">
+        <li><strong>Commit &amp; Pushまで終わらせる</strong><p>変更がGitHub上のBranchにある状態にします。</p></li>
+        <li><strong>GitHubのtype-towerを開く</strong><p>上部の <b>Pull requests</b> を開きます。</p></li>
+        <li><strong>New pull requestを押す</strong><p>またはBranchをPushした直後に表示される <b>Compare &amp; pull request</b> を使います。</p></li>
+        <li><strong>Branchを確認する</strong><p><code>base: main</code> ← <code>compare: 自分のBranch</code> になっていることを確認します。</p></li>
+        <li><strong>タイトルを書く</strong><p>例：<code>STEP 3: タイピング判定を追加</code></p></li>
+        <li><strong>Create pull requestを押す</strong><p>これで他の2人が変更を見られます。</p></li>
+        <li><strong>Files changedを確認する</strong><p>意図したファイルだけ変わっているかチェックします。</p></li>
+        <li><strong>問題なければMergeする</strong><p>Merge pull request → Confirm merge。</p></li>
+      </ol>
+    </section>
+
+    <section class="section soft" id="trouble">
+      <div class="wrap">
+        <div class="section-head">
+          <span>TROUBLE</span>
+          <h2>困ったとき</h2>
+        </div>
+
+        <div class="faq">
+          <details open><summary>「Conflict」と出た</summary><p>同じ場所を別々に編集した可能性があります。分からないまま片方を消さず、どちらの変更を残すか3人で確認してから直します。</p></details>
+          <details><summary>間違えてmainを編集した</summary><p>慌てて消さず、まず何をCommitしたか確認します。まだCommit前なら編集を戻し、必要なら新しいBranchへ移してから作業します。</p></details>
+          <details><summary>github.devで変更が消えそう</summary><p>Source ControlからこまめにCommit &amp; Pushします。Commitされていない変更はブラウザ側の状態に依存するため、大きな作業を長時間未Commitのままにしません。</p></details>
+          <details><summary>他の人の変更が自分の画面にない</summary><p>自分が古いBranchを見ている可能性があります。Merge済みの最新mainを基準に、新しい作業Branchを作って次の作業を始めます。</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap sources">
+      <div class="section-head">
+        <span>OFFICIAL HELP</span>
+        <h2>分からなければ公式を見る</h2>
+      </div>
+      <div class="source-links">
+        <a href="https://docs.github.com/ja/repositories/managing-your-repositorys-settings-and-features/repository-access-and-collaboration/inviting-collaborators-to-a-personal-repository" target="_blank" rel="noreferrer">Collaboratorを招待する</a>
+        <a href="https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files" target="_blank" rel="noreferrer">GitHub上でファイルを編集する</a>
+        <a href="https://docs.github.com/en/codespaces/the-githubdev-web-based-editor" target="_blank" rel="noreferrer">github.dev公式ガイド</a>
+        <a href="https://docs.github.com/ja/pull-requests/how-tos/commit-changes/managing-branches-within-your-repository" target="_blank" rel="noreferrer">Branchを作る</a>
+        <a href="https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request" target="_blank" rel="noreferrer">Pull Requestを作る</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>TYPE TOWER GitHub超入門</span>
+      <a href="index.html">制作ロードマップへ戻る</a>
+    </div>
+  </footer>
+</body>
+</html>
