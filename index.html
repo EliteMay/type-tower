@@ -4,37 +4,31 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0b1020" />
-  <title>TYPE TOWER | 制作ガイド</title>
+  <title>TYPE TOWER | 制作ロードマップ</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="hero" id="top">
     <nav class="nav wrap" aria-label="メインナビゲーション">
-      <a class="brand" href="#top" aria-label="TYPE TOWER トップへ">
-        <span class="brand-mark">TT</span>
-        <span>TYPE TOWER</span>
-      </a>
+      <a class="brand" href="#top"><span class="brand-mark">TT</span><span>TYPE TOWER</span></a>
       <div class="nav-links">
-        <a href="#goal">完成条件</a>
-        <a href="#steps">作る順番</a>
-        <a href="#team">担当</a>
-        <a href="#schedule">2週間予定</a>
+        <a href="#now">今やること</a>
+        <a href="#roadmap">作る順番</a>
+        <a href="#team">3人の動き</a>
+        <a href="#finish">完成条件</a>
       </div>
     </nav>
 
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">3人 / 約2週間 / 学校チーム制作</p>
-        <h1>まず「最後まで遊べる」を作る。<br><span>そのあと完成度を上げる。</span></h1>
-        <p class="lead">漢字・日本語・英語をタイピングして塔を攻略するゲーム。正解で上へ、ミスで下へ。複雑にしすぎず、2週間で完成させるための制作順を1ページに整理しています。</p>
+        <p class="eyebrow">3人 / 約2週間 / SCHOOL TEAM PROJECT</p>
+        <h1>迷ったら、<br><span>上から順番に作る。</span></h1>
+        <p class="lead">最初から全部を作らない。まず「漢字1モードだけ」でゲームの芯を完成させ、その後にタイマー・別モード・見た目を足します。</p>
         <div class="hero-actions">
-          <a class="btn primary" href="#steps">作業順を見る</a>
-          <a class="btn ghost" href="#checklist">チェックリスト</a>
+          <a class="btn primary" href="#now">今やる作業を見る</a>
+          <a class="btn ghost" href="#roadmap">全工程を見る</a>
         </div>
-        <div class="meta-row">
-          <span>リポジトリ名 <strong>type-tower</strong></span>
-          <span>作品名 <strong>TYPE TOWER</strong></span>
-        </div>
+        <div class="meta-row"><span>作品名 <strong>TYPE TOWER</strong></span><span>目標 <strong>1週目で遊べる状態</strong></span></div>
       </div>
 
       <div class="tower-card" aria-label="ゲームの基本ループ">
@@ -52,237 +46,228 @@
   </header>
 
   <main>
-    <section class="section wrap" id="goal">
+    <section class="section wrap" id="now">
       <div class="section-head">
-        <p class="eyebrow">Minimum Goal</p>
-        <h2>最低限ここまでできれば完成</h2>
-        <p>機能追加より、このラインを早く超えることを優先します。</p>
+        <p class="eyebrow">NEXT ACTION</p>
+        <h2>まず何を作る？</h2>
+        <p>チェック状況から、次にやる工程を自動で表示します。迷ったらここだけ見ればOKです。</p>
       </div>
-      <div class="goal-grid">
-        <article class="card emphasis">
-          <span class="card-num">01</span>
-          <h3>ゲームが最初から最後まで動く</h3>
-          <p>モード選択 → 問題 → 入力 → 判定 → 塔の上下 → クリア → リザルトまで。</p>
-        </article>
-        <article class="card">
-          <span class="card-num">02</span>
-          <h3>3モード</h3>
-          <p>漢字 / 日本語→英語 / 英語→日本語。</p>
-        </article>
-        <article class="card">
-          <span class="card-num">03</span>
-          <h3>基本ゲーム機能</h3>
-          <p>制限時間、コンボ、正解数、ミス数、階数管理。</p>
-        </article>
-        <article class="card">
-          <span class="card-num">04</span>
-          <h3>結果と保存</h3>
-          <p>正答率・最大コンボ・クリア時間と、localStorageでの記録保存。</p>
-        </article>
+
+      <div class="next-action" aria-live="polite">
+        <div class="next-badge">NEXT</div>
+        <div class="next-copy">
+          <p id="nextStepLabel">STEP 1</p>
+          <h3 id="nextStepTitle">4画面の箱だけ作る</h3>
+          <p id="nextStepText">HOME / SELECT / GAME / RESULT の4画面を、見た目を作り込まずに用意する。</p>
+        </div>
+        <a class="btn primary dark-btn" id="nextStepLink" href="#step-1">この工程を見る</a>
+      </div>
+
+      <div class="core-rule">
+        <strong>最初の重要ルール</strong>
+        <p><b>漢字モード1つだけ</b>で「問題表示 → 入力 → 判定 → 階数変化 → クリア → RESULT」まで完成させる。英語モードや演出は、その後。</p>
       </div>
     </section>
 
-    <section class="section section-dark" id="steps">
+    <section class="section section-dark" id="roadmap">
       <div class="wrap">
         <div class="section-head light">
-          <p class="eyebrow">Build Order</p>
-          <h2>作る順番</h2>
-          <p>前の工程が動いてから次へ進む。見た目は後半にまとめて仕上げます。</p>
+          <p class="eyebrow">BUILD ORDER</p>
+          <h2>この順番で作る</h2>
+          <p>各STEPの「完了条件」を満たしてから次へ進みます。途中で新しい案が出ても、原則この順番は崩しません。</p>
         </div>
 
-        <div class="steps">
-          <article class="step">
-            <div class="step-index">1</div>
-            <div>
-              <h3>土台を作る</h3>
-              <p>GitHub準備、HTML/CSS/JS、画面構成、問題JSONの形式を決定。</p>
+        <div class="roadmap">
+          <article class="road-step" id="step-1" data-step="1">
+            <div class="road-num">1</div>
+            <div class="road-main">
+              <div class="road-title"><div><span>Day 1</span><h3>4画面の箱を作る</h3></div><span class="status">最初にやる</span></div>
+              <p class="why">まず画面遷移だけ確認します。デザインは仮で構いません。</p>
+              <div class="task-grid">
+                <div><b>作るもの</b><ul><li>HOME</li><li>SELECT</li><li>GAME</li><li>RESULT</li></ul></div>
+                <div><b>完了条件</b><ul><li>STARTを押してGAMEへ行ける</li><li>RESULTまで移動できる</li><li>戻る操作ができる</li></ul></div>
+              </div>
+              <label class="stage-check"><input type="checkbox" data-key="step1"> <span>STEP 1 完了</span></label>
             </div>
-            <span class="tag">Day 1–2</span>
           </article>
-          <article class="step important">
-            <div class="step-index">2</div>
-            <div>
-              <h3>まずゲームを動かす</h3>
-              <p>問題表示 → 入力 → 正解判定 → 次の問題。この段階では見た目は最低限でOK。</p>
+
+          <article class="road-step" id="step-2" data-step="2">
+            <div class="road-num">2</div>
+            <div class="road-main">
+              <div class="road-title"><div><span>Day 1–2</span><h3>漢字問題を表示する</h3></div></div>
+              <p class="why">まだ英語モードは作りません。まず漢字だけでデータ読み込みを完成させます。</p>
+              <div class="task-grid">
+                <div><b>作るもの</b><ul><li><code>kanji.json</code></li><li>問題のランダム表示</li><li>読みの答えデータ</li></ul></div>
+                <div><b>完了条件</b><ul><li>GAME画面に問題が1問出る</li><li>次の問題へ切り替えられる</li><li>最低10問でテストできる</li></ul></div>
+              </div>
+              <label class="stage-check"><input type="checkbox" data-key="step2"> <span>STEP 2 完了</span></label>
             </div>
-            <span class="tag">Day 3–4</span>
           </article>
-          <article class="step">
-            <div class="step-index">3</div>
-            <div>
-              <h3>タワーをつなぐ</h3>
-              <p>現在階を管理し、正解で+1F、ミスで-1F、最上階でクリア。</p>
+
+          <article class="road-step featured" id="step-3" data-step="3">
+            <div class="road-num">3</div>
+            <div class="road-main">
+              <div class="road-title"><div><span>Day 2–3</span><h3>タイピング判定を完成させる</h3></div><span class="status important">最重要</span></div>
+              <p class="why">ここがゲームの中心です。見た目より入力の気持ちよさを優先します。</p>
+              <div class="task-grid">
+                <div><b>作るもの</b><ul><li>入力欄</li><li>Enterで回答</li><li>正解 / MISS判定</li><li>次の問題へ進む</li></ul></div>
+                <div><b>完了条件</b><ul><li>正しい入力で正解になる</li><li>間違いをMISSにできる</li><li>連続で10問以上遊べる</li></ul></div>
+              </div>
+              <label class="stage-check"><input type="checkbox" data-key="step3"> <span>STEP 3 完了</span></label>
             </div>
-            <span class="tag">Day 4–5</span>
           </article>
-          <article class="step">
-            <div class="step-index">4</div>
-            <div>
-              <h3>ゲーム機能を足す</h3>
-              <p>タイマー、コンボ、難易度、各モードを追加。</p>
+
+          <article class="road-step" id="step-4" data-step="4">
+            <div class="road-num">4</div>
+            <div class="road-main">
+              <div class="road-title"><div><span>Day 3–4</span><h3>タワーの上下とクリアをつなぐ</h3></div></div>
+              <p class="why">タイピング結果をゲームとして成立させます。</p>
+              <div class="task-grid">
+                <div><b>作るもの</b><ul><li>現在階の変数</li><li>正解で +1F</li><li>MISSで -1F</li><li>10FでCLEAR</li></ul></div>
+                <div><b>完了条件</b><ul><li>階数が画面に表示される</li><li>0F未満にならない</li><li>10F到達でRESULTへ進む</li></ul></div>
+              </div>
+              <label class="stage-check"><input type="checkbox" data-key="step4"> <span>STEP 4 完了</span></label>
             </div>
-            <span class="tag">Day 5–7</span>
           </article>
-          <article class="step">
-            <div class="step-index">5</div>
-            <div>
-              <h3>リザルトを作る</h3>
-              <p>正解数、ミス数、正答率、最大コンボ、クリア時間を表示。</p>
+
+          <article class="road-step milestone" id="step-5" data-step="5">
+            <div class="road-num">5</div>
+            <div class="road-main">
+              <div class="road-title"><div><span>Day 4–5</span><h3>最初から最後まで遊べる状態にする</h3></div><span class="status success">1週目の最優先</span></div>
+              <p class="why">この時点で一度「完成したゲーム」にします。ここまで来るまで新機能を増やしません。</p>
+              <div class="task-grid">
+                <div><b>追加するもの</b><ul><li>正解数</li><li>ミス数</li><li>簡易RESULT</li><li>もう一度遊ぶ</li></ul></div>
+                <div><b>完了条件</b><ul><li>HOME → CLEAR → RESULTが通る</li><li>リロードしても致命的に壊れない</li><li>3人全員が1ゲーム遊べる</li></ul></div>
+              </div>
+              <label class="stage-check"><input type="checkbox" data-key="step5"> <span>STEP 5 完了</span></label>
             </div>
-            <span class="tag">Day 7–8</span>
           </article>
-          <article class="step">
-            <div class="step-index">6</div>
-            <div>
-              <h3>見た目と演出</h3>
-              <p>タワー、正解・ミス演出、アニメーション、効果音を追加。</p>
+
+          <article class="road-step" id="step-6" data-step="6">
+            <div class="road-num">6</div>
+            <div class="road-main">
+              <div class="road-title"><div><span>Day 5–7</span><h3>ゲーム性を追加する</h3></div></div>
+              <p class="why">芯が完成してから、遊びとして必要な機能を足します。</p>
+              <div class="task-grid">
+                <div><b>追加するもの</b><ul><li>1問ごとのタイマー</li><li>コンボ</li><li>難易度 EASY / NORMAL / HARD</li></ul></div>
+                <div><b>完了条件</b><ul><li>時間切れがMISSになる</li><li>コンボが正しく増減する</li><li>難易度で問題を分けられる</li></ul></div>
+              </div>
+              <label class="stage-check"><input type="checkbox" data-key="step6"> <span>STEP 6 完了</span></label>
             </div>
-            <span class="tag">Day 8–11</span>
           </article>
-          <article class="step">
-            <div class="step-index">7</div>
-            <div>
-              <h3>仕上げ・テスト</h3>
-              <p>問題追加、バグ修正、レスポンシブ、全員で通しプレイ。</p>
+
+          <article class="road-step" id="step-7" data-step="7">
+            <div class="road-num">7</div>
+            <div class="road-main">
+              <div class="road-title"><div><span>Day 7–8</span><h3>残り2モードを追加する</h3></div></div>
+              <p class="why">漢字モードで完成した仕組みを使い回します。</p>
+              <div class="task-grid">
+                <div><b>追加するもの</b><ul><li>日本語 → 英語</li><li>英語 → 日本語</li><li>モード選択</li></ul></div>
+                <div><b>完了条件</b><ul><li>3モードすべて遊べる</li><li>モード変更で問題が混ざらない</li><li>同じゲーム処理を重複させすぎない</li></ul></div>
+              </div>
+              <label class="stage-check"><input type="checkbox" data-key="step7"> <span>STEP 7 完了</span></label>
             </div>
-            <span class="tag">Day 11–14</span>
           </article>
+
+          <article class="road-step" id="step-8" data-step="8">
+            <div class="road-num">8</div>
+            <div class="road-main">
+              <div class="road-title"><div><span>Day 8–10</span><h3>RESULT・記録保存を完成させる</h3></div></div>
+              <p class="why">プレイ結果が分かるようにして、もう一度遊びたくなる形にします。</p>
+              <div class="task-grid">
+                <div><b>表示するもの</b><ul><li>正解数 / ミス数</li><li>正答率</li><li>最大コンボ</li><li>クリア時間</li><li>ハイスコア</li></ul></div>
+                <div><b>完了条件</b><ul><li>値が毎回正しい</li><li>localStorageへ保存できる</li><li>保存失敗でもゲーム自体は遊べる</li></ul></div>
+              </div>
+              <label class="stage-check"><input type="checkbox" data-key="step8"> <span>STEP 8 完了</span></label>
+            </div>
+          </article>
+
+          <article class="road-step" id="step-9" data-step="9">
+            <div class="road-num">9</div>
+            <div class="road-main">
+              <div class="road-title"><div><span>Day 9–11</span><h3>ここで初めて見た目を本格的に作る</h3></div></div>
+              <p class="why">動くものを壊さないよう、ゲーム画面を中心に完成度を上げます。</p>
+              <div class="task-grid">
+                <div><b>仕上げるもの</b><ul><li>タワー表示</li><li>正解 / MISS演出</li><li>アニメーション</li><li>効果音</li><li>PC中心のレスポンシブ</li></ul></div>
+                <div><b>完了条件</b><ul><li>問題と入力欄が最も見やすい</li><li>正解 / MISSが一目で分かる</li><li>演出で入力が止まらない</li></ul></div>
+              </div>
+              <label class="stage-check"><input type="checkbox" data-key="step9"> <span>STEP 9 完了</span></label>
+            </div>
+          </article>
+
+          <article class="road-step" id="step-10" data-step="10">
+            <div class="road-num">10</div>
+            <div class="road-main">
+              <div class="road-title"><div><span>Day 11–14</span><h3>問題追加 → テスト → 発表準備</h3></div><span class="status">最後</span></div>
+              <p class="why">新機能ではなく、問題数・安定性・見栄えを整えて完成させます。</p>
+              <div class="task-grid">
+                <div><b>やること</b><ul><li>問題を合計100〜150問程度へ</li><li>3人で通しプレイ</li><li>バグ修正</li><li>発表用の説明整理</li></ul></div>
+                <div><b>完了条件</b><ul><li>重大な進行不能バグなし</li><li>3モードを通して遊べる</li><li>14日目は新機能を入れない</li></ul></div>
+              </div>
+              <label class="stage-check"><input type="checkbox" data-key="step10"> <span>STEP 10 完了</span></label>
+            </div>
+          </article>
+        </div>
+
+        <div class="progress-wrap dark-progress" aria-live="polite">
+          <div class="progress-meta"><span>制作ロードマップ進捗</span><strong id="progressText">0% (0/10)</strong></div>
+          <div class="progress"><span id="progressBar"></span></div>
+          <button class="btn small ghost" id="resetChecks" type="button">進捗をリセット</button>
         </div>
       </div>
     </section>
 
     <section class="section wrap" id="team">
       <div class="section-head">
-        <p class="eyebrow">Team</p>
-        <h2>3人の担当</h2>
-        <p>完全分離ではなく、担当を決めつつ最後は全員で統合します。</p>
+        <p class="eyebrow">TEAM FLOW</p>
+        <h2>3人はこう動く</h2>
+        <p>担当を完全に分離しすぎず、同じSTEPを3人で進めます。これなら統合時に壊れにくくなります。</p>
       </div>
       <div class="team-grid">
-        <article class="team-card">
-          <span class="role">A</span>
-          <h3>ゲーム処理</h3>
-          <ul>
-            <li>タイピング入力</li>
-            <li>正解・不正解判定</li>
-            <li>タイマー</li>
-            <li>階数・コンボ管理</li>
-          </ul>
-        </article>
-        <article class="team-card">
-          <span class="role">B</span>
-          <h3>UI・デザイン</h3>
-          <ul>
-            <li>HOME / SELECT / GAME</li>
-            <li>タワー表示</li>
-            <li>アニメーション</li>
-            <li>スマホ・PC調整</li>
-          </ul>
-        </article>
-        <article class="team-card">
-          <span class="role">C</span>
-          <h3>データ・結果</h3>
-          <ul>
-            <li>問題JSON</li>
-            <li>難易度</li>
-            <li>RESULT画面</li>
-            <li>localStorage・テスト</li>
-          </ul>
-        </article>
+        <article class="team-card"><span class="role">A</span><h3>ゲーム処理</h3><ul><li>入力・判定</li><li>階数・コンボ</li><li>タイマー</li><li>ゲーム状態管理</li></ul></article>
+        <article class="team-card"><span class="role">B</span><h3>画面・UI</h3><ul><li>画面遷移</li><li>GAMEレイアウト</li><li>タワー表示</li><li>演出・レスポンシブ</li></ul></article>
+        <article class="team-card"><span class="role">C</span><h3>データ・結果</h3><ul><li>問題JSON</li><li>難易度分類</li><li>RESULT</li><li>記録保存・テスト</li></ul></article>
+      </div>
+
+      <div class="merge-guide">
+        <h3>同時作業するときのルール</h3>
+        <ol>
+          <li><b>STEP開始時：</b>3人で「今回どこまで作れば完了か」を確認。</li>
+          <li><b>作業中：</b>担当外のファイルを大きく触る前に共有。</li>
+          <li><b>STEP終了時：</b>3人の変更を統合して、ブラウザで動作確認。</li>
+          <li><b>動いたら：</b>チェックを付けて次のSTEPへ。動かなければ次へ進まない。</li>
+        </ol>
       </div>
     </section>
 
-    <section class="section section-soft" id="schedule">
+    <section class="section section-soft" id="finish">
       <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow">14 Days</p>
-          <h2>2週間の進め方</h2>
+        <div class="section-head"><p class="eyebrow">DEFINITION OF DONE</p><h2>完成条件</h2><p>このラインを超えれば提出できる状態です。</p></div>
+        <div class="goal-grid">
+          <article class="card emphasis"><span class="card-num">01</span><h3>最後まで遊べる</h3><p>HOME → SELECT → GAME → CLEAR → RESULTが安定して通る。</p></article>
+          <article class="card"><span class="card-num">02</span><h3>3モード</h3><p>漢字 / 日本語→英語 / 英語→日本語。</p></article>
+          <article class="card"><span class="card-num">03</span><h3>ゲーム性</h3><p>階数・タイマー・コンボ・難易度が正常に動く。</p></article>
+          <article class="card"><span class="card-num">04</span><h3>結果と品質</h3><p>RESULT・記録保存・見やすいUI・重大バグなし。</p></article>
         </div>
-        <div class="schedule">
-          <div class="schedule-item"><b>1〜2日目</b><span>設計・GitHub・画面構成</span></div>
-          <div class="schedule-item strong"><b>3〜5日目</b><span>最低限、最後まで遊べる状態にする</span></div>
-          <div class="schedule-item"><b>6〜8日目</b><span>タワー・UI・リザルト・演出</span></div>
-          <div class="schedule-item"><b>9〜10日目</b><span>問題追加・難易度調整</span></div>
-          <div class="schedule-item"><b>11〜12日目</b><span>完成度アップ・バグ修正</span></div>
-          <div class="schedule-item"><b>13日目</b><span>全員で通しテスト</span></div>
-          <div class="schedule-item final"><b>14日目</b><span>発表準備。新機能は追加しない</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section wrap" id="checklist">
-      <div class="section-head row-head">
-        <div>
-          <p class="eyebrow">Checklist</p>
-          <h2>完成チェック</h2>
-          <p>チェック状態はこのブラウザに保存されます。</p>
-        </div>
-        <button class="btn small ghost-dark" id="resetChecks" type="button">チェックをリセット</button>
-      </div>
-      <div class="check-grid" id="checkGrid">
-        <label><input type="checkbox" data-key="home"> <span>HOME画面</span></label>
-        <label><input type="checkbox" data-key="select"> <span>モード・難易度選択</span></label>
-        <label><input type="checkbox" data-key="question"> <span>問題表示</span></label>
-        <label><input type="checkbox" data-key="typing"> <span>タイピング入力</span></label>
-        <label><input type="checkbox" data-key="judge"> <span>正解・不正解判定</span></label>
-        <label><input type="checkbox" data-key="timer"> <span>制限時間</span></label>
-        <label><input type="checkbox" data-key="tower"> <span>正解+1F / ミス-1F</span></label>
-        <label><input type="checkbox" data-key="clear"> <span>最上階でクリア</span></label>
-        <label><input type="checkbox" data-key="result"> <span>RESULT画面</span></label>
-        <label><input type="checkbox" data-key="save"> <span>記録保存</span></label>
-        <label><input type="checkbox" data-key="responsive"> <span>PCで安定・レスポンシブ</span></label>
-        <label><input type="checkbox" data-key="test"> <span>3人で最終テスト</span></label>
-      </div>
-      <div class="progress-wrap" aria-live="polite">
-        <div class="progress-meta"><span>完成度</span><strong id="progressText">0%</strong></div>
-        <div class="progress"><span id="progressBar"></span></div>
       </div>
     </section>
 
     <section class="section section-dark compact">
       <div class="wrap split">
-        <div>
-          <p class="eyebrow">Do Not Add Yet</p>
-          <h2>今回は後回し</h2>
-        </div>
-        <div class="chips" aria-label="後回しの機能">
-          <span>ログイン</span><span>オンラインランキング</span><span>DB</span><span>対戦</span><span>3Dタワー</span><span>ストーリー</span><span>ガチャ</span>
-        </div>
+        <div><p class="eyebrow">DO NOT ADD YET</p><h2>時間が余るまで作らない</h2></div>
+        <div class="chips"><span>ログイン</span><span>オンラインランキング</span><span>Supabase</span><span>対戦</span><span>3D</span><span>ストーリー</span><span>ガチャ</span><span>大量キャラ</span></div>
       </div>
     </section>
 
     <section class="section wrap">
-      <div class="section-head">
-        <p class="eyebrow">Repository</p>
-        <h2>最初のファイル構成</h2>
-      </div>
-      <pre class="code-card"><code>type-tower/
-├─ index.html
-├─ css/
-│  └─ style.css
-├─ js/
-│  ├─ main.js
-│  └─ game.js
-├─ data/
-│  ├─ kanji.json
-│  └─ english.json
-├─ assets/
-│  ├─ images/
-│  └─ sounds/
-└─ README.md</code></pre>
       <div class="final-rule">
-        <strong>制作ルール</strong>
-        <p>1週目でゲームを完成させ、2週目で見た目・演出・問題数・安定性を上げる。新機能より「最後まで遊べること」を優先する。</p>
+        <strong>迷ったときの判断</strong>
+        <p><b>「今のSTEPを完成させるために必要か？」</b>で判断する。必要なければメモだけ残して後回し。特にSTEP 5までは、見た目・追加モード・豪華演出よりゲームループを優先する。</p>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="wrap footer-row">
-      <span>TYPE TOWER 制作ガイド</span>
-      <a href="#top">TOPへ戻る ↑</a>
-    </div>
-  </footer>
-
+  <footer><div class="wrap footer-row"><span>TYPE TOWER 制作ロードマップ</span><a href="#top">TOPへ戻る</a></div></footer>
   <script src="app.js"></script>
 </body>
 </html>
