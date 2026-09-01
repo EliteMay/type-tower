@@ -21,7 +21,7 @@ code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#f4f4
 .nav{min-height:68px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
 .brand{display:flex;gap:10px;align-items:center;font-weight:800;letter-spacing:.02em}
 .brand-mark{display:grid;place-items:center;width:34px;height:34px;border:1px solid #111;border-radius:6px;background:#fff;font-size:.78rem}
-.nav-links{display:flex;gap:22px;font-size:.9rem;color:#555}
+.nav-links{display:flex;gap:18px;font-size:.88rem;color:#555}
 .nav-links a:hover{text-decoration:underline;text-underline-offset:4px}
 .hero-grid{display:grid;grid-template-columns:1.45fr .75fr;gap:54px;align-items:center;padding-top:64px}
 .eyebrow{margin:0 0 10px;color:#777;font-size:.75rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
@@ -133,6 +133,40 @@ footer{background:#fff;color:#777;padding:22px 0;border-top:1px solid var(--line
 
 :focus-visible{outline:2px solid #111;outline-offset:3px}
 
+/* 3人共同開発の方針 */
+.policy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.policy-card{border:1px solid var(--line);background:#fff;border-radius:9px;padding:22px}
+.policy-card.primary-policy{border-color:#a8a8a8}
+.policy-label{display:inline-block;margin-bottom:18px;padding:4px 7px;border:1px solid #ddd;border-radius:5px;background:#fafafa;color:#666;font-size:.7rem;font-weight:850;letter-spacing:.08em}
+.policy-card h3{margin:0 0 8px;font-size:1.08rem;line-height:1.45}
+.policy-card p{margin:0;color:var(--muted);font-size:.91rem}
+
+/* 学校の実日程 */
+.schedule-list{border-top:1px solid var(--line)}
+.schedule-item{display:grid;grid-template-columns:115px 1fr auto;gap:22px;align-items:start;padding:18px 0;border-bottom:1px solid var(--line)}
+.schedule-item time{font-weight:850;font-size:.95rem}
+.schedule-item b{display:block;margin-bottom:2px;font-size:1rem}
+.schedule-item p{margin:0;color:var(--muted);font-size:.9rem}
+.schedule-item>span{border:1px solid #ddd;border-radius:999px;padding:4px 8px;background:#fff;color:#666;font-size:.7rem;font-weight:800;white-space:nowrap}
+.schedule-item.coding>span{border-color:#d5c0df;background:#fbf8fc;color:#75517e}
+.schedule-item.test>span{border-color:#bed7b8;background:#f7fbf5;color:#4d7146}
+.schedule-item.video>span{border-color:#e8c2aa;background:#fff9f5;color:#8a5b3d}
+
+/* 各STEPの「一緒にやる / 分担OK」 */
+.work-mode{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:start;margin-top:10px;padding:11px 13px;border-left:3px solid #cfcfcf;background:#fafafa;color:#555;font-size:.86rem}
+.work-mode b{color:#111}
+
+/* 毎回の作業フロー */
+.team-flow{display:grid;gap:0;border-top:1px solid var(--line)}
+.flow-step{display:grid;grid-template-columns:42px 1fr;gap:14px;padding:15px 0;border-bottom:1px solid var(--line)}
+.flow-step>span{display:grid;place-items:center;width:34px;height:34px;border:1px solid #ccc;border-radius:50%;font-size:.8rem;font-weight:850}
+.flow-step b{font-size:.96rem}
+.flow-step p{margin:2px 0 0;color:var(--muted);font-size:.9rem}
+.branch-examples{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.branch-examples>div{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding:14px;border:1px solid var(--line);border-radius:8px;background:#fafafa}
+.branch-examples small{width:100%;color:#777;font-weight:850;letter-spacing:.09em}
+.branch-examples code{border:1px solid #ddd;background:#fff;padding:4px 7px}
+
 @media(max-width:900px){
   .hero-grid{grid-template-columns:1fr;gap:36px}
   .tower-card{max-width:420px}
@@ -141,6 +175,7 @@ footer{background:#fff;color:#777;padding:22px 0;border-top:1px solid var(--line
   .next-action .btn{grid-column:2;justify-self:start}
   .task-grid{grid-template-columns:1fr}
   .team-grid{grid-template-columns:repeat(2,1fr)}
+  .policy-grid{grid-template-columns:1fr}
 }
 @media(max-width:700px){
   .wrap{width:min(100% - 24px,980px)}
@@ -162,5 +197,9 @@ footer{background:#fff;color:#777;padding:22px 0;border-top:1px solid var(--line
   .chips{justify-content:flex-start}
   .card{min-height:auto}
   .card h3{margin-top:24px}
+  .schedule-item{grid-template-columns:1fr;gap:5px;padding:16px 0}
+  .schedule-item>span{justify-self:start;margin-top:5px}
+  .work-mode{grid-template-columns:1fr;gap:3px}
+  .branch-examples{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.progress span{transition:none}}
