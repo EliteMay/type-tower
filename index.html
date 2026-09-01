@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0b1020" />
+  <meta name="theme-color" content="#ffffff" />
   <title>TYPE TOWER | 制作ロードマップ</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -12,6 +12,7 @@
     <nav class="nav wrap" aria-label="メインナビゲーション">
       <a class="brand" href="#top"><span class="brand-mark">TT</span><span>TYPE TOWER</span></a>
       <div class="nav-links">
+        <a href="github-guide.html">GitHub超入門</a>
         <a href="#now">今やること</a>
         <a href="#roadmap">作る順番</a>
         <a href="#team">3人の動き</a>
@@ -26,7 +27,7 @@
         <p class="lead">最初から全部を作らない。まず「漢字1モードだけ」でゲームの芯を完成させ、その後にタイマー・別モード・見た目を足します。</p>
         <div class="hero-actions">
           <a class="btn primary" href="#now">今やる作業を見る</a>
-          <a class="btn ghost" href="#roadmap">全工程を見る</a>
+          <a class="btn ghost" href="github-guide.html">GitHubの使い方を見る</a>
         </div>
         <div class="meta-row"><span>作品名 <strong>TYPE TOWER</strong></span><span>目標 <strong>1週目で遊べる状態</strong></span></div>
       </div>
@@ -46,6 +47,18 @@
   </header>
 
   <main>
+    <section class="section wrap" id="github-first">
+      <div class="section-head">
+        <p class="eyebrow">BEFORE DEVELOPMENT</p>
+        <h2>GitHubが初めての人は、先にここ</h2>
+        <p>GitHubとは何か、Branch、Commit、Pull Request、GitHub上での直接編集、github.devでのコード編集まで、初めてでも順番どおり進められるページを用意しています。</p>
+      </div>
+      <div class="core-rule">
+        <strong>最初に3人で確認</strong>
+        <p>2人をCollaboratorへ追加 → GitHub超入門を読む → Branchを作る → その後に制作ロードマップのSTEP 1へ進みます。 <a href="github-guide.html"><b>GitHub超入門を開く →</b></a></p>
+      </div>
+    </section>
+
     <section class="section wrap" id="now">
       <div class="section-head">
         <p class="eyebrow">NEXT ACTION</p>
@@ -221,7 +234,7 @@
       <div class="section-head">
         <p class="eyebrow">TEAM FLOW</p>
         <h2>3人はこう動く</h2>
-        <p>担当を完全に分離しすぎず、同じSTEPを3人で進めます。これなら統合時に壊れにくくなります。</p>
+        <p>担当を完全に分離しすぎず、同じSTEPを3人で進めます。GitHubの具体的な操作は <a href="github-guide.html"><b>GitHub超入門</b></a> を見てください。</p>
       </div>
       <div class="team-grid">
         <article class="team-card"><span class="role">A</span><h3>ゲーム処理</h3><ul><li>入力・判定</li><li>階数・コンボ</li><li>タイマー</li><li>ゲーム状態管理</li></ul></article>
@@ -233,9 +246,10 @@
         <h3>同時作業するときのルール</h3>
         <ol>
           <li><b>STEP開始時：</b>3人で「今回どこまで作れば完了か」を確認。</li>
+          <li><b>Branch：</b>mainから作業用Branchを作ってから編集。</li>
           <li><b>作業中：</b>担当外のファイルを大きく触る前に共有。</li>
-          <li><b>STEP終了時：</b>3人の変更を統合して、ブラウザで動作確認。</li>
-          <li><b>動いたら：</b>チェックを付けて次のSTEPへ。動かなければ次へ進まない。</li>
+          <li><b>統合：</b>Commit → Pull Request → 別の1人が確認 → Merge。</li>
+          <li><b>STEP終了時：</b>mainをブラウザで動作確認。動いたらチェックを付けて次へ。</li>
         </ol>
       </div>
     </section>
