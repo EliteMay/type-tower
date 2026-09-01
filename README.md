@@ -1,8 +1,35 @@
 # TYPE TOWER 制作ロードマップ
 
-3人・約2週間で制作する「TYPE TOWER」の開発順を、迷わず進められるよう1ページにまとめたサイトです。
+3人・約2週間で制作する「TYPE TOWER」の開発順と、GitHub初心者向けの共同開発手順をまとめたサイトです。
 
-## 一番重要な進め方
+## 最初に読むページ
+
+GitHubを初めて使うメンバーは、制作を始める前に `github-guide.html` を読んでください。
+
+このページでは次を説明しています。
+
+- GitHubとは何か
+- Repository / main / Branch / Commit / Pull Request / Merge
+- Collaboratorの追加
+- Branchの作り方
+- GitHub上で直接ファイルを編集する方法
+- github.devを使ってVS Codeのように編集する方法
+- Commit & Push
+- Pull RequestとMerge
+- 3人で同時に作業するときのルール
+- Conflictなどで困ったときの基本対応
+
+## 3人開発の基本ルール
+
+`main` は完成版の基準として扱います。
+
+通常の作業は、次の順番です。
+
+`main → 作業用Branch → コードを書く → Commit → Pull Request → 確認 → Merge → mainで動作確認`
+
+小さい1ファイル修正はGitHubのファイルエディター、HTML/CSS/JavaScriptなど複数ファイルを触る通常作業は `github.dev` を使います。
+
+## 一番重要な制作方針
 
 最初から3モード・演出・ランキングなどを同時に作りません。
 
@@ -27,24 +54,29 @@
 
 各STEPにはサイト上で「作るもの」「完了条件」を記載しています。完了チェックを付けると、ページ上部の「次にやること」が自動で次の工程へ切り替わります。
 
-## ルール
+## 制作ルール
 
 - 前のSTEPが動いてから次へ進む
 - STEP 5までは追加機能よりゲームループ完成を優先
 - 新しい案が出ても、そのSTEPに必要なければ後回し
 - 14日目は新機能を追加しない
-- 各STEP終了時に3人の変更を統合し、ブラウザで確認する
+- 作業用Branchを作ってから編集する
+- 同じファイルを複数人が触る場合は先に共有する
+- Pull Requestで変更を確認してからmainへMergeする
+- 各STEP終了時にmainをブラウザで確認する
 
 ## ファイル
 
 - `index.html` : 制作ロードマップ本体
-- `styles.css` : デザイン
+- `styles.css` : 制作ロードマップのデザイン
 - `app.js` : STEP進捗保存・次の作業表示
+- `github-guide.html` : GitHub初心者向け共同開発ガイド
+- `github-guide.css` : GitHubガイドのデザイン
 
 ## 保存
 
 進捗チェックは `localStorage` に保存します。保存に失敗してもロードマップ自体は利用できます。
 
-## 制作方針
+## 制作方針の正本
 
-プロジェクト共通の制作ルールは `EliteMay/web-project-guide` を参照し、このリポジトリではTYPE TOWER固有の制作順と完成条件を管理します。
+プロジェクト共通の制作ルールは `EliteMay/web-project-guide` を参照し、このリポジトリではTYPE TOWER固有の制作順・共同開発手順・完成条件を管理します。
