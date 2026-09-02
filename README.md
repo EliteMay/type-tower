@@ -106,6 +106,28 @@ HOMEでモードを選ぶため、独立した `SELECT` 画面は作りません
 
 さらに各STEPの **「作り方と記入例を見る」** を押すと小窓が開き、使うHTML / CSS / JavaScript / JSON、触るファイル、実装順、記入例を確認できます。
 
+## ほぼ完成する作成例
+
+`build-example.html` には、断片的な数行の例ではなく、**上から順番にファイルを作れば最低限遊べるTYPE TOWERになる一式**を載せます。
+
+掲載対象:
+
+- `game/index.html` のほぼ全体
+- `game/css/style.css` のほぼ全体
+- `game/js/main.js`
+- `game/js/game.js`
+- `game/js/storage.js`
+- `game/js/effects.js`
+- `game/data/kanji.json`
+- `game/data/ja-en.json`
+- `game/data/en-ja.json`
+- 完成確認チェック
+- 後から空・塔・敵を画像へ差し替える方法
+
+作成例は最初から画像素材を必須にせず、CSSだけでも空と仮の塔を表示できる状態にします。まずゲーム処理を完成させ、画像や豪華な演出は後から差し替えます。
+
+作成例の到達点は、`空 + 3つの塔 → モード開始 → 問題 → 入力 → 正解/MISS → 階数 → TIME → COMBO → 10F CLEAR → RESULT → 記録保存` がつながる状態です。
+
 ## GAME画面のビジュアル方針
 
 HOMEとGAMEの世界観をつなげます。
@@ -182,6 +204,8 @@ game/
 - `home-screen-plan.css` : HOME画面構想の図と説明
 - `app.js` : STEP進捗保存・次の作業表示・実装詳細の小窓
 - `roadmap-details.css` : 実装詳細小窓とGAME参考画面の表示
+- `build-example.html` : ほぼ完成するレベルの作成例
+- `build-example.css` : 作成例ページのデザイン
 - `assets/type-tower-game-reference.svg` : GAME画面の参考イメージ
 - `github-guide.html` : GitHub初心者向け共同開発ガイド
 - `github-guide.css` : GitHubガイドのデザイン
