@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>TYPE TOWER | STEP終了時のファイル全文</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="build-example.css">
+  <link rel="stylesheet" href="build-example-full.css">
+</head>
+<body>
+  <header class="example-header" id="top">
+    <nav class="nav wrap" aria-label="作成例ナビゲーション">
+      <a class="brand" href="index.html"><span class="brand-mark">TT</span><span>TYPE TOWER</span></a>
+      <div class="nav-links">
+        <a href="index.html">制作方針へ戻る</a>
+        <a href="build-example.html">差分版</a>
+        <a href="#fullExampleApp">全文記入例</a>
+      </div>
+    </nav>
+
+    <div class="wrap example-hero">
+      <p class="eyebrow">FULL FILE EXAMPLE</p>
+      <h1>そのSTEPが終わった時のコードを、<br><span>ファイルごと丸ごと見る。</span></h1>
+      <p class="lead">「どこへ追記する？」「前の関数は消す？」を減らすため、STEP 1〜10それぞれで、その時点の <code>index.html</code> / <code>style.css</code> / JavaScript / JSON を全文表示します。</p>
+      <div class="example-summary">
+        <span>STEPごとにファイル全文</span>
+        <span>CSSも毎回全文</span>
+        <span>JSも毎回全文</span>
+        <span>今のtype-tower-aを優先</span>
+      </div>
+      <div class="source-rule">
+        <strong>最重要：自分たちが書いたコードを優先</strong>
+        <p>現在の <code>type-tower-a/index.html</code> と <code>js/main.js</code> をSTEP 1の基準にしています。記入例と書き方が違っても、同じ役割で正常に動くなら自分たちのコードを残してください。以後の例も、その書き方へ必要な処理を足す方針です。</p>
+      </div>
+      <div class="source-rule secondary">
+        <strong>授業のルールを優先</strong>
+        <p>先生からAI利用や提出方法について指定がある場合は、そのルールを優先してください。このページは、自分たちの実装と比較して不足部分を確認するための参考例です。</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section wrap">
+      <div class="section-head">
+        <p class="eyebrow">HOW TO USE</p>
+        <h2>今のSTEPを選んで、ファイルを上から比較する</h2>
+        <p>各STEPの最初のファイルだけ最初から開いています。他のファイルはクリックすると全文を確認できます。STEP 1の <code>main.js</code> は現在の自分たちのコードをそのまま掲載しています。</p>
+      </div>
+      <div class="full-flow">
+        <span>① STEPを選ぶ</span>
+        <span>② ファイル名を開く</span>
+        <span>③ 自分のコードと比較</span>
+        <span>④ 動かして確認</span>
+      </div>
+    </section>
+
+    <div id="fullExampleApp"></div>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row"><span>TYPE TOWER ファイル全文記入例</span><a href="#top">TOPへ戻る</a></div>
+  </footer>
+
+  <script src="build-example-full.js"></script>
+</body>
+</html>
