@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>TYPE TOWER | STEP終了時のファイル全文</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="build-example.css">
+  <link rel="stylesheet" href="build-example-steps.css">
+</head>
+<body>
+  <header class="example-header" id="top">
+    <nav class="nav wrap" aria-label="作成例ナビゲーション">
+      <a class="brand" href="index.html"><span class="brand-mark">TT</span><span>TYPE TOWER</span></a>
+      <div class="nav-links">
+        <a href="index.html">制作方針へ戻る</a>
+        <a href="build-example.html">旧STEP差分版</a>
+        <a href="#snapshotApp">全文記入例</a>
+      </div>
+    </nav>
+
+    <div class="wrap example-hero">
+      <p class="eyebrow">FULL FILE SNAPSHOTS</p>
+      <h1>「どこへ追記？」をなくして、<br><span>各STEP終了時のファイル全文を見る。</span></h1>
+      <p class="lead">STEP 1ならSTEP 1が終わった時点の <code>index.html</code> / <code>style.css</code> / JavaScriptを全文掲載します。STEP 2以降も同じ方式です。前のコードを残すか消すかで迷わず、今の自分たちのファイル全体と比較できます。</p>
+      <div class="example-summary">
+        <span>STEPごとにファイル全文</span>
+        <span>CSSも毎回全文</span>
+        <span>JSも毎回全文</span>
+        <span>JSONもその時点の全文</span>
+      </div>
+      <div class="snapshot-warning">
+        <strong>使い方</strong>
+        <p>授業や先生のルールでAI生成物の提出が制限されている場合は、そのルールを優先してください。このページは、自分たちが書いたコードと比較して「今のSTEPで何が揃っていればよいか」を確認するための参考例です。</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section wrap">
+      <div class="section-head">
+        <p class="eyebrow">HOW TO READ</p>
+        <h2>今やっているSTEPだけ開く</h2>
+        <p>各STEPの中に、その時点で存在するファイルを丸ごと載せます。途中の「追記コード」ではなく、そのSTEP終了時にファイルを開いたら最初から最後までどうなっているかを見る形式です。</p>
+      </div>
+      <div class="snapshot-flow">
+        <span>① 今のSTEPを選ぶ</span>
+        <span>② ファイル名を開く</span>
+        <span>③ 自分たちのファイルと上から比較</span>
+        <span>④ 動作確認して次へ</span>
+      </div>
+    </section>
+
+    <div id="snapshotApp" class="snapshot-app" aria-live="polite"></div>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row"><span>TYPE TOWER STEP終了時ファイル全文</span><a href="#top">TOPへ戻る</a></div>
+  </footer>
+
+  <script src="build-example-snapshots.js"></script>
+</body>
+</html>
