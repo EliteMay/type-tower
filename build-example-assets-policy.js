@@ -79,7 +79,7 @@ button {
 .select-bg-video {
   position: absolute;
   inset: 0;
-  z-index: -2;
+  z-index: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -89,7 +89,7 @@ button {
 .select-bg-overlay {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 1;
   pointer-events: none;
   background: linear-gradient(
     180deg,
@@ -102,6 +102,8 @@ button {
 
 /* 上部：ロゴ + タイトル */
 .select-brand {
+  position: relative;
+  z-index: 2;
   justify-self: center;
   display: flex;
   align-items: center;
@@ -130,6 +132,8 @@ button {
 
 /* 中央〜下：3つの塔。塔そのものの見た目は素材側で作る */
 .tower-select {
+  position: relative;
+  z-index: 2;
   align-self: end;
   width: min(1100px, 100%);
   margin: clamp(18px, 4vh, 44px) auto 0;
