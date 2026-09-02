@@ -4,9 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#ffffff" />
-  <title>TYPE TOWER | ほぼ完成する作成例</title>
+  <title>TYPE TOWER | STEP別 作成例</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="build-example.css" />
+  <link rel="stylesheet" href="build-example-steps.css" />
 </head>
 <body>
   <header class="example-header" id="top">
@@ -14,26 +15,35 @@
       <a class="brand" href="index.html"><span class="brand-mark">TT</span><span>TYPE TOWER</span></a>
       <div class="nav-links">
         <a href="index.html">制作方針へ戻る</a>
-        <a href="#files">ファイル構成</a>
-        <a href="#html">HTML</a>
-        <a href="#css">CSS</a>
-        <a href="#javascript">JavaScript</a>
-        <a href="#data">問題データ</a>
-        <a href="#check">完成確認</a>
+        <a href="#step-1">STEP 1</a>
+        <a href="#step-4">STEP 4</a>
+        <a href="#step-6">STEP 6</a>
+        <a href="#step-9">STEP 9</a>
+        <a href="build-example-files.html">完成ファイル版</a>
       </div>
     </nav>
 
     <div class="wrap example-hero">
-      <p class="eyebrow">FULL BUILD EXAMPLE</p>
-      <h1>このページを上から作れば、<br><span>最低限遊べるTYPE TOWERになる。</span></h1>
-      <p class="lead">断片的なコード例ではなく、どのファイルに何を書くかを一式で載せます。最初は画像素材がなくても動く形にし、3つの塔・3モード・階数・TIME・COMBO・RESULTまでつながる例です。</p>
+      <p class="eyebrow">STEP-BY-STEP BUILD EXAMPLE</p>
+      <h1>そのSTEPで書くHTML・CSS・JSを、<br><span>全部同じ場所で確認する。</span></h1>
+      <p class="lead">ロードマップと同じSTEP 1〜10で進みます。各STEPに「HTML」「CSS」「JavaScript / JSON」をまとめ、上から書いていけば最終的に最低限遊べるTYPE TOWERへつながるようにしています。</p>
       <div class="example-summary">
-        <span>HOME：空 + 3つの塔</span>
-        <span>GAME：1F → 10F</span>
-        <span>正解 +1F / MISS -1F</span>
-        <span>3モード</span>
-        <span>TIME / COMBO</span>
-        <span>RESULT / 記録</span>
+        <span>CSSを別ページから探さない</span>
+        <span>新規 / 追記 / 置換を明記</span>
+        <span>各STEPでブラウザ確認</span>
+        <span>最後は完成ファイル版と比較</span>
+      </div>
+      <div class="step-index" aria-label="STEP一覧">
+        <a href="#step-1">1 HOMEと3つの塔</a>
+        <a href="#step-2">2 漢字問題</a>
+        <a href="#step-3">3 入力判定</a>
+        <a href="#step-4">4 階数</a>
+        <a href="#step-5">5 RESULT</a>
+        <a href="#step-6">6 TIME / COMBO</a>
+        <a href="#step-7">7 残り2つの塔</a>
+        <a href="#step-8">8 記録保存</a>
+        <a href="#step-9">9 見た目・階移動</a>
+        <a href="#step-10">10 テスト</a>
       </div>
     </div>
   </header>
@@ -42,22 +52,23 @@
     <section class="section wrap" id="how-to-use">
       <div class="section-head">
         <p class="eyebrow">HOW TO USE</p>
-        <h2>一気に全部書かず、1ファイルずつ動かす</h2>
-        <p>下の例は完成形に近いですが、授業では「HTML → CSS → main.js → game.js → JSON」の順で追加し、各段階でブラウザ確認する方が壊れた場所を見つけやすいです。</p>
+        <h2>STEP順に書く。置換と書いてある古いコードは残さない。</h2>
+        <p>後のSTEPで同じ関数を強化するため、古い関数と新しい関数を両方残すとエラーになります。「置換」は前のコードを消して新しい例に入れ替えてください。</p>
       </div>
       <div class="example-rule-grid">
-        <article><b>最初</b><p>HTMLとCSSだけでHOMEに3つの塔が見えるところまで。</p></article>
-        <article><b>次</b><p>漢字の塔だけGAMEにつないで、問題表示・判定・階数を確認。</p></article>
-        <article><b>最後</b><p>英訳・和訳、TIME、COMBO、保存、演出を足す。</p></article>
+        <article><b>新規</b><p>まだないファイルを作り、コードを書く。</p></article>
+        <article><b>追記</b><p>指定ファイルへ追加する。CSSは基本的に末尾へ追加。</p></article>
+        <article><b>置換</b><p>前STEPの同名関数・仮HTMLを消して入れ替える。</p></article>
       </div>
+      <div class="step-rule"><b>CSSは同じSTEP内：</b>そのSTEPで増やしたHTMLのすぐ下に、対応する <code>game/css/style.css</code> の追記例を置いています。</div>
     </section>
 
     <section class="section section-soft" id="files">
       <div class="wrap">
         <div class="section-head">
-          <p class="eyebrow">FILE TREE</p>
-          <h2>まずこのファイル構成を作る</h2>
-          <p><code>game/</code> が実際のゲーム本体です。制作方針サイトのファイルとは分けます。</p>
+          <p class="eyebrow">START</p>
+          <h2>最初はファイルだけ作る</h2>
+          <p>画像はまだ不要です。STEP 1から必要なファイルへ中身を書きます。</p>
         </div>
         <pre class="tree-block"><code>game/
 ├─ index.html
@@ -74,21 +85,26 @@
 │  └─ en-ja.json
 └─ assets/
    └─ images/
-      ├─ sky.webp          ← 後から追加でOK
-      ├─ tower-kanji.webp  ← 後から追加でOK
-      ├─ tower-ja-en.webp  ← 後から追加でOK
-      └─ tower-en-ja.webp  ← 後から追加でOK</code></pre>
-        <div class="example-note"><b>画像がまだなくても大丈夫：</b>下のCSSは空と塔をCSSだけでも仮表示できるようにしてあります。ゲームが動いた後に画像へ差し替えます。</div>
+      ├─ sky.webp
+      ├─ tower-kanji.webp
+      ├─ tower-ja-en.webp
+      └─ tower-en-ja.webp</code></pre>
+        <div class="example-note"><b>空ファイルでOK：</b><code>storage.js</code>、<code>effects.js</code>、英語2つのJSONは、そのSTEPになるまで中身なしで構いません。</div>
       </div>
     </section>
 
-    <section class="section wrap example-file" id="html">
-      <div class="file-heading">
-        <div><p class="eyebrow">FILE 01</p><h2><code>game/index.html</code></h2></div>
-        <span>画面の箱・3つの塔・GAME・RESULT</span>
+    <section class="section wrap build-step" id="step-1">
+      <div class="step-head">
+        <div class="step-number">01</div>
+        <div class="step-title"><p>STEP 1</p><h2>HOME / GAME / RESULT + 3つの塔</h2></div>
+        <div class="step-files"><code>index.html</code><code>style.css</code><code>main.js</code></div>
       </div>
-      <p class="file-purpose">この1ファイルにHOME / GAME / RESULTの3画面を置きます。別のSELECT画面は作りません。HOMEにある3つの塔がそのままモード選択です。</p>
-      <pre class="code-block"><code>&lt;!doctype html&gt;
+      <p class="step-intro">開いた瞬間に空と3つの塔が見えるHOMEを作ります。GAMEとRESULTはまだ仮の箱です。</p>
+
+      <div class="code-group">
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>HTML：index.htmlを最初にこの形へ</strong><span class="operation new">新規 / 全体</span></div>
+          <pre class="code-block"><code>&lt;!doctype html&gt;
 &lt;html lang="ja"&gt;
 &lt;head&gt;
   &lt;meta charset="UTF-8"&gt;
@@ -97,126 +113,47 @@
   &lt;link rel="stylesheet" href="css/style.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
-  &lt;!-- HOMEとGAMEの一番後ろ。基本は動かさない --&gt;
   &lt;div class="sky-layer" aria-hidden="true"&gt;&lt;/div&gt;
 
   &lt;main class="app-shell"&gt;
-    &lt;!-- ==================== HOME ==================== --&gt;
     &lt;section class="screen home-screen" data-screen="home"&gt;
       &lt;header class="home-title"&gt;
         &lt;p&gt;TYPE TOWER&lt;/p&gt;
         &lt;h1&gt;挑戦する塔を選ぶ&lt;/h1&gt;
-        &lt;label class="difficulty-control"&gt;
-          難易度
-          &lt;select id="difficultySelect"&gt;
-            &lt;option value="easy"&gt;EASY&lt;/option&gt;
-            &lt;option value="normal" selected&gt;NORMAL&lt;/option&gt;
-            &lt;option value="hard"&gt;HARD&lt;/option&gt;
-          &lt;/select&gt;
-        &lt;/label&gt;
       &lt;/header&gt;
 
       &lt;div class="tower-select" aria-label="挑戦する塔を選択"&gt;
         &lt;article class="tower-option"&gt;
-          &lt;div class="tower-art tower-kanji" aria-hidden="true"&gt;
-            &lt;span&gt;KANJI&lt;/span&gt;
-          &lt;/div&gt;
+          &lt;div class="tower-art tower-kanji"&gt;&lt;span&gt;KANJI&lt;/span&gt;&lt;/div&gt;
           &lt;h2&gt;漢字の塔&lt;/h2&gt;
           &lt;p&gt;漢字 → 読み&lt;/p&gt;
-          &lt;button class="tower-start" type="button" data-mode="kanji"&gt;この塔に挑戦&lt;/button&gt;
+          &lt;button class="tower-start" data-mode="kanji" type="button"&gt;この塔に挑戦&lt;/button&gt;
         &lt;/article&gt;
 
         &lt;article class="tower-option"&gt;
-          &lt;div class="tower-art tower-ja-en" aria-hidden="true"&gt;
-            &lt;span&gt;JA → EN&lt;/span&gt;
-          &lt;/div&gt;
+          &lt;div class="tower-art tower-ja-en"&gt;&lt;span&gt;JA → EN&lt;/span&gt;&lt;/div&gt;
           &lt;h2&gt;英訳の塔&lt;/h2&gt;
           &lt;p&gt;日本語 → 英語&lt;/p&gt;
-          &lt;button class="tower-start" type="button" data-mode="jaEn"&gt;この塔に挑戦&lt;/button&gt;
+          &lt;button class="tower-start" data-mode="jaEn" type="button"&gt;この塔に挑戦&lt;/button&gt;
         &lt;/article&gt;
 
         &lt;article class="tower-option"&gt;
-          &lt;div class="tower-art tower-en-ja" aria-hidden="true"&gt;
-            &lt;span&gt;EN → JA&lt;/span&gt;
-          &lt;/div&gt;
+          &lt;div class="tower-art tower-en-ja"&gt;&lt;span&gt;EN → JA&lt;/span&gt;&lt;/div&gt;
           &lt;h2&gt;和訳の塔&lt;/h2&gt;
           &lt;p&gt;英語 → 日本語&lt;/p&gt;
-          &lt;button class="tower-start" type="button" data-mode="enJa"&gt;この塔に挑戦&lt;/button&gt;
+          &lt;button class="tower-start" data-mode="enJa" type="button"&gt;この塔に挑戦&lt;/button&gt;
         &lt;/article&gt;
       &lt;/div&gt;
     &lt;/section&gt;
 
-    &lt;!-- ==================== GAME ==================== --&gt;
     &lt;section class="screen game-screen" data-screen="game" hidden&gt;
-      &lt;button id="gameHomeButton" class="small-button top-left" type="button"&gt;塔選択へ戻る&lt;/button&gt;
-
-      &lt;aside class="floor-rail" aria-label="現在階"&gt;
-        &lt;span data-floor="10"&gt;10F&lt;/span&gt;
-        &lt;span data-floor="9"&gt;9F&lt;/span&gt;
-        &lt;span data-floor="8"&gt;8F&lt;/span&gt;
-        &lt;span data-floor="7"&gt;7F&lt;/span&gt;
-        &lt;span data-floor="6"&gt;6F&lt;/span&gt;
-        &lt;span data-floor="5"&gt;5F&lt;/span&gt;
-        &lt;span data-floor="4"&gt;4F&lt;/span&gt;
-        &lt;span data-floor="3"&gt;3F&lt;/span&gt;
-        &lt;span data-floor="2"&gt;2F&lt;/span&gt;
-        &lt;span data-floor="1"&gt;1F&lt;/span&gt;
-      &lt;/aside&gt;
-
-      &lt;div class="game-stage"&gt;
-        &lt;div class="tower-scene" id="towerScene" aria-hidden="true"&gt;
-          &lt;div class="stone-wall"&gt;&lt;/div&gt;
-          &lt;div class="enemy-shape"&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;div class="game-hud"&gt;
-          &lt;div class="hud-top"&gt;
-            &lt;div&gt;
-              &lt;small id="modeLabel"&gt;漢字の塔&lt;/small&gt;
-              &lt;strong id="floorText"&gt;1F&lt;/strong&gt;
-            &lt;/div&gt;
-            &lt;div class="timer-box"&gt;TIME &lt;strong id="timeText"&gt;10&lt;/strong&gt;&lt;/div&gt;
-          &lt;/div&gt;
-
-          &lt;div class="question-card" id="questionCard"&gt;
-            &lt;p id="questionHint"&gt;読みを入力&lt;/p&gt;
-            &lt;h2 id="questionText"&gt;読み込み中…&lt;/h2&gt;
-          &lt;/div&gt;
-
-          &lt;form id="answerForm" class="answer-form"&gt;
-            &lt;label class="sr-only" for="answerInput"&gt;答え&lt;/label&gt;
-            &lt;input id="answerInput" type="text" autocomplete="off" placeholder="答えを入力してEnter"&gt;
-          &lt;/form&gt;
-
-          &lt;div class="hud-bottom"&gt;
-            &lt;strong&gt;COMBO ×&lt;span id="comboText"&gt;0&lt;/span&gt;&lt;/strong&gt;
-            &lt;span&gt;MISSで -1F / 正解で +1F&lt;/span&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
+      &lt;button id="gameHomeButton" class="small-button" type="button"&gt;塔選択へ戻る&lt;/button&gt;
+      &lt;div id="gameContent"&gt;GAME&lt;/div&gt;
     &lt;/section&gt;
 
-    &lt;!-- ==================== RESULT ==================== --&gt;
     &lt;section class="screen result-screen" data-screen="result" hidden&gt;
-      &lt;div class="result-panel"&gt;
-        &lt;p class="result-kicker"&gt;TOWER CLEAR&lt;/p&gt;
-        &lt;h1 id="resultTitle"&gt;漢字の塔 CLEAR&lt;/h1&gt;
-
-        &lt;div class="result-grid"&gt;
-          &lt;div&gt;&lt;span&gt;正解&lt;/span&gt;&lt;strong id="resultCorrect"&gt;0&lt;/strong&gt;&lt;/div&gt;
-          &lt;div&gt;&lt;span&gt;MISS&lt;/span&gt;&lt;strong id="resultMiss"&gt;0&lt;/strong&gt;&lt;/div&gt;
-          &lt;div&gt;&lt;span&gt;正答率&lt;/span&gt;&lt;strong id="resultAccuracy"&gt;0%&lt;/strong&gt;&lt;/div&gt;
-          &lt;div&gt;&lt;span&gt;最大COMBO&lt;/span&gt;&lt;strong id="resultMaxCombo"&gt;0&lt;/strong&gt;&lt;/div&gt;
-          &lt;div&gt;&lt;span&gt;TIME&lt;/span&gt;&lt;strong id="resultTime"&gt;0.0s&lt;/strong&gt;&lt;/div&gt;
-        &lt;/div&gt;
-
-        &lt;p id="bestRecordText" class="best-record"&gt;&lt;/p&gt;
-
-        &lt;div class="result-actions"&gt;
-          &lt;button id="retryButton" class="primary-action" type="button"&gt;もう一度挑戦&lt;/button&gt;
-          &lt;button id="resultHomeButton" class="secondary-action" type="button"&gt;塔選択へ戻る&lt;/button&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
+      &lt;div id="resultContent"&gt;RESULT&lt;/div&gt;
+      &lt;button id="resultHomeButton" type="button"&gt;塔選択へ戻る&lt;/button&gt;
     &lt;/section&gt;
   &lt;/main&gt;
 
@@ -226,26 +163,17 @@
   &lt;script src="js/game.js"&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-      <div class="code-points"><b>ここで確認：</b><span>ブラウザを開いてHOMEが出る</span><span>3つの塔がある</span><span>GAMEとRESULTはまだhidden</span></div>
-    </section>
+        </article>
 
-    <section class="section section-soft example-file" id="css">
-      <div class="wrap">
-        <div class="file-heading">
-          <div><p class="eyebrow">FILE 02</p><h2><code>game/css/style.css</code></h2></div>
-          <span>空固定・3塔・GAME配置・レスポンシブ</span>
-        </div>
-        <p class="file-purpose">画像素材がなくても一度完成形を確認できるCSSです。後から<code>.tower-art</code>や<code>.sky-layer</code>を画像へ置き換えます。</p>
-        <pre class="code-block"><code>:root {
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>CSS：空 + HOME + 3つの塔</strong><span class="operation new">style.css 最初</span></div>
+          <pre class="code-block"><code>:root {
   --navy: #17345f;
   --navy-dark: #102744;
   --gold: #d8ae58;
   --stone: #e7d8bf;
-  --stone-dark: #c8b28f;
-  --paper: #fffaf0;
   --ink: #172034;
 }
-
 * { box-sizing: border-box; }
 html, body { min-height: 100%; }
 body {
@@ -262,56 +190,26 @@ button { cursor: pointer; }
   position: fixed;
   inset: 0;
   z-index: -2;
-  background-color: #8fd3ff;
-  background-image:
-    radial-gradient(ellipse at 12% 22%, rgba(255,255,255,.88) 0 8%, transparent 9%),
-    radial-gradient(ellipse at 24% 28%, rgba(255,255,255,.75) 0 7%, transparent 8%),
-    radial-gradient(ellipse at 76% 18%, rgba(255,255,255,.88) 0 9%, transparent 10%),
-    linear-gradient(#74c8ff 0%, #bce8ff 58%, #e9f8ff 100%);
+  background:
+    radial-gradient(ellipse at 16% 25%, rgba(255,255,255,.85) 0 8%, transparent 9%),
+    radial-gradient(ellipse at 78% 18%, rgba(255,255,255,.85) 0 9%, transparent 10%),
+    linear-gradient(#74c8ff, #c9edff 62%, #eefaff);
 }
+.app-shell, .screen { min-height: 100vh; }
 
-.app-shell { min-height: 100vh; }
-.screen { min-height: 100vh; }
-
-/* HOME */
 .home-screen {
   display: grid;
   align-content: center;
   gap: 34px;
   padding: 42px clamp(18px, 4vw, 64px);
 }
-
 .home-title {
   text-align: center;
   color: #fff;
-  text-shadow: 0 2px 12px rgba(20, 55, 90, .28);
+  text-shadow: 0 2px 10px rgba(20,55,90,.3);
 }
-.home-title p {
-  margin: 0 0 4px;
-  font-weight: 900;
-  letter-spacing: .18em;
-}
-.home-title h1 {
-  margin: 0 0 16px;
-  font-size: clamp(2rem, 4vw, 3.4rem);
-}
-.difficulty-control {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  border-radius: 10px;
-  background: rgba(255,255,255,.92);
-  color: var(--ink);
-  text-shadow: none;
-  font-weight: 800;
-}
-.difficulty-control select {
-  border: 1px solid #b9c7d2;
-  border-radius: 7px;
-  background: #fff;
-  padding: 5px 8px;
-}
+.home-title p { margin: 0; font-weight: 900; letter-spacing: .18em; }
+.home-title h1 { margin: 5px 0 0; font-size: clamp(2rem, 4vw, 3.4rem); }
 
 .tower-select {
   width: min(1120px, 100%);
@@ -322,24 +220,12 @@ button { cursor: pointer; }
   align-items: end;
 }
 .tower-option { text-align: center; }
-.tower-option h2 {
-  margin: 14px 0 2px;
-  color: #fff;
-  font-size: clamp(1.05rem, 2vw, 1.45rem);
-  text-shadow: 0 2px 8px rgba(20,55,90,.32);
-}
-.tower-option p {
-  margin: 0 0 10px;
-  color: rgba(255,255,255,.92);
-  font-weight: 700;
-  text-shadow: 0 1px 5px rgba(20,55,90,.28);
-}
-
+.tower-option h2 { margin: 14px 0 2px; color: #fff; }
+.tower-option p { margin: 0 0 10px; color: rgba(255,255,255,.92); font-weight: 700; }
 .tower-art {
   width: min(220px, 86%);
   height: clamp(260px, 42vh, 430px);
   margin: 0 auto;
-  position: relative;
   display: grid;
   place-items: start center;
   padding-top: 18px;
@@ -351,74 +237,252 @@ button { cursor: pointer; }
     repeating-linear-gradient(0deg, #e7d8bf 0 38px, #d1bea0 39px 42px);
   box-shadow: 0 18px 28px rgba(33,73,105,.22);
 }
-.tower-art::before,
-.tower-art::after {
-  content: "";
-  position: absolute;
-  top: -36px;
-  width: 38%;
-  height: 48px;
-  border: 5px solid #b79d76;
-  background: #e7d8bf;
-}
-.tower-art::before { left: -5px; border-radius: 10px 10px 0 0; }
-.tower-art::after { right: -5px; border-radius: 10px 10px 0 0; }
 .tower-art span {
-  position: relative;
-  z-index: 2;
   padding: 6px 10px;
-  border: 2px solid rgba(255,255,255,.5);
   border-radius: 7px;
   background: var(--navy);
   color: #fff;
   font-weight: 900;
-  letter-spacing: .08em;
 }
-.tower-ja-en { background-color: #ead6bd; }
-.tower-en-ja { background-color: #ddd5c5; }
-
-.tower-start,
-.primary-action,
-.secondary-action,
-.small-button {
-  border: 0;
-  border-radius: 9px;
-  font-weight: 900;
-}
-.tower-start,
-.primary-action {
+.tower-start {
   min-height: 46px;
   padding: 10px 18px;
+  border: 2px solid var(--gold);
+  border-radius: 9px;
   background: var(--navy);
   color: #fff;
-  border: 2px solid var(--gold);
-  box-shadow: 0 6px 16px rgba(20,55,90,.18);
+  font-weight: 900;
 }
-.tower-start:hover,
-.primary-action:hover { background: var(--navy-dark); }
+.tower-start:hover { background: var(--navy-dark); }
 
-/* GAME */
-.game-screen {
+@media (max-width: 620px) {
+  .tower-select { grid-template-columns: 1fr; width: min(330px, 100%); }
+  .tower-art { width: 190px; height: 230px; }
+}</code></pre>
+        </article>
+
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>JavaScript：画面切替 + 仮のゲーム開始</strong><span class="operation new">main.js 新規</span></div>
+          <pre class="code-block"><code>const screens = [...document.querySelectorAll('[data-screen]')];
+
+function showScreen(name) {
+  screens.forEach(screen =&gt; {
+    screen.hidden = screen.dataset.screen !== name;
+  });
+}
+
+// STEP 5でgame.jsの本物へ移す仮関数
+function startGame(mode) {
+  console.log('mode:', mode);
+  showScreen('game');
+}
+
+document.querySelectorAll('[data-mode]').forEach(button =&gt; {
+  button.addEventListener('click', () =&gt; startGame(button.dataset.mode));
+});
+
+document.getElementById('gameHomeButton').addEventListener('click', () =&gt; showScreen('home'));
+document.getElementById('resultHomeButton').addEventListener('click', () =&gt; showScreen('home'));
+
+showScreen('home');</code></pre>
+        </article>
+      </div>
+      <div class="step-check"><strong>STEP 1 完了条件</strong><ul><li>空 + 3つの塔が最初から見える</li><li>各塔の下にボタンがある</li><li>ボタンで仮GAMEへ行ける</li><li>HOMEへ戻れる</li></ul></div>
+    </section>
+
+    <section class="section section-soft build-step" id="step-2">
+      <div class="wrap">
+        <div class="step-head">
+          <div class="step-number">02</div>
+          <div class="step-title"><p>STEP 2</p><h2>漢字問題をJSONから1問表示</h2></div>
+          <div class="step-files"><code>index.html</code><code>style.css</code><code>game.js</code><code>kanji.json</code></div>
+        </div>
+        <p class="step-intro">GAMEの仮文字を問題カードへ変えます。まだ入力判定はしません。</p>
+        <div class="code-group">
+          <article class="code-panel">
+            <div class="code-panel-head"><strong>HTML：gameContentを置換</strong><span class="operation replace">置換</span></div>
+            <pre class="code-block"><code>&lt;div class="game-stage"&gt;
+  &lt;div class="question-card"&gt;
+    &lt;p&gt;読みを入力&lt;/p&gt;
+    &lt;h2 id="questionText"&gt;読み込み中…&lt;/h2&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </article>
+          <article class="code-panel">
+            <div class="code-panel-head"><strong>CSS：GAMEの箱 + 問題カード</strong><span class="operation">style.css 末尾へ追記</span></div>
+            <pre class="code-block"><code>.game-screen {
   position: relative;
   display: grid;
   place-items: center;
-  padding: 28px 28px 28px 116px;
+  padding: 70px 24px 24px;
 }
-.top-left {
-  position: fixed;
-  top: 16px;
-  left: 16px;
-  z-index: 10;
+.game-stage {
+  width: min(920px, 100%);
+  min-height: min(680px, 86vh);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  border: 7px solid #aa8d64;
+  border-radius: 18px;
+  background: var(--stone);
+  box-shadow: 0 24px 50px rgba(31,73,108,.24);
 }
-.small-button,
-.secondary-action {
-  padding: 9px 12px;
-  border: 1px solid rgba(20,45,70,.25);
-  background: rgba(255,255,255,.9);
-  color: var(--ink);
+.question-card {
+  width: min(650px, 92%);
+  padding: clamp(24px, 5vw, 48px);
+  border: 4px solid #d2b981;
+  border-radius: 18px;
+  background: rgba(255,250,240,.96);
+  text-align: center;
+}
+.question-card p { margin: 0 0 6px; color: #77664e; font-weight: 800; }
+.question-card h2 { margin: 0; font-size: clamp(2.4rem, 7vw, 5rem); }</code></pre>
+          </article>
+          <article class="code-panel">
+            <div class="code-panel-head"><strong>JSON：漢字問題</strong><span class="operation new">kanji.json 新規</span></div>
+            <pre class="code-block"><code>[
+  { "question": "紅葉", "answer": "こうよう", "difficulty": "easy" },
+  { "question": "憂鬱", "answer": "ゆううつ", "difficulty": "normal" },
+  { "question": "概念", "answer": "がいねん", "difficulty": "normal" },
+  { "question": "躊躇", "answer": "ちゅうちょ", "difficulty": "hard" }
+]</code></pre>
+          </article>
+          <article class="code-panel">
+            <div class="code-panel-head"><strong>JavaScript：読込とランダム表示</strong><span class="operation new">game.js 新規</span></div>
+            <pre class="code-block"><code>let questions = [];
+let currentQuestion = null;
+
+async function loadQuestions() {
+  const response = await fetch('./data/kanji.json');
+  questions = await response.json();
+  showNextQuestion();
 }
 
-.floor-rail {
+function showNextQuestion() {
+  const index = Math.floor(Math.random() * questions.length);
+  currentQuestion = questions[index];
+  document.getElementById('questionText').textContent = currentQuestion.question;
+}</code></pre>
+          </article>
+          <article class="code-panel">
+            <div class="code-panel-head"><strong>main.js：仮startGameを更新</strong><span class="operation replace">置換</span></div>
+            <pre class="code-block"><code>async function startGame(mode) {
+  console.log('mode:', mode);
+  showScreen('game');
+  await loadQuestions();
+}</code></pre>
+          </article>
+        </div>
+        <div class="step-check"><strong>STEP 2 完了条件</strong><ul><li>GAMEに漢字が1問出る</li><li>何度か開始すると別問題も出る</li><li>問題と答えをJSONで持てている</li></ul></div>
+      </div>
+    </section>
+
+    <section class="section wrap build-step" id="step-3">
+      <div class="step-head">
+        <div class="step-number">03</div>
+        <div class="step-title"><p>STEP 3</p><h2>入力欄 + 正解 / MISS判定</h2></div>
+        <div class="step-files"><code>index.html</code><code>style.css</code><code>game.js</code></div>
+      </div>
+      <p class="step-intro">IMEで日本語を入力してEnterで回答する方式です。判定後の「次の問題」はhandleCorrect / handleMiss側から出すように統一します。</p>
+      <div class="code-group">
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>HTML：question-cardの下へ追加</strong><span class="operation">追記</span></div>
+          <pre class="code-block"><code>&lt;form id="answerForm" class="answer-form"&gt;
+  &lt;label class="sr-only" for="answerInput"&gt;答え&lt;/label&gt;
+  &lt;input id="answerInput" type="text" autocomplete="off" placeholder="答えを入力してEnter"&gt;
+&lt;/form&gt;
+&lt;p id="judgeMessage" class="judge-message" aria-live="polite"&gt;&lt;/p&gt;</code></pre>
+        </article>
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>CSS：入力欄 + 判定メッセージ</strong><span class="operation">style.css 末尾へ追記</span></div>
+          <pre class="code-block"><code>.answer-form { width: min(650px, 92%); margin-top: 18px; }
+.answer-form input {
+  width: 100%;
+  min-height: 58px;
+  padding: 10px 18px;
+  border: 3px solid var(--navy);
+  border-radius: 12px;
+  background: #fff;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  text-align: center;
+  outline: none;
+}
+.answer-form input:focus { box-shadow: 0 0 0 4px rgba(216,174,88,.35); }
+.judge-message { min-height: 1.5em; margin: 10px 0 0; font-weight: 900; text-align: center; }
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}</code></pre>
+        </article>
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>JavaScript：Enterで答えを比較</strong><span class="operation">game.js 末尾へ追記</span></div>
+          <pre class="code-block"><code>const answerForm = document.getElementById('answerForm');
+const answerInput = document.getElementById('answerInput');
+const judgeMessage = document.getElementById('judgeMessage');
+
+answerForm.addEventListener('submit', async event =&gt; {
+  event.preventDefault();
+
+  const answer = normalizeAnswer(answerInput.value);
+  if (!answer || !currentQuestion) return;
+
+  if (answer === normalizeAnswer(currentQuestion.answer)) {
+    await handleCorrect();
+  } else {
+    await handleMiss();
+  }
+});
+
+function normalizeAnswer(value) {
+  return value.trim().toLowerCase().replace(/\s+/g, ' ');
+}
+
+async function handleCorrect() {
+  judgeMessage.textContent = '正解！';
+  answerInput.value = '';
+  showNextQuestion();
+  answerInput.focus();
+}
+
+async function handleMiss() {
+  judgeMessage.textContent = 'MISS';
+  answerInput.value = '';
+  showNextQuestion();
+  answerInput.focus();
+}</code></pre>
+        </article>
+      </div>
+      <div class="step-check"><strong>STEP 3 完了条件</strong><ul><li>Enterで回答できる</li><li>正解 / MISSが分かれる</li><li>判定後に次の問題へ進む</li><li>すぐ次を入力できる</li></ul></div>
+    </section>
+
+    <section class="section section-soft build-step" id="step-4">
+      <div class="wrap">
+        <div class="step-head">
+          <div class="step-number">04</div>
+          <div class="step-title"><p>STEP 4</p><h2>正解 +1F / MISS -1F / 10F CLEAR</h2></div>
+          <div class="step-files"><code>index.html</code><code>style.css</code><code>game.js</code></div>
+        </div>
+        <p class="step-intro">左へ1F〜10Fを表示し、現在階だけ強調します。階移動アニメーションはSTEP 9です。</p>
+        <div class="code-group">
+          <article class="code-panel">
+            <div class="code-panel-head"><strong>HTML：game-screenへ階数表示を追加</strong><span class="operation">追記</span></div>
+            <pre class="code-block"><code>&lt;aside class="floor-rail" aria-label="現在階"&gt;
+  &lt;span data-floor="10"&gt;10F&lt;/span&gt;&lt;span data-floor="9"&gt;9F&lt;/span&gt;
+  &lt;span data-floor="8"&gt;8F&lt;/span&gt;&lt;span data-floor="7"&gt;7F&lt;/span&gt;
+  &lt;span data-floor="6"&gt;6F&lt;/span&gt;&lt;span data-floor="5"&gt;5F&lt;/span&gt;
+  &lt;span data-floor="4"&gt;4F&lt;/span&gt;&lt;span data-floor="3"&gt;3F&lt;/span&gt;
+  &lt;span data-floor="2"&gt;2F&lt;/span&gt;&lt;span data-floor="1"&gt;1F&lt;/span&gt;
+&lt;/aside&gt;
+&lt;strong id="floorText" class="floor-text"&gt;1F&lt;/strong&gt;</code></pre>
+          </article>
+          <article class="code-panel">
+            <div class="code-panel-head"><strong>CSS：フロアレール + 現在階</strong><span class="operation">style.css 末尾へ追記</span></div>
+            <pre class="code-block"><code>.floor-rail {
   position: fixed;
   left: 22px;
   top: 50%;
@@ -442,23 +506,541 @@ button { cursor: pointer; }
   color: #fff;
   outline: 2px solid var(--gold);
 }
+.floor-text {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  color: var(--navy);
+}
+@media (max-width: 620px) {
+  .floor-rail {
+    position: static;
+    transform: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .floor-rail span { width: auto; min-width: 40px; }
+}</code></pre>
+          </article>
+          <article class="code-panel">
+            <div class="code-panel-head"><strong>JavaScript：STEP 3の2関数を置換</strong><span class="operation replace">置換</span></div>
+            <pre class="code-block"><code>let floor = 1;
 
-.game-stage {
-  width: min(920px, 100%);
-  min-height: min(680px, 86vh);
-  position: relative;
-  overflow: hidden;
-  border: 7px solid #aa8d64;
+async function handleCorrect() {
+  judgeMessage.textContent = '正解！ +1F';
+  floor += 1;
+  updateFloorUI();
+  answerInput.value = '';
+
+  if (floor &gt;= 10) {
+    finishGame();
+    return;
+  }
+
+  showNextQuestion();
+  answerInput.focus();
+}
+
+async function handleMiss() {
+  judgeMessage.textContent = 'MISS -1F';
+  floor = Math.max(1, floor - 1);
+  updateFloorUI();
+  answerInput.value = '';
+  showNextQuestion();
+  answerInput.focus();
+}
+
+function updateFloorUI() {
+  document.getElementById('floorText').textContent = `${floor}F`;
+  document.querySelectorAll('[data-floor]').forEach(item =&gt; {
+    item.classList.toggle('is-current', Number(item.dataset.floor) === floor);
+  });
+}
+
+// STEP 5で置換
+function finishGame() {
+  alert('CLEAR!');
+}</code></pre>
+          </article>
+        </div>
+        <div class="step-check"><strong>STEP 4 完了条件</strong><ul><li>正解で+1F</li><li>MISSで-1F</li><li>1F未満にならない</li><li>10FでCLEAR処理へ入る</li></ul></div>
+      </div>
+    </section>
+
+    <section class="section wrap build-step" id="step-5">
+      <div class="step-head">
+        <div class="step-number">05</div>
+        <div class="step-title"><p>STEP 5</p><h2>HOME → 漢字の塔 → RESULTを一本につなぐ</h2></div>
+        <div class="step-files"><code>index.html</code><code>style.css</code><code>main.js</code><code>game.js</code></div>
+      </div>
+      <p class="step-intro">正解数 / MISS数を表示し、再挑戦まで通せるようにします。ここで一度「遊べるゲーム」にします。</p>
+      <div class="code-group">
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>HTML：RESULTの仮箱を置換</strong><span class="operation replace">置換</span></div>
+          <pre class="code-block"><code>&lt;section class="screen result-screen" data-screen="result" hidden&gt;
+  &lt;div class="result-panel"&gt;
+    &lt;p class="result-kicker"&gt;TOWER CLEAR&lt;/p&gt;
+    &lt;h1 id="resultTitle"&gt;漢字の塔 CLEAR&lt;/h1&gt;
+    &lt;div class="result-grid"&gt;
+      &lt;div&gt;&lt;span&gt;正解&lt;/span&gt;&lt;strong id="resultCorrect"&gt;0&lt;/strong&gt;&lt;/div&gt;
+      &lt;div&gt;&lt;span&gt;MISS&lt;/span&gt;&lt;strong id="resultMiss"&gt;0&lt;/strong&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="result-actions"&gt;
+      &lt;button id="retryButton" type="button"&gt;もう一度挑戦&lt;/button&gt;
+      &lt;button id="resultHomeButton" type="button"&gt;塔選択へ戻る&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+        </article>
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>CSS：RESULT</strong><span class="operation">style.css 末尾へ追記</span></div>
+          <pre class="code-block"><code>.result-screen { display: grid; place-items: center; padding: 28px; }
+.result-panel {
+  width: min(720px, 100%);
+  padding: clamp(24px, 5vw, 48px);
+  border: 4px solid #d0b36e;
   border-radius: 18px;
-  background: var(--stone);
+  background: rgba(255,250,240,.96);
+  text-align: center;
   box-shadow: 0 24px 50px rgba(31,73,108,.24);
 }
-.tower-scene {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  transition: transform .32s ease, opacity .32s ease;
+.result-kicker { margin: 0; color: #856d37; font-weight: 900; letter-spacing: .14em; }
+.result-panel h1 { color: var(--navy); }
+.result-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+.result-grid div { padding: 14px; border: 1px solid #dfd1b8; border-radius: 9px; background: #fff; }
+.result-grid span { display: block; color: #766b5b; font-size: .8rem; }
+.result-grid strong { display: block; margin-top: 4px; font-size: 1.4rem; }
+.result-actions { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }</code></pre>
+        </article>
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>game.js：本物のstartGame + RESULT</strong><span class="operation replace">追記 / 置換</span></div>
+          <pre class="code-block"><code>let selectedMode = 'kanji';
+let correctCount = 0;
+let missCount = 0;
+
+async function startGame(mode) {
+  selectedMode = mode;
+  floor = 1;
+  correctCount = 0;
+  missCount = 0;
+  updateFloorUI();
+  showScreen('game');
+  await loadQuestions();
+  answerInput.focus();
 }
+
+// STEP 4の2関数を更新
+async function handleCorrect() {
+  correctCount += 1;
+  floor += 1;
+  updateFloorUI();
+  answerInput.value = '';
+
+  if (floor &gt;= 10) {
+    finishGame();
+    return;
+  }
+
+  showNextQuestion();
+  answerInput.focus();
+}
+
+async function handleMiss() {
+  missCount += 1;
+  floor = Math.max(1, floor - 1);
+  updateFloorUI();
+  answerInput.value = '';
+  showNextQuestion();
+  answerInput.focus();
+}
+
+function finishGame() {
+  document.getElementById('resultCorrect').textContent = correctCount;
+  document.getElementById('resultMiss').textContent = missCount;
+  showScreen('result');
+}</code></pre>
+        </article>
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>main.js：仮startGameを削除してボタンだけ残す</strong><span class="operation replace">置換</span></div>
+          <pre class="code-block"><code>const screens = [...document.querySelectorAll('[data-screen]')];
+
+function showScreen(name) {
+  screens.forEach(screen =&gt; {
+    screen.hidden = screen.dataset.screen !== name;
+  });
+}
+
+document.querySelectorAll('[data-mode]').forEach(button =&gt; {
+  button.addEventListener('click', () =&gt; startGame(button.dataset.mode));
+});
+
+document.getElementById('gameHomeButton').addEventListener('click', () =&gt; showScreen('home'));
+document.getElementById('resultHomeButton').addEventListener('click', () =&gt; showScreen('home'));
+document.getElementById('retryButton').addEventListener('click', () =&gt; startGame(selectedMode));
+
+showScreen('home');</code></pre>
+        </article>
+      </div>
+      <div class="step-check"><strong>STEP 5 完了条件</strong><ul><li>HOME → 漢字の塔 → 10F → RESULTが通る</li><li>正解数 / MISS数が出る</li><li>再挑戦で1Fへ戻る</li><li>HOMEへ戻れる</li></ul></div>
+    </section>
+
+    <section class="section section-soft build-step" id="step-6">
+      <div class="wrap">
+        <div class="step-head">
+          <div class="step-number">06</div>
+          <div class="step-title"><p>STEP 6</p><h2>難易度 + TIME + COMBO</h2></div>
+          <div class="step-files"><code>index.html</code><code>style.css</code><code>game.js</code></div>
+        </div>
+        <p class="step-intro">HOMEに難易度、GAMEにTIME / COMBOを追加します。時間切れも通常のMISS処理を使います。</p>
+        <div class="code-group">
+          <article class="code-panel">
+            <div class="code-panel-head"><strong>HTML：HOMEタイトルへ難易度</strong><span class="operation">追記</span></div>
+            <pre class="code-block"><code>&lt;label class="difficulty-control"&gt;
+  難易度
+  &lt;select id="difficultySelect"&gt;
+    &lt;option value="easy"&gt;EASY&lt;/option&gt;
+    &lt;option value="normal" selected&gt;NORMAL&lt;/option&gt;
+    &lt;option value="hard"&gt;HARD&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/label&gt;</code></pre>
+          </article>
+          <article class="code-panel">
+            <div class="code-panel-head"><strong>HTML：GAMEへTIME / COMBO</strong><span class="operation">追記</span></div>
+            <pre class="code-block"><code>&lt;div class="timer-box"&gt;TIME &lt;strong id="timeText"&gt;10&lt;/strong&gt;&lt;/div&gt;
+&lt;div class="combo-box"&gt;COMBO ×&lt;strong id="comboText"&gt;0&lt;/strong&gt;&lt;/div&gt;</code></pre>
+          </article>
+          <article class="code-panel">
+            <div class="code-panel-head"><strong>CSS：難易度 / TIME / COMBO</strong><span class="operation">style.css 末尾へ追記</span></div>
+            <pre class="code-block"><code>.difficulty-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.92);
+  color: var(--ink);
+  text-shadow: none;
+  font-weight: 800;
+}
+.difficulty-control select { border: 1px solid #b9c7d2; border-radius: 7px; background: #fff; padding: 5px 8px; }
+.timer-box, .combo-box {
+  position: fixed;
+  z-index: 8;
+  padding: 8px 12px;
+  border: 2px solid var(--gold);
+  border-radius: 9px;
+  background: var(--navy);
+  color: #fff;
+  font-weight: 900;
+}
+.timer-box { top: 18px; right: 18px; }
+.combo-box { right: 18px; bottom: 18px; }</code></pre>
+          </article>
+          <article class="code-panel">
+            <div class="code-panel-head"><strong>JavaScript：状態変数</strong><span class="operation">game.js 上部へ追記</span></div>
+            <pre class="code-block"><code>const TIME_BY_DIFFICULTY = { easy: 12, normal: 10, hard: 8 };
+let selectedDifficulty = 'normal';
+let combo = 0;
+let maxCombo = 0;
+let timeLeft = 10;
+let timerId = null;</code></pre>
+          </article>
+          <article class="code-panel">
+            <div class="code-panel-head"><strong>JavaScript：startGameを更新</strong><span class="operation replace">置換</span></div>
+            <pre class="code-block"><code>async function startGame(mode) {
+  clearInterval(timerId);
+  selectedMode = mode;
+  selectedDifficulty = document.getElementById('difficultySelect').value;
+  floor = 1;
+  combo = 0;
+  maxCombo = 0;
+  correctCount = 0;
+  missCount = 0;
+  updateFloorUI();
+  updateComboUI();
+  showScreen('game');
+  await loadQuestions();
+  answerInput.focus();
+}</code></pre>
+          </article>
+          <article class="code-panel">
+            <div class="code-panel-head"><strong>JavaScript：showNextQuestionを難易度 + TIME対応へ</strong><span class="operation replace">置換</span></div>
+            <pre class="code-block"><code>function showNextQuestion() {
+  const filtered = questions.filter(q =&gt; q.difficulty === selectedDifficulty);
+  const pool = filtered.length ? filtered : questions;
+  currentQuestion = pool[Math.floor(Math.random() * pool.length)];
+  document.getElementById('questionText').textContent = currentQuestion.question;
+  answerInput.value = '';
+  answerInput.focus();
+  startQuestionTimer();
+}
+
+function startQuestionTimer() {
+  clearInterval(timerId);
+  timeLeft = TIME_BY_DIFFICULTY[selectedDifficulty] || 10;
+  updateTimerUI();
+
+  timerId = setInterval(async () =&gt; {
+    timeLeft -= 1;
+    updateTimerUI();
+    if (timeLeft &lt;= 0) {
+      clearInterval(timerId);
+      await handleMiss();
+    }
+  }, 1000);
+}
+
+function updateTimerUI() {
+  document.getElementById('timeText').textContent = timeLeft;
+}
+function updateComboUI() {
+  document.getElementById('comboText').textContent = combo;
+}</code></pre>
+          </article>
+          <article class="code-panel">
+            <div class="code-panel-head"><strong>JavaScript：handleCorrect / handleMissをCOMBO対応へ</strong><span class="operation replace">置換</span></div>
+            <pre class="code-block"><code>async function handleCorrect() {
+  clearInterval(timerId);
+  correctCount += 1;
+  combo += 1;
+  maxCombo = Math.max(maxCombo, combo);
+  floor += 1;
+  updateComboUI();
+  updateFloorUI();
+
+  if (floor &gt;= 10) {
+    finishGame();
+    return;
+  }
+  showNextQuestion();
+}
+
+async function handleMiss() {
+  clearInterval(timerId);
+  missCount += 1;
+  combo = 0;
+  floor = Math.max(1, floor - 1);
+  updateComboUI();
+  updateFloorUI();
+  showNextQuestion();
+}</code></pre>
+          </article>
+        </div>
+        <div class="step-check"><strong>STEP 6 完了条件</strong><ul><li>難易度を選べる</li><li>TIMEが減る</li><li>TIME 0でMISS</li><li>連続正解でCOMBO増加</li><li>MISSで0</li></ul></div>
+      </div>
+    </section>
+
+    <section class="section wrap build-step" id="step-7">
+      <div class="step-head">
+        <div class="step-number">07</div>
+        <div class="step-title"><p>STEP 7</p><h2>英訳の塔 / 和訳の塔を接続</h2></div>
+        <div class="step-files"><code>style.css</code><code>game.js</code><code>ja-en.json</code><code>en-ja.json</code></div>
+      </div>
+      <p class="step-intro">HOMEの3塔はそのまま使い、読み込むJSONだけ切り替えます。</p>
+      <div class="code-group">
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>CSS：塔を少し見分けやすく</strong><span class="operation">style.css 末尾へ追記</span></div>
+          <pre class="code-block"><code>.tower-ja-en { border-color: #9b829f; background-color: #ead9e9; }
+.tower-en-ja { border-color: #7e9a91; background-color: #d8e8e2; }
+.tower-ja-en span { background: #4f365d; }
+.tower-en-ja span { background: #315c53; }</code></pre>
+        </article>
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>JSON：ja-en.json</strong><span class="operation new">新規</span></div>
+          <pre class="code-block"><code>[
+  { "question": "りんご", "answer": "apple", "difficulty": "easy" },
+  { "question": "学校", "answer": "school", "difficulty": "easy" },
+  { "question": "経験", "answer": "experience", "difficulty": "normal" },
+  { "question": "責任", "answer": "responsibility", "difficulty": "hard" }
+]</code></pre>
+        </article>
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>JSON：en-ja.json</strong><span class="operation new">新規</span></div>
+          <pre class="code-block"><code>[
+  { "question": "apple", "answer": "りんご", "difficulty": "easy" },
+  { "question": "school", "answer": "学校", "difficulty": "easy" },
+  { "question": "experience", "answer": "経験", "difficulty": "normal" },
+  { "question": "responsibility", "answer": "責任", "difficulty": "hard" }
+]</code></pre>
+        </article>
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>JavaScript：モード対応を追加</strong><span class="operation">game.js 上部へ追記</span></div>
+          <pre class="code-block"><code>const DATA_FILES = {
+  kanji: './data/kanji.json',
+  jaEn: './data/ja-en.json',
+  enJa: './data/en-ja.json'
+};
+const MODE_LABELS = {
+  kanji: '漢字の塔',
+  jaEn: '英訳の塔',
+  enJa: '和訳の塔'
+};
+const MODE_HINTS = {
+  kanji: '読みを入力',
+  jaEn: '英語を入力',
+  enJa: '日本語を入力'
+};</code></pre>
+        </article>
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>JavaScript：loadQuestionsを置換</strong><span class="operation replace">置換</span></div>
+          <pre class="code-block"><code>async function loadQuestions() {
+  const response = await fetch(DATA_FILES[selectedMode]);
+  questions = await response.json();
+  showNextQuestion();
+}</code></pre>
+        </article>
+      </div>
+      <div class="step-check"><strong>STEP 7 完了条件</strong><ul><li>3塔すべてから開始</li><li>問題がモードごとに分かれる</li><li>同じ階数 / TIME / COMBO処理を再利用できる</li></ul></div>
+    </section>
+
+    <section class="section section-soft build-step" id="step-8">
+      <div class="wrap">
+        <div class="step-head">
+          <div class="step-number">08</div>
+          <div class="step-title"><p>STEP 8</p><h2>RESULT詳細 + ベスト記録保存</h2></div>
+          <div class="step-files"><code>index.html</code><code>style.css</code><code>storage.js</code><code>game.js</code></div>
+        </div>
+        <p class="step-intro">正答率・最大COMBO・クリア時間を追加し、モード + 難易度別に保存します。</p>
+        <div class="code-group">
+          <article class="code-panel">
+            <div class="code-panel-head"><strong>HTML：result-gridを置換 + bestRecordText追加</strong><span class="operation replace">置換</span></div>
+            <pre class="code-block"><code>&lt;div class="result-grid"&gt;
+  &lt;div&gt;&lt;span&gt;正解&lt;/span&gt;&lt;strong id="resultCorrect"&gt;0&lt;/strong&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;span&gt;MISS&lt;/span&gt;&lt;strong id="resultMiss"&gt;0&lt;/strong&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;span&gt;正答率&lt;/span&gt;&lt;strong id="resultAccuracy"&gt;0%&lt;/strong&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;span&gt;最大COMBO&lt;/span&gt;&lt;strong id="resultMaxCombo"&gt;0&lt;/strong&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;span&gt;TIME&lt;/span&gt;&lt;strong id="resultTime"&gt;0.0s&lt;/strong&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p id="bestRecordText" class="best-record"&gt;&lt;/p&gt;</code></pre>
+          </article>
+          <article class="code-panel">
+            <div class="code-panel-head"><strong>CSS：5項目RESULT</strong><span class="operation">style.css 末尾へ追記</span></div>
+            <pre class="code-block"><code>.result-grid { grid-template-columns: repeat(5, 1fr); }
+.best-record { min-height: 1.6em; margin: 18px 0 0; color: #6b5a3f; font-weight: 800; }
+@media (max-width: 820px) {
+  .result-grid { grid-template-columns: repeat(2, 1fr); }
+}</code></pre>
+          </article>
+          <article class="code-panel">
+            <div class="code-panel-head"><strong>JavaScript：storage.js</strong><span class="operation new">新規</span></div>
+            <pre class="code-block"><code>const RECORD_KEY = 'typeTowerRecordsV1';
+
+function loadRecords() {
+  try {
+    return JSON.parse(localStorage.getItem(RECORD_KEY)) || {};
+  } catch (error) {
+    console.warn('記録を読み込めませんでした', error);
+    return {};
+  }
+}
+
+function saveRecord(mode, difficulty, result) {
+  const records = loadRecords();
+  const key = `${mode}:${difficulty}`;
+  const old = records[key] || {};
+  const next = {
+    bestTime: old.bestTime == null ? result.time : Math.min(old.bestTime, result.time),
+    maxCombo: Math.max(old.maxCombo || 0, result.maxCombo),
+    bestAccuracy: Math.max(old.bestAccuracy || 0, result.accuracy)
+  };
+  records[key] = next;
+  try {
+    localStorage.setItem(RECORD_KEY, JSON.stringify(records));
+  } catch (error) {
+    console.warn('記録を保存できませんでした', error);
+  }
+  return next;
+}</code></pre>
+          </article>
+          <article class="code-panel">
+            <div class="code-panel-head"><strong>game.js：開始時間を追加</strong><span class="operation">追記</span></div>
+            <pre class="code-block"><code>let startedAt = 0;
+
+// startGameの初期化部分へ追加
+startedAt = performance.now();</code></pre>
+          </article>
+          <article class="code-panel">
+            <div class="code-panel-head"><strong>game.js：finishGameを置換</strong><span class="operation replace">置換</span></div>
+            <pre class="code-block"><code>function finishGame() {
+  clearInterval(timerId);
+  const elapsedSeconds = (performance.now() - startedAt) / 1000;
+  const answered = correctCount + missCount;
+  const accuracy = answered === 0 ? 0 : Math.round((correctCount / answered) * 100);
+
+  document.getElementById('resultTitle').textContent = `${MODE_LABELS[selectedMode]} CLEAR`;
+  document.getElementById('resultCorrect').textContent = correctCount;
+  document.getElementById('resultMiss').textContent = missCount;
+  document.getElementById('resultAccuracy').textContent = `${accuracy}%`;
+  document.getElementById('resultMaxCombo').textContent = maxCombo;
+  document.getElementById('resultTime').textContent = `${elapsedSeconds.toFixed(1)}s`;
+
+  const best = saveRecord(selectedMode, selectedDifficulty, {
+    time: elapsedSeconds,
+    maxCombo,
+    accuracy
+  });
+  document.getElementById('bestRecordText').textContent =
+    `BEST TIME ${best.bestTime.toFixed(1)}s / MAX COMBO ${best.maxCombo} / ACC ${best.bestAccuracy}%`;
+
+  showScreen('result');
+}</code></pre>
+          </article>
+        </div>
+        <div class="step-check"><strong>STEP 8 完了条件</strong><ul><li>RESULT 5項目が正しい</li><li>リロード後もベスト記録が残る</li><li>保存失敗でもゲームは止まらない</li></ul></div>
+      </div>
+    </section>
+
+    <section class="section wrap build-step" id="step-9">
+      <div class="step-head">
+        <div class="step-number">09</div>
+        <div class="step-title"><p>STEP 9</p><h2>固定の空 + 塔内部 + 敵 + 階移動</h2></div>
+        <div class="step-files"><code>index.html</code><code>style.css</code><code>effects.js</code><code>game.js</code></div>
+      </div>
+      <p class="step-intro">空は固定したまま、塔内部だけ短く上下させます。ここで二重入力防止も入れて最終ゲーム処理を安定させます。</p>
+      <div class="code-group">
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>HTML：game-stage内を最終レイヤー構成へ置換</strong><span class="operation replace">置換</span></div>
+          <pre class="code-block"><code>&lt;div class="game-stage"&gt;
+  &lt;div class="tower-scene" id="towerScene" aria-hidden="true"&gt;
+    &lt;div class="stone-wall"&gt;&lt;/div&gt;
+    &lt;div class="enemy-shape"&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class="game-hud"&gt;
+    &lt;div class="hud-top"&gt;
+      &lt;div&gt;&lt;small id="modeLabel"&gt;漢字の塔&lt;/small&gt;&lt;strong id="floorText"&gt;1F&lt;/strong&gt;&lt;/div&gt;
+      &lt;div class="timer-box"&gt;TIME &lt;strong id="timeText"&gt;10&lt;/strong&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="question-card" id="questionCard"&gt;
+      &lt;p id="questionHint"&gt;読みを入力&lt;/p&gt;
+      &lt;h2 id="questionText"&gt;読み込み中…&lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;form id="answerForm" class="answer-form"&gt;
+      &lt;label class="sr-only" for="answerInput"&gt;答え&lt;/label&gt;
+      &lt;input id="answerInput" type="text" autocomplete="off" placeholder="答えを入力してEnter"&gt;
+    &lt;/form&gt;
+    &lt;div class="hud-bottom"&gt;
+      &lt;strong&gt;COMBO ×&lt;span id="comboText"&gt;0&lt;/span&gt;&lt;/strong&gt;
+      &lt;span&gt;MISSで -1F / 正解で +1F&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          <p class="code-note">STEP 6で追加した外側の <code>.timer-box</code> / <code>.combo-box</code> は削除します。TIMEとCOMBOはこのgame-hud内へ移動します。</p>
+        </article>
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>CSS：STEP 6の固定TIME / COMBOを解除</strong><span class="operation">style.css 末尾へ追記</span></div>
+          <pre class="code-block"><code>.timer-box { position: static; }
+.combo-box { position: static; }
+.floor-text { position: static; transform: none; }</code></pre>
+        </article>
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>CSS：塔内部 + 敵 + HUD</strong><span class="operation">style.css 末尾へ追記</span></div>
+          <pre class="code-block"><code>.game-stage { position: relative; overflow: hidden; }
+.tower-scene { position: absolute; inset: 0; z-index: 1; }
 .stone-wall {
   position: absolute;
   inset: 0;
@@ -469,34 +1051,18 @@ button { cursor: pointer; }
 }
 .enemy-shape {
   position: absolute;
-  left: 50%;
-  top: 37%;
-  width: 230px;
-  height: 210px;
+  left: 50%; top: 37%;
+  width: 230px; height: 210px;
   transform: translate(-50%, -50%);
   border-radius: 48% 48% 38% 38%;
   background: #271b3f;
-  box-shadow: 0 14px 28px rgba(54,36,72,.28);
 }
-.enemy-shape::before,
-.enemy-shape::after {
-  content: "";
-  position: absolute;
-  top: -40px;
-  width: 70px;
-  height: 82px;
-  background: #271b3f;
-  clip-path: polygon(0 100%, 50% 0, 100% 100%);
-}
-.enemy-shape::before { left: 18px; transform: rotate(-16deg); }
-.enemy-shape::after { right: 18px; transform: rotate(16deg); }
 .enemy-shape span::before,
 .enemy-shape span::after {
   content: "";
   position: absolute;
   top: 78px;
-  width: 26px;
-  height: 12px;
+  width: 26px; height: 12px;
   border-radius: 50%;
   background: #ff7138;
   box-shadow: 0 0 14px #ff7138;
@@ -513,70 +1079,14 @@ button { cursor: pointer; }
   align-items: center;
   padding: 24px clamp(18px, 5vw, 64px) 30px;
 }
-.hud-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 18px;
-}
-.hud-top small {
-  display: block;
-  margin-bottom: 2px;
-  color: #6c5a42;
-  font-weight: 800;
-}
-#floorText { font-size: clamp(2rem, 5vw, 3.6rem); color: var(--navy); }
-.timer-box {
-  padding: 8px 12px;
-  border: 2px solid var(--gold);
-  border-radius: 9px;
-  background: var(--navy);
-  color: #fff;
-  font-weight: 900;
-}
-
-.question-card {
-  width: min(650px, 92%);
-  margin: auto;
-  padding: clamp(24px, 5vw, 48px);
-  border: 4px solid #d2b981;
-  border-radius: 18px;
-  background: rgba(255,250,240,.96);
-  text-align: center;
-  box-shadow: 0 16px 30px rgba(66,48,28,.2);
-}
-.question-card p { margin: 0 0 6px; color: #77664e; font-weight: 800; }
-.question-card h2 {
-  margin: 0;
-  font-size: clamp(2.4rem, 7vw, 5rem);
-  line-height: 1.2;
-  color: #2f2a25;
-}
-.answer-form { width: min(650px, 92%); margin: 0 auto; }
-.answer-form input {
-  width: 100%;
-  min-height: 58px;
-  padding: 10px 18px;
-  border: 3px solid var(--navy);
-  border-radius: 12px;
-  background: #fff;
-  color: var(--ink);
-  font-size: clamp(1.1rem, 2vw, 1.35rem);
-  text-align: center;
-  outline: none;
-}
-.answer-form input:focus { box-shadow: 0 0 0 4px rgba(216,174,88,.35); }
-.hud-bottom {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  padding-top: 14px;
-  color: var(--navy);
-  font-weight: 800;
-}
-
-/* 階移動。空は動かさず、塔内部だけ短く動かす */
-.tower-scene.move-up { animation: floorUp .34s ease; }
+.hud-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; }
+.hud-top small { display: block; color: #6c5a42; font-weight: 800; }
+#floorText { display: block; font-size: clamp(2rem, 5vw, 3.6rem); color: var(--navy); }
+.hud-bottom { display: flex; justify-content: space-between; gap: 16px; color: var(--navy); font-weight: 800; }</code></pre>
+        </article>
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>CSS：塔だけ上下 + 正解 / MISS演出</strong><span class="operation">style.css 末尾へ追記</span></div>
+          <pre class="code-block"><code>.tower-scene.move-up { animation: floorUp .34s ease; }
 .tower-scene.move-down { animation: floorDown .34s ease; }
 @keyframes floorUp {
   0% { transform: translateY(0); opacity: 1; }
@@ -595,176 +1105,33 @@ button { cursor: pointer; }
 @keyframes correctFlash { 50% { transform: scale(1.025); box-shadow: 0 0 0 5px rgba(36,159,95,.25); } }
 @keyframes missFlash { 50% { transform: translateX(8px); box-shadow: 0 0 0 5px rgba(204,69,69,.22); } }
 
-/* RESULT */
-.result-screen { display: grid; place-items: center; padding: 28px; }
-.result-panel {
-  width: min(720px, 100%);
-  padding: clamp(24px, 5vw, 48px);
-  border: 4px solid #d0b36e;
-  border-radius: 18px;
-  background: rgba(255,250,240,.96);
-  box-shadow: 0 24px 50px rgba(31,73,108,.24);
-  text-align: center;
-}
-.result-kicker { margin: 0; color: #856d37; font-weight: 900; letter-spacing: .14em; }
-.result-panel h1 { margin: 6px 0 26px; color: var(--navy); }
-.result-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
-}
-.result-grid div { padding: 12px 6px; border: 1px solid #dfd1b8; border-radius: 9px; background: #fff; }
-.result-grid span { display: block; color: #766b5b; font-size: .78rem; }
-.result-grid strong { display: block; margin-top: 4px; font-size: 1.35rem; }
-.best-record { min-height: 1.6em; color: #6b5a3f; }
-.result-actions { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
-.primary-action, .secondary-action { min-height: 46px; padding-inline: 18px; }
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-:focus-visible { outline: 3px solid #ffcf64; outline-offset: 3px; }
-
 @media (max-width: 820px) {
-  .home-screen { align-content: start; padding-top: 28px; }
-  .tower-select { gap: 10px; }
-  .tower-art { height: 280px; width: 92%; }
   .game-screen { padding-left: 80px; }
-  .floor-rail { left: 8px; }
-  .floor-rail span { width: 52px; }
-  .result-grid { grid-template-columns: repeat(2, 1fr); }
+  .tower-art { height: 280px; width: 92%; }
 }
-
 @media (max-width: 620px) {
-  .tower-select { grid-template-columns: 1fr; width: min(330px, 100%); }
-  .tower-art { height: 230px; width: 190px; }
   .game-screen { padding: 70px 10px 20px; }
-  .floor-rail {
-    position: static;
-    transform: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 8px;
-  }
-  .floor-rail span { width: auto; min-width: 40px; }
-  .game-stage { min-height: 640px; }
-  .game-hud { min-height: 640px; padding-inline: 14px; }
+  .game-stage, .game-hud { min-height: 640px; }
+  .game-hud { padding-inline: 14px; }
   .hud-bottom { flex-direction: column; align-items: center; gap: 2px; font-size: .84rem; }
   .result-actions { flex-direction: column; }
 }
-
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    transition-duration: .01ms !important;
-  }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }</code></pre>
-        <div class="code-points"><b>ここで確認：</b><span>空が画面全体</span><span>3塔が並ぶ</span><span>狭い画面で1列になる</span><span>GAMEの問題欄が読める</span></div>
-      </div>
-    </section>
-
-    <section class="section wrap" id="javascript">
-      <div class="section-head">
-        <p class="eyebrow">JAVASCRIPT</p>
-        <h2>次に4つのJSを書く</h2>
-        <p>役割を分けます。<code>main.js</code>は画面移動、<code>game.js</code>はゲーム本体、<code>storage.js</code>は記録、<code>effects.js</code>は階移動などの短い演出です。</p>
-      </div>
-
-      <article class="example-file sub-file">
-        <div class="file-heading"><div><p class="eyebrow">FILE 03</p><h2><code>game/js/main.js</code></h2></div><span>ボタン・画面切替</span></div>
-        <pre class="code-block"><code>const screens = [...document.querySelectorAll('[data-screen]')];
-
-function showScreen(name) {
-  screens.forEach(screen => {
-    screen.hidden = screen.dataset.screen !== name;
-  });
-}
-
-document.querySelectorAll('[data-mode]').forEach(button => {
-  button.addEventListener('click', () => {
-    startGame(button.dataset.mode);
-  });
-});
-
-document.getElementById('gameHomeButton').addEventListener('click', () => {
-  cancelGame();
-  showScreen('home');
-});
-
-document.getElementById('resultHomeButton').addEventListener('click', () => {
-  cancelGame();
-  showScreen('home');
-});
-
-document.getElementById('retryButton').addEventListener('click', () => {
-  startGame(getCurrentMode());
-});
-
-showScreen('home');</code></pre>
-      </article>
-
-      <article class="example-file sub-file">
-        <div class="file-heading"><div><p class="eyebrow">FILE 04</p><h2><code>game/js/storage.js</code></h2></div><span>ベスト記録を保存</span></div>
-        <pre class="code-block"><code>const RECORD_KEY = 'typeTowerRecordsV1';
-
-function loadRecords() {
-  try {
-    return JSON.parse(localStorage.getItem(RECORD_KEY)) || {};
-  } catch (error) {
-    console.warn('記録を読み込めませんでした', error);
-    return {};
-  }
-}
-
-function saveRecord(mode, difficulty, result) {
-  const records = loadRecords();
-  const key = `${mode}:${difficulty}`;
-  const old = records[key] || {};
-
-  const next = {
-    bestTime: old.bestTime == null
-      ? result.time
-      : Math.min(old.bestTime, result.time),
-    maxCombo: Math.max(old.maxCombo || 0, result.maxCombo),
-    bestAccuracy: Math.max(old.bestAccuracy || 0, result.accuracy)
-  };
-
-  records[key] = next;
-
-  try {
-    localStorage.setItem(RECORD_KEY, JSON.stringify(records));
-  } catch (error) {
-    console.warn('記録を保存できませんでした', error);
-  }
-
-  return next;
-}</code></pre>
-      </article>
-
-      <article class="example-file sub-file">
-        <div class="file-heading"><div><p class="eyebrow">FILE 05</p><h2><code>game/js/effects.js</code></h2></div><span>空は固定・塔だけ動かす</span></div>
-        <pre class="code-block"><code>function wait(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+        </article>
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>JavaScript：effects.js</strong><span class="operation new">新規</span></div>
+          <pre class="code-block"><code>function wait(ms) {
+  return new Promise(resolve =&gt; setTimeout(resolve, ms));
 }
 
 async function playFloorMove(direction) {
   const scene = document.getElementById('towerScene');
   const className = direction === 'up' ? 'move-up' : 'move-down';
-
   scene.classList.remove('move-up', 'move-down');
   void scene.offsetWidth;
   scene.classList.add(className);
-
   await wait(340);
   scene.classList.remove(className);
 }
@@ -772,179 +1139,55 @@ async function playFloorMove(direction) {
 async function flashAnswer(type) {
   const card = document.getElementById('questionCard');
   const className = type === 'correct' ? 'is-correct' : 'is-miss';
-
   card.classList.remove('is-correct', 'is-miss');
   void card.offsetWidth;
   card.classList.add(className);
-
   await wait(250);
   card.classList.remove(className);
 }</code></pre>
-      </article>
+        </article>
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>game.js：二重入力防止 + 演出対応の最終処理</strong><span class="operation replace">関連部分を置換</span></div>
+          <pre class="code-block"><code>let questionLocked = false;
 
-      <article class="example-file sub-file">
-        <div class="file-heading"><div><p class="eyebrow">FILE 06</p><h2><code>game/js/game.js</code></h2></div><span>問題・判定・階数・TIME・COMBO・RESULT</span></div>
-        <p class="file-purpose">一番長いファイルです。最初は漢字だけで動かしてから、<code>DATA_FILES</code>の残り2つをつなげれば3モードになります。</p>
-        <pre class="code-block"><code>const DATA_FILES = {
-  kanji: './data/kanji.json',
-  jaEn: './data/ja-en.json',
-  enJa: './data/en-ja.json'
-};
+// startGameの初期化部分へ必ず追加
+questionLocked = false;
+document.getElementById('modeLabel').textContent = MODE_LABELS[selectedMode];
+document.getElementById('questionHint').textContent = MODE_HINTS[selectedMode];
 
-const MODE_LABELS = {
-  kanji: '漢字の塔',
-  jaEn: '英訳の塔',
-  enJa: '和訳の塔'
-};
+// showNextQuestionの最初へ追加
+questionLocked = false;
 
-const MODE_HINTS = {
-  kanji: '読みを入力',
-  jaEn: '英語を入力',
-  enJa: '日本語を入力'
-};
-
-const TIME_BY_DIFFICULTY = {
-  easy: 12,
-  normal: 10,
-  hard: 8
-};
-
-let selectedMode = 'kanji';
-let selectedDifficulty = 'normal';
-let questions = [];
-let currentQuestion = null;
-let floor = 1;
-let combo = 0;
-let maxCombo = 0;
-let correctCount = 0;
-let missCount = 0;
-let timeLeft = 10;
-let timerId = null;
-let startedAt = 0;
-let questionLocked = false;
-
-const answerForm = document.getElementById('answerForm');
-const answerInput = document.getElementById('answerInput');
-
-function getCurrentMode() {
-  return selectedMode;
-}
-
-async function startGame(mode) {
-  cancelGame();
-
-  selectedMode = mode;
-  selectedDifficulty = document.getElementById('difficultySelect').value;
-  floor = 1;
-  combo = 0;
-  maxCombo = 0;
-  correctCount = 0;
-  missCount = 0;
-  startedAt = performance.now();
-  questionLocked = false;
-
-  document.getElementById('modeLabel').textContent = MODE_LABELS[selectedMode];
-  document.getElementById('questionHint').textContent = MODE_HINTS[selectedMode];
-
-  updateFloorUI();
-  updateComboUI();
-  showScreen('game');
-
-  const loaded = await loadModeQuestions();
-  if (!loaded) return;
-
-  showNextQuestion();
-  answerInput.focus();
-}
-
-function cancelGame() {
-  clearInterval(timerId);
-  timerId = null;
-  questionLocked = true;
-}
-
-async function loadModeQuestions() {
-  try {
-    const response = await fetch(DATA_FILES[selectedMode]);
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-    questions = await response.json();
-
-    if (!Array.isArray(questions) || questions.length === 0) {
-      throw new Error('問題データが空です');
-    }
-
-    return true;
-  } catch (error) {
-    console.error('問題を読み込めませんでした', error);
-    document.getElementById('questionText').textContent = '問題を読み込めませんでした';
-    return false;
-  }
-}
-
-function showNextQuestion() {
-  questionLocked = false;
-
-  const filtered = questions.filter(question => {
-    return question.difficulty === selectedDifficulty;
-  });
-
-  const pool = filtered.length ? filtered : questions;
-  const index = Math.floor(Math.random() * pool.length);
-  currentQuestion = pool[index];
-
-  document.getElementById('questionText').textContent = currentQuestion.question;
-  answerInput.value = '';
-  answerInput.focus();
-
-  startQuestionTimer();
-}
-
-answerForm.addEventListener('submit', async event => {
+// answerFormはこの形に置換。ここではshowNextQuestionしない。
+answerForm.addEventListener('submit', async event =&gt; {
   event.preventDefault();
-
   if (questionLocked || !currentQuestion) return;
-
-  const answer = answerInput.value.trim();
+  const answer = normalizeAnswer(answerInput.value);
   if (!answer) return;
 
-  if (normalizeAnswer(answer) === normalizeAnswer(currentQuestion.answer)) {
+  if (answer === normalizeAnswer(currentQuestion.answer)) {
     await handleCorrect();
   } else {
     await handleMiss();
   }
 });
 
-function normalizeAnswer(value) {
-  return value
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g, ' ');
-}
-
 async function handleCorrect() {
   if (questionLocked) return;
   questionLocked = true;
   clearInterval(timerId);
-
   correctCount += 1;
   combo += 1;
   maxCombo = Math.max(maxCombo, combo);
   floor += 1;
-
   updateComboUI();
   updateFloorUI();
 
-  await Promise.all([
-    flashAnswer('correct'),
-    playFloorMove('up')
-  ]);
-
-  if (floor >= 10) {
+  await Promise.all([flashAnswer('correct'), playFloorMove('up')]);
+  if (floor &gt;= 10) {
     finishGame();
     return;
   }
-
   showNextQuestion();
 }
 
@@ -952,190 +1195,98 @@ async function handleMiss() {
   if (questionLocked) return;
   questionLocked = true;
   clearInterval(timerId);
-
   missCount += 1;
   combo = 0;
   floor = Math.max(1, floor - 1);
-
   updateComboUI();
   updateFloorUI();
 
-  await Promise.all([
-    flashAnswer('miss'),
-    playFloorMove('down')
-  ]);
-
+  await Promise.all([flashAnswer('miss'), playFloorMove('down')]);
   showNextQuestion();
-}
-
-function updateFloorUI() {
-  document.getElementById('floorText').textContent = `${floor}F`;
-
-  document.querySelectorAll('[data-floor]').forEach(item => {
-    const isCurrent = Number(item.dataset.floor) === floor;
-    item.classList.toggle('is-current', isCurrent);
-  });
-}
-
-function updateComboUI() {
-  document.getElementById('comboText').textContent = combo;
-}
-
-function startQuestionTimer() {
+}</code></pre>
+        </article>
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>game.js：TIME 0も最終handleMissだけを呼ぶ</strong><span class="operation replace">startQuestionTimerを置換</span></div>
+          <pre class="code-block"><code>function startQuestionTimer() {
   clearInterval(timerId);
-
   timeLeft = TIME_BY_DIFFICULTY[selectedDifficulty] || 10;
   updateTimerUI();
 
-  timerId = setInterval(async () => {
+  timerId = setInterval(async () =&gt; {
     timeLeft -= 1;
     updateTimerUI();
-
-    if (timeLeft <= 0) {
+    if (timeLeft &lt;= 0) {
       clearInterval(timerId);
       await handleMiss();
     }
   }, 1000);
-}
-
-function updateTimerUI() {
-  document.getElementById('timeText').textContent = timeLeft;
-}
-
-function finishGame() {
-  cancelGame();
-
-  const elapsedSeconds = (performance.now() - startedAt) / 1000;
-  const answered = correctCount + missCount;
-  const accuracy = answered === 0
-    ? 0
-    : Math.round((correctCount / answered) * 100);
-
-  document.getElementById('resultTitle').textContent = `${MODE_LABELS[selectedMode]} CLEAR`;
-  document.getElementById('resultCorrect').textContent = correctCount;
-  document.getElementById('resultMiss').textContent = missCount;
-  document.getElementById('resultAccuracy').textContent = `${accuracy}%`;
-  document.getElementById('resultMaxCombo').textContent = maxCombo;
-  document.getElementById('resultTime').textContent = `${elapsedSeconds.toFixed(1)}s`;
-
-  const best = saveRecord(selectedMode, selectedDifficulty, {
-    time: elapsedSeconds,
-    maxCombo,
-    accuracy
-  });
-
-  document.getElementById('bestRecordText').textContent = best
-    ? `BEST TIME ${best.bestTime.toFixed(1)}s / MAX COMBO ${best.maxCombo} / ACC ${best.bestAccuracy}%`
-    : '';
-
-  showScreen('result');
 }</code></pre>
-        <div class="code-points"><b>ここまでで：</b><span>正解 +1F</span><span>MISS -1F</span><span>10F CLEAR</span><span>TIME</span><span>COMBO</span><span>RESULT</span></div>
-      </article>
-    </section>
-
-    <section class="section section-soft" id="data">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow">QUESTION DATA</p>
-          <h2>最後に3つのJSONを書く</h2>
-          <p><code>question</code>が画面に出る文字、<code>answer</code>が入力する正解、<code>difficulty</code>が難易度です。まずは数問で動作確認し、あとから問題数を増やします。</p>
-        </div>
-
-        <article class="example-file sub-file">
-          <div class="file-heading"><div><p class="eyebrow">FILE 07</p><h2><code>game/data/kanji.json</code></h2></div><span>漢字 → 読み</span></div>
-          <pre class="code-block"><code>[
-  { "question": "躊躇", "answer": "ちゅうちょ", "difficulty": "hard" },
-  { "question": "憂鬱", "answer": "ゆううつ", "difficulty": "normal" },
-  { "question": "紅葉", "answer": "こうよう", "difficulty": "easy" },
-  { "question": "彷徨", "answer": "ほうこう", "difficulty": "hard" },
-  { "question": "概念", "answer": "がいねん", "difficulty": "normal" },
-  { "question": "景色", "answer": "けしき", "difficulty": "easy" }
-]</code></pre>
         </article>
-
-        <article class="example-file sub-file">
-          <div class="file-heading"><div><p class="eyebrow">FILE 08</p><h2><code>game/data/ja-en.json</code></h2></div><span>日本語 → 英語</span></div>
-          <pre class="code-block"><code>[
-  { "question": "りんご", "answer": "apple", "difficulty": "easy" },
-  { "question": "学校", "answer": "school", "difficulty": "easy" },
-  { "question": "経験", "answer": "experience", "difficulty": "normal" },
-  { "question": "環境", "answer": "environment", "difficulty": "normal" },
-  { "question": "責任", "answer": "responsibility", "difficulty": "hard" }
-]</code></pre>
-        </article>
-
-        <article class="example-file sub-file">
-          <div class="file-heading"><div><p class="eyebrow">FILE 09</p><h2><code>game/data/en-ja.json</code></h2></div><span>英語 → 日本語</span></div>
-          <pre class="code-block"><code>[
-  { "question": "apple", "answer": "りんご", "difficulty": "easy" },
-  { "question": "school", "answer": "学校", "difficulty": "easy" },
-  { "question": "experience", "answer": "経験", "difficulty": "normal" },
-  { "question": "environment", "answer": "環境", "difficulty": "normal" },
-  { "question": "responsibility", "answer": "責任", "difficulty": "hard" }
-]</code></pre>
-        </article>
-
-        <div class="example-note"><b>日本語入力について：</b>この例はIMEで日本語を入力してEnterで回答する方式です。ローマ字を1文字ずつかなへ変換する本格タイピング処理は別機能なので、最初の完成版では入れません。</div>
-      </div>
-    </section>
-
-    <section class="section wrap" id="assets">
-      <div class="section-head">
-        <p class="eyebrow">AFTER IT WORKS</p>
-        <h2>動いた後に画像へ置き換える</h2>
-        <p>ゲーム処理が完成する前に素材作りへ時間を使いすぎないよう、最初は上のCSSの仮塔で確認します。動いたら背景と塔を画像へ置き換えます。</p>
-      </div>
-      <div class="replace-grid">
-        <article><b>空</b><p><code>.sky-layer</code>のbackgroundへ<code>url('../assets/images/sky.webp')</code>を追加。</p></article>
-        <article><b>HOMEの塔</b><p><code>.tower-kanji</code>などに塔画像をbackground-imageとして設定。</p></article>
-        <article><b>GAME内部</b><p><code>.stone-wall</code>を階ごとの塔内部画像へ置換。空レイヤーはそのまま固定。</p></article>
-        <article><b>敵</b><p><code>.enemy-shape</code>を<code>&lt;img&gt;</code>へ置き換え、問題カードより後ろのz-indexにする。</p></article>
-      </div>
-      <pre class="code-block short-code"><code>.tower-kanji {
-  background-image: url('../assets/images/tower-kanji.webp');
-  background-size: cover;
-  background-position: center bottom;
-}
-
-.sky-layer {
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>画像へ差し替える時のCSS</strong><span class="operation">動いた後だけ</span></div>
+          <pre class="code-block"><code>.sky-layer {
   background-image: url('../assets/images/sky.webp');
   background-size: cover;
   background-position: center;
+}
+.tower-kanji {
+  background-image: url('../assets/images/tower-kanji.webp');
+  background-size: cover;
+  background-position: center bottom;
 }</code></pre>
+          <p class="code-note">通常階移動は動画ではなく、上の塔レイヤー + CSSアニメーションを使います。</p>
+        </article>
+      </div>
+      <div class="step-check"><strong>STEP 9 完了条件</strong><ul><li>空は固定で塔だけ動く</li><li>敵が問題を隠さない</li><li>連打で二重判定しない</li><li>再挑戦後も入力できる</li><li>TIME 0で問題が二重に進まない</li></ul></div>
     </section>
 
-    <section class="section section-soft" id="check">
+    <section class="section section-soft build-step" id="step-10">
       <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow">FINAL CHECK</p>
-          <h2>ここまで通れば「一応ゲームになった」</h2>
-          <p>全部を一度に完璧にする必要はありません。まず下の順番で動けば、そこから見た目と問題数を仕上げられます。</p>
+        <div class="step-head">
+          <div class="step-number">10</div>
+          <div class="step-title"><p>STEP 10</p><h2>問題追加・通しテスト</h2></div>
+          <div class="step-files"><code>data/*.json</code><code>TEST.md</code></div>
         </div>
-        <div class="check-list">
-          <label><input type="checkbox"> 開いた瞬間に空と3つの塔が見える</label>
-          <label><input type="checkbox"> 各塔の下に開始ボタンがある</label>
-          <label><input type="checkbox"> 漢字の塔からGAMEへ進める</label>
-          <label><input type="checkbox"> 問題がJSONから表示される</label>
-          <label><input type="checkbox"> 正解で+1F、MISSで-1F</label>
-          <label><input type="checkbox"> 1Fより下へ行かない</label>
-          <label><input type="checkbox"> TIMEが0になるとMISS</label>
-          <label><input type="checkbox"> COMBOが増え、MISSで0になる</label>
-          <label><input type="checkbox"> 10FでRESULTへ進む</label>
-          <label><input type="checkbox"> RESULTからHOMEへ戻れる</label>
-          <label><input type="checkbox"> 英訳・和訳の塔も同じ処理で遊べる</label>
-          <label><input type="checkbox"> 階移動で空ではなく塔側だけが動く</label>
-        </div>
-        <div class="example-final">
-          <strong>詰まったら</strong>
-          <p>全部を見るのではなく、今作っているファイルだけ確認する。HTMLが出ない → index.html、見た目 → style.css、ボタンが効かない → main.js、ゲーム処理 → game.js、問題が出ない → JSON / fetch、の順で切り分けます。</p>
-        </div>
+        <p class="step-intro">新しい装飾は増やさず、3モードを最後まで遊べるか確認します。</p>
+        <article class="code-panel">
+          <div class="code-panel-head"><strong>TEST.md</strong><span class="operation new">新規</span></div>
+          <pre class="code-block"><code># TYPE TOWER 最終テスト
+- [ ] 開いた瞬間に空と3つの塔が見える
+- [ ] 3つの塔すべてから開始できる
+- [ ] EASY / NORMAL / HARDを選べる
+- [ ] JSONから問題が出る
+- [ ] Enterで回答できる
+- [ ] 正解 +1F / MISS -1F
+- [ ] 1F未満にならない
+- [ ] TIME 0でMISS
+- [ ] COMBOが正常
+- [ ] 10FでRESULT
+- [ ] RESULTの値が正しい
+- [ ] ベスト記録が残る
+- [ ] 再挑戦後も入力できる
+- [ ] 階移動で空は動かない
+- [ ] 敵が問題文を隠さない
+- [ ] 狭い画面で横スクロールしない</code></pre>
+        </article>
+        <div class="no-code"><b>STEP 10のCSS追加はなし。</b> STEP 1〜9のCSSが崩れていないか確認します。</div>
+        <div class="step-check"><strong>STEP 10 完了条件</strong><ul><li>3人が別々に通しプレイできる</li><li>3モードとも完走できる</li><li>重大な進行不能バグがない</li></ul></div>
       </div>
+    </section>
+
+    <section class="section wrap" id="full-files">
+      <div class="section-head">
+        <p class="eyebrow">FINAL REFERENCE</p>
+        <h2>最後だけ完成ファイル版と比較する</h2>
+        <p>普段はこのSTEP別ページを使います。全部書き終わったあと、ファイル全体がどうつながるかを確認したい場合だけ完成ファイル版を開きます。</p>
+      </div>
+      <div class="full-reference">
+        <div><h3>ファイル単位の一式を見る</h3><p><code>index.html</code> / <code>style.css</code> / 4つのJS / 3つのJSONをまとめて確認できます。</p></div>
+        <a class="btn primary" href="build-example-files.html">完成ファイル版を開く</a>
+      </div>
+      <div class="sequence"><span>授業中：今のSTEPだけ</span><span>CSS：同じSTEP内</span><span>最後：完成ファイル版</span></div>
     </section>
   </main>
 
-  <footer>
-    <div class="wrap footer-row"><span>TYPE TOWER ほぼ完成する作成例</span><a href="index.html">制作方針へ戻る</a></div>
-  </footer>
+  <footer><div class="wrap footer-row"><span>TYPE TOWER STEP別 作成例</span><a href="#top">TOPへ戻る</a></div></footer>
 </body>
 </html>

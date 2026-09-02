@@ -106,25 +106,31 @@ HOMEでモードを選ぶため、独立した `SELECT` 画面は作りません
 
 さらに各STEPの **「作り方と記入例を見る」** を押すと小窓が開き、使うHTML / CSS / JavaScript / JSON、触るファイル、実装順、記入例を確認できます。
 
-## ほぼ完成する作成例
+## STEP別の作成例
 
-`build-example.html` には、断片的な数行の例ではなく、**上から順番にファイルを作れば最低限遊べるTYPE TOWERになる一式**を載せます。
+`build-example.html` は、ロードマップと同じSTEP 1〜10の順番で作れる実装ガイドです。
 
-掲載対象:
+**そのSTEPで必要なHTML / CSS / JavaScript / JSONを同じ場所へまとめます。** CSSだけ別の長いページから探す必要がないように、各STEPに「このCSSを `game/css/style.css` へ追記」と明記します。
 
-- `game/index.html` のほぼ全体
-- `game/css/style.css` のほぼ全体
-- `game/js/main.js`
-- `game/js/game.js`
-- `game/js/storage.js`
-- `game/js/effects.js`
-- `game/data/kanji.json`
-- `game/data/ja-en.json`
-- `game/data/en-ja.json`
-- 完成確認チェック
-- 後から空・塔・敵を画像へ差し替える方法
+主な使い方:
 
-作成例は最初から画像素材を必須にせず、CSSだけでも空と仮の塔を表示できる状態にします。まずゲーム処理を完成させ、画像や豪華な演出は後から差し替えます。
+1. 今のSTEPを開く
+2. 触るファイルを確認する
+3. HTMLを追記 / 置換する
+4. 同じSTEP内のCSSを `style.css` へ追記する
+5. JavaScript / JSONを追加する
+6. STEPの完了条件をブラウザで確認する
+7. 次のSTEPへ進む
+
+`新規` / `追記` / `置換` を分けて表示し、後のSTEPで同名関数を更新する場合に古い処理を二重で残さないようにします。
+
+### 完成ファイル版
+
+`build-example-files.html` には、以前のファイル単位の作成例を残しています。
+
+STEP別ページを上から進めたあと、「最終的な `index.html` / `style.css` / JavaScript / JSON が1ファイルとしてどうつながるか」を確認する比較用です。
+
+普段は `build-example.html` のSTEP別ページを使い、最後の確認だけ `build-example-files.html` を使います。
 
 作成例の到達点は、`空 + 3つの塔 → モード開始 → 問題 → 入力 → 正解/MISS → 階数 → TIME → COMBO → 10F CLEAR → RESULT → 記録保存` がつながる状態です。
 
@@ -204,8 +210,10 @@ game/
 - `home-screen-plan.css` : HOME画面構想の図と説明
 - `app.js` : STEP進捗保存・次の作業表示・実装詳細の小窓
 - `roadmap-details.css` : 実装詳細小窓とGAME参考画面の表示
-- `build-example.html` : ほぼ完成するレベルの作成例
-- `build-example.css` : 作成例ページのデザイン
+- `build-example.html` : STEPごとにHTML / CSS / JS / JSONを同じ場所へまとめた作成例
+- `build-example-steps.css` : STEP別作成例の追加デザイン
+- `build-example-files.html` : 完成ファイルをファイル単位で確認する比較用ページ
+- `build-example.css` : 作成例ページ共通のデザイン
 - `assets/type-tower-game-reference.svg` : GAME画面の参考イメージ
 - `github-guide.html` : GitHub初心者向け共同開発ガイド
 - `github-guide.css` : GitHubガイドのデザイン
