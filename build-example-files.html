@@ -1,0 +1,1141 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>TYPE TOWER | ほぼ完成する作成例</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="build-example.css" />
+</head>
+<body>
+  <header class="example-header" id="top">
+    <nav class="nav wrap" aria-label="作成例ナビゲーション">
+      <a class="brand" href="index.html"><span class="brand-mark">TT</span><span>TYPE TOWER</span></a>
+      <div class="nav-links">
+        <a href="index.html">制作方針へ戻る</a>
+        <a href="#files">ファイル構成</a>
+        <a href="#html">HTML</a>
+        <a href="#css">CSS</a>
+        <a href="#javascript">JavaScript</a>
+        <a href="#data">問題データ</a>
+        <a href="#check">完成確認</a>
+      </div>
+    </nav>
+
+    <div class="wrap example-hero">
+      <p class="eyebrow">FULL BUILD EXAMPLE</p>
+      <h1>このページを上から作れば、<br><span>最低限遊べるTYPE TOWERになる。</span></h1>
+      <p class="lead">断片的なコード例ではなく、どのファイルに何を書くかを一式で載せます。最初は画像素材がなくても動く形にし、3つの塔・3モード・階数・TIME・COMBO・RESULTまでつながる例です。</p>
+      <div class="example-summary">
+        <span>HOME：空 + 3つの塔</span>
+        <span>GAME：1F → 10F</span>
+        <span>正解 +1F / MISS -1F</span>
+        <span>3モード</span>
+        <span>TIME / COMBO</span>
+        <span>RESULT / 記録</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section wrap" id="how-to-use">
+      <div class="section-head">
+        <p class="eyebrow">HOW TO USE</p>
+        <h2>一気に全部書かず、1ファイルずつ動かす</h2>
+        <p>下の例は完成形に近いですが、授業では「HTML → CSS → main.js → game.js → JSON」の順で追加し、各段階でブラウザ確認する方が壊れた場所を見つけやすいです。</p>
+      </div>
+      <div class="example-rule-grid">
+        <article><b>最初</b><p>HTMLとCSSだけでHOMEに3つの塔が見えるところまで。</p></article>
+        <article><b>次</b><p>漢字の塔だけGAMEにつないで、問題表示・判定・階数を確認。</p></article>
+        <article><b>最後</b><p>英訳・和訳、TIME、COMBO、保存、演出を足す。</p></article>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="files">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">FILE TREE</p>
+          <h2>まずこのファイル構成を作る</h2>
+          <p><code>game/</code> が実際のゲーム本体です。制作方針サイトのファイルとは分けます。</p>
+        </div>
+        <pre class="tree-block"><code>game/
+├─ index.html
+├─ css/
+│  └─ style.css
+├─ js/
+│  ├─ main.js
+│  ├─ game.js
+│  ├─ storage.js
+│  └─ effects.js
+├─ data/
+│  ├─ kanji.json
+│  ├─ ja-en.json
+│  └─ en-ja.json
+└─ assets/
+   └─ images/
+      ├─ sky.webp          ← 後から追加でOK
+      ├─ tower-kanji.webp  ← 後から追加でOK
+      ├─ tower-ja-en.webp  ← 後から追加でOK
+      └─ tower-en-ja.webp  ← 後から追加でOK</code></pre>
+        <div class="example-note"><b>画像がまだなくても大丈夫：</b>下のCSSは空と塔をCSSだけでも仮表示できるようにしてあります。ゲームが動いた後に画像へ差し替えます。</div>
+      </div>
+    </section>
+
+    <section class="section wrap example-file" id="html">
+      <div class="file-heading">
+        <div><p class="eyebrow">FILE 01</p><h2><code>game/index.html</code></h2></div>
+        <span>画面の箱・3つの塔・GAME・RESULT</span>
+      </div>
+      <p class="file-purpose">この1ファイルにHOME / GAME / RESULTの3画面を置きます。別のSELECT画面は作りません。HOMEにある3つの塔がそのままモード選択です。</p>
+      <pre class="code-block"><code>&lt;!doctype html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;TYPE TOWER&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- HOMEとGAMEの一番後ろ。基本は動かさない --&gt;
+  &lt;div class="sky-layer" aria-hidden="true"&gt;&lt;/div&gt;
+
+  &lt;main class="app-shell"&gt;
+    &lt;!-- ==================== HOME ==================== --&gt;
+    &lt;section class="screen home-screen" data-screen="home"&gt;
+      &lt;header class="home-title"&gt;
+        &lt;p&gt;TYPE TOWER&lt;/p&gt;
+        &lt;h1&gt;挑戦する塔を選ぶ&lt;/h1&gt;
+        &lt;label class="difficulty-control"&gt;
+          難易度
+          &lt;select id="difficultySelect"&gt;
+            &lt;option value="easy"&gt;EASY&lt;/option&gt;
+            &lt;option value="normal" selected&gt;NORMAL&lt;/option&gt;
+            &lt;option value="hard"&gt;HARD&lt;/option&gt;
+          &lt;/select&gt;
+        &lt;/label&gt;
+      &lt;/header&gt;
+
+      &lt;div class="tower-select" aria-label="挑戦する塔を選択"&gt;
+        &lt;article class="tower-option"&gt;
+          &lt;div class="tower-art tower-kanji" aria-hidden="true"&gt;
+            &lt;span&gt;KANJI&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;h2&gt;漢字の塔&lt;/h2&gt;
+          &lt;p&gt;漢字 → 読み&lt;/p&gt;
+          &lt;button class="tower-start" type="button" data-mode="kanji"&gt;この塔に挑戦&lt;/button&gt;
+        &lt;/article&gt;
+
+        &lt;article class="tower-option"&gt;
+          &lt;div class="tower-art tower-ja-en" aria-hidden="true"&gt;
+            &lt;span&gt;JA → EN&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;h2&gt;英訳の塔&lt;/h2&gt;
+          &lt;p&gt;日本語 → 英語&lt;/p&gt;
+          &lt;button class="tower-start" type="button" data-mode="jaEn"&gt;この塔に挑戦&lt;/button&gt;
+        &lt;/article&gt;
+
+        &lt;article class="tower-option"&gt;
+          &lt;div class="tower-art tower-en-ja" aria-hidden="true"&gt;
+            &lt;span&gt;EN → JA&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;h2&gt;和訳の塔&lt;/h2&gt;
+          &lt;p&gt;英語 → 日本語&lt;/p&gt;
+          &lt;button class="tower-start" type="button" data-mode="enJa"&gt;この塔に挑戦&lt;/button&gt;
+        &lt;/article&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- ==================== GAME ==================== --&gt;
+    &lt;section class="screen game-screen" data-screen="game" hidden&gt;
+      &lt;button id="gameHomeButton" class="small-button top-left" type="button"&gt;塔選択へ戻る&lt;/button&gt;
+
+      &lt;aside class="floor-rail" aria-label="現在階"&gt;
+        &lt;span data-floor="10"&gt;10F&lt;/span&gt;
+        &lt;span data-floor="9"&gt;9F&lt;/span&gt;
+        &lt;span data-floor="8"&gt;8F&lt;/span&gt;
+        &lt;span data-floor="7"&gt;7F&lt;/span&gt;
+        &lt;span data-floor="6"&gt;6F&lt;/span&gt;
+        &lt;span data-floor="5"&gt;5F&lt;/span&gt;
+        &lt;span data-floor="4"&gt;4F&lt;/span&gt;
+        &lt;span data-floor="3"&gt;3F&lt;/span&gt;
+        &lt;span data-floor="2"&gt;2F&lt;/span&gt;
+        &lt;span data-floor="1"&gt;1F&lt;/span&gt;
+      &lt;/aside&gt;
+
+      &lt;div class="game-stage"&gt;
+        &lt;div class="tower-scene" id="towerScene" aria-hidden="true"&gt;
+          &lt;div class="stone-wall"&gt;&lt;/div&gt;
+          &lt;div class="enemy-shape"&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="game-hud"&gt;
+          &lt;div class="hud-top"&gt;
+            &lt;div&gt;
+              &lt;small id="modeLabel"&gt;漢字の塔&lt;/small&gt;
+              &lt;strong id="floorText"&gt;1F&lt;/strong&gt;
+            &lt;/div&gt;
+            &lt;div class="timer-box"&gt;TIME &lt;strong id="timeText"&gt;10&lt;/strong&gt;&lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class="question-card" id="questionCard"&gt;
+            &lt;p id="questionHint"&gt;読みを入力&lt;/p&gt;
+            &lt;h2 id="questionText"&gt;読み込み中…&lt;/h2&gt;
+          &lt;/div&gt;
+
+          &lt;form id="answerForm" class="answer-form"&gt;
+            &lt;label class="sr-only" for="answerInput"&gt;答え&lt;/label&gt;
+            &lt;input id="answerInput" type="text" autocomplete="off" placeholder="答えを入力してEnter"&gt;
+          &lt;/form&gt;
+
+          &lt;div class="hud-bottom"&gt;
+            &lt;strong&gt;COMBO ×&lt;span id="comboText"&gt;0&lt;/span&gt;&lt;/strong&gt;
+            &lt;span&gt;MISSで -1F / 正解で +1F&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;!-- ==================== RESULT ==================== --&gt;
+    &lt;section class="screen result-screen" data-screen="result" hidden&gt;
+      &lt;div class="result-panel"&gt;
+        &lt;p class="result-kicker"&gt;TOWER CLEAR&lt;/p&gt;
+        &lt;h1 id="resultTitle"&gt;漢字の塔 CLEAR&lt;/h1&gt;
+
+        &lt;div class="result-grid"&gt;
+          &lt;div&gt;&lt;span&gt;正解&lt;/span&gt;&lt;strong id="resultCorrect"&gt;0&lt;/strong&gt;&lt;/div&gt;
+          &lt;div&gt;&lt;span&gt;MISS&lt;/span&gt;&lt;strong id="resultMiss"&gt;0&lt;/strong&gt;&lt;/div&gt;
+          &lt;div&gt;&lt;span&gt;正答率&lt;/span&gt;&lt;strong id="resultAccuracy"&gt;0%&lt;/strong&gt;&lt;/div&gt;
+          &lt;div&gt;&lt;span&gt;最大COMBO&lt;/span&gt;&lt;strong id="resultMaxCombo"&gt;0&lt;/strong&gt;&lt;/div&gt;
+          &lt;div&gt;&lt;span&gt;TIME&lt;/span&gt;&lt;strong id="resultTime"&gt;0.0s&lt;/strong&gt;&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;p id="bestRecordText" class="best-record"&gt;&lt;/p&gt;
+
+        &lt;div class="result-actions"&gt;
+          &lt;button id="retryButton" class="primary-action" type="button"&gt;もう一度挑戦&lt;/button&gt;
+          &lt;button id="resultHomeButton" class="secondary-action" type="button"&gt;塔選択へ戻る&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+
+  &lt;script src="js/main.js"&gt;&lt;/script&gt;
+  &lt;script src="js/storage.js"&gt;&lt;/script&gt;
+  &lt;script src="js/effects.js"&gt;&lt;/script&gt;
+  &lt;script src="js/game.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      <div class="code-points"><b>ここで確認：</b><span>ブラウザを開いてHOMEが出る</span><span>3つの塔がある</span><span>GAMEとRESULTはまだhidden</span></div>
+    </section>
+
+    <section class="section section-soft example-file" id="css">
+      <div class="wrap">
+        <div class="file-heading">
+          <div><p class="eyebrow">FILE 02</p><h2><code>game/css/style.css</code></h2></div>
+          <span>空固定・3塔・GAME配置・レスポンシブ</span>
+        </div>
+        <p class="file-purpose">画像素材がなくても一度完成形を確認できるCSSです。後から<code>.tower-art</code>や<code>.sky-layer</code>を画像へ置き換えます。</p>
+        <pre class="code-block"><code>:root {
+  --navy: #17345f;
+  --navy-dark: #102744;
+  --gold: #d8ae58;
+  --stone: #e7d8bf;
+  --stone-dark: #c8b28f;
+  --paper: #fffaf0;
+  --ink: #172034;
+}
+
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+body {
+  margin: 0;
+  font-family: "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
+  color: var(--ink);
+  overflow-x: hidden;
+}
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+[hidden] { display: none !important; }
+
+.sky-layer {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-color: #8fd3ff;
+  background-image:
+    radial-gradient(ellipse at 12% 22%, rgba(255,255,255,.88) 0 8%, transparent 9%),
+    radial-gradient(ellipse at 24% 28%, rgba(255,255,255,.75) 0 7%, transparent 8%),
+    radial-gradient(ellipse at 76% 18%, rgba(255,255,255,.88) 0 9%, transparent 10%),
+    linear-gradient(#74c8ff 0%, #bce8ff 58%, #e9f8ff 100%);
+}
+
+.app-shell { min-height: 100vh; }
+.screen { min-height: 100vh; }
+
+/* HOME */
+.home-screen {
+  display: grid;
+  align-content: center;
+  gap: 34px;
+  padding: 42px clamp(18px, 4vw, 64px);
+}
+
+.home-title {
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(20, 55, 90, .28);
+}
+.home-title p {
+  margin: 0 0 4px;
+  font-weight: 900;
+  letter-spacing: .18em;
+}
+.home-title h1 {
+  margin: 0 0 16px;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+}
+.difficulty-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(255,255,255,.92);
+  color: var(--ink);
+  text-shadow: none;
+  font-weight: 800;
+}
+.difficulty-control select {
+  border: 1px solid #b9c7d2;
+  border-radius: 7px;
+  background: #fff;
+  padding: 5px 8px;
+}
+
+.tower-select {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 3vw, 34px);
+  align-items: end;
+}
+.tower-option { text-align: center; }
+.tower-option h2 {
+  margin: 14px 0 2px;
+  color: #fff;
+  font-size: clamp(1.05rem, 2vw, 1.45rem);
+  text-shadow: 0 2px 8px rgba(20,55,90,.32);
+}
+.tower-option p {
+  margin: 0 0 10px;
+  color: rgba(255,255,255,.92);
+  font-weight: 700;
+  text-shadow: 0 1px 5px rgba(20,55,90,.28);
+}
+
+.tower-art {
+  width: min(220px, 86%);
+  height: clamp(260px, 42vh, 430px);
+  margin: 0 auto;
+  position: relative;
+  display: grid;
+  place-items: start center;
+  padding-top: 18px;
+  border: 5px solid #b79d76;
+  border-bottom: 12px solid #9e805b;
+  border-radius: 28px 28px 5px 5px;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 26px, rgba(90,60,35,.07) 27px 29px),
+    repeating-linear-gradient(0deg, #e7d8bf 0 38px, #d1bea0 39px 42px);
+  box-shadow: 0 18px 28px rgba(33,73,105,.22);
+}
+.tower-art::before,
+.tower-art::after {
+  content: "";
+  position: absolute;
+  top: -36px;
+  width: 38%;
+  height: 48px;
+  border: 5px solid #b79d76;
+  background: #e7d8bf;
+}
+.tower-art::before { left: -5px; border-radius: 10px 10px 0 0; }
+.tower-art::after { right: -5px; border-radius: 10px 10px 0 0; }
+.tower-art span {
+  position: relative;
+  z-index: 2;
+  padding: 6px 10px;
+  border: 2px solid rgba(255,255,255,.5);
+  border-radius: 7px;
+  background: var(--navy);
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+.tower-ja-en { background-color: #ead6bd; }
+.tower-en-ja { background-color: #ddd5c5; }
+
+.tower-start,
+.primary-action,
+.secondary-action,
+.small-button {
+  border: 0;
+  border-radius: 9px;
+  font-weight: 900;
+}
+.tower-start,
+.primary-action {
+  min-height: 46px;
+  padding: 10px 18px;
+  background: var(--navy);
+  color: #fff;
+  border: 2px solid var(--gold);
+  box-shadow: 0 6px 16px rgba(20,55,90,.18);
+}
+.tower-start:hover,
+.primary-action:hover { background: var(--navy-dark); }
+
+/* GAME */
+.game-screen {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 28px 28px 28px 116px;
+}
+.top-left {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 10;
+}
+.small-button,
+.secondary-action {
+  padding: 9px 12px;
+  border: 1px solid rgba(20,45,70,.25);
+  background: rgba(255,255,255,.9);
+  color: var(--ink);
+}
+
+.floor-rail {
+  position: fixed;
+  left: 22px;
+  top: 50%;
+  z-index: 5;
+  transform: translateY(-50%);
+  display: grid;
+  gap: 5px;
+}
+.floor-rail span {
+  width: 62px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: rgba(255,255,255,.78);
+  color: #5d6b78;
+  text-align: center;
+  font-size: .78rem;
+  font-weight: 800;
+}
+.floor-rail span.is-current {
+  background: var(--navy);
+  color: #fff;
+  outline: 2px solid var(--gold);
+}
+
+.game-stage {
+  width: min(920px, 100%);
+  min-height: min(680px, 86vh);
+  position: relative;
+  overflow: hidden;
+  border: 7px solid #aa8d64;
+  border-radius: 18px;
+  background: var(--stone);
+  box-shadow: 0 24px 50px rgba(31,73,108,.24);
+}
+.tower-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  transition: transform .32s ease, opacity .32s ease;
+}
+.stone-wall {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 65px, rgba(105,79,48,.16) 66px 69px),
+    repeating-linear-gradient(90deg, transparent 0 110px, rgba(105,79,48,.11) 111px 114px),
+    var(--stone);
+}
+.enemy-shape {
+  position: absolute;
+  left: 50%;
+  top: 37%;
+  width: 230px;
+  height: 210px;
+  transform: translate(-50%, -50%);
+  border-radius: 48% 48% 38% 38%;
+  background: #271b3f;
+  box-shadow: 0 14px 28px rgba(54,36,72,.28);
+}
+.enemy-shape::before,
+.enemy-shape::after {
+  content: "";
+  position: absolute;
+  top: -40px;
+  width: 70px;
+  height: 82px;
+  background: #271b3f;
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+}
+.enemy-shape::before { left: 18px; transform: rotate(-16deg); }
+.enemy-shape::after { right: 18px; transform: rotate(16deg); }
+.enemy-shape span::before,
+.enemy-shape span::after {
+  content: "";
+  position: absolute;
+  top: 78px;
+  width: 26px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff7138;
+  box-shadow: 0 0 14px #ff7138;
+}
+.enemy-shape span::before { left: 58px; }
+.enemy-shape span::after { right: 58px; }
+
+.game-hud {
+  position: relative;
+  z-index: 3;
+  min-height: min(680px, 86vh);
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  align-items: center;
+  padding: 24px clamp(18px, 5vw, 64px) 30px;
+}
+.hud-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+}
+.hud-top small {
+  display: block;
+  margin-bottom: 2px;
+  color: #6c5a42;
+  font-weight: 800;
+}
+#floorText { font-size: clamp(2rem, 5vw, 3.6rem); color: var(--navy); }
+.timer-box {
+  padding: 8px 12px;
+  border: 2px solid var(--gold);
+  border-radius: 9px;
+  background: var(--navy);
+  color: #fff;
+  font-weight: 900;
+}
+
+.question-card {
+  width: min(650px, 92%);
+  margin: auto;
+  padding: clamp(24px, 5vw, 48px);
+  border: 4px solid #d2b981;
+  border-radius: 18px;
+  background: rgba(255,250,240,.96);
+  text-align: center;
+  box-shadow: 0 16px 30px rgba(66,48,28,.2);
+}
+.question-card p { margin: 0 0 6px; color: #77664e; font-weight: 800; }
+.question-card h2 {
+  margin: 0;
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  line-height: 1.2;
+  color: #2f2a25;
+}
+.answer-form { width: min(650px, 92%); margin: 0 auto; }
+.answer-form input {
+  width: 100%;
+  min-height: 58px;
+  padding: 10px 18px;
+  border: 3px solid var(--navy);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  text-align: center;
+  outline: none;
+}
+.answer-form input:focus { box-shadow: 0 0 0 4px rgba(216,174,88,.35); }
+.hud-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 14px;
+  color: var(--navy);
+  font-weight: 800;
+}
+
+/* 階移動。空は動かさず、塔内部だけ短く動かす */
+.tower-scene.move-up { animation: floorUp .34s ease; }
+.tower-scene.move-down { animation: floorDown .34s ease; }
+@keyframes floorUp {
+  0% { transform: translateY(0); opacity: 1; }
+  45% { transform: translateY(46px); opacity: .45; }
+  46% { transform: translateY(-46px); opacity: .45; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes floorDown {
+  0% { transform: translateY(0); opacity: 1; }
+  45% { transform: translateY(-46px); opacity: .45; }
+  46% { transform: translateY(46px); opacity: .45; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.question-card.is-correct { animation: correctFlash .25s ease; }
+.question-card.is-miss { animation: missFlash .25s ease; }
+@keyframes correctFlash { 50% { transform: scale(1.025); box-shadow: 0 0 0 5px rgba(36,159,95,.25); } }
+@keyframes missFlash { 50% { transform: translateX(8px); box-shadow: 0 0 0 5px rgba(204,69,69,.22); } }
+
+/* RESULT */
+.result-screen { display: grid; place-items: center; padding: 28px; }
+.result-panel {
+  width: min(720px, 100%);
+  padding: clamp(24px, 5vw, 48px);
+  border: 4px solid #d0b36e;
+  border-radius: 18px;
+  background: rgba(255,250,240,.96);
+  box-shadow: 0 24px 50px rgba(31,73,108,.24);
+  text-align: center;
+}
+.result-kicker { margin: 0; color: #856d37; font-weight: 900; letter-spacing: .14em; }
+.result-panel h1 { margin: 6px 0 26px; color: var(--navy); }
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+.result-grid div { padding: 12px 6px; border: 1px solid #dfd1b8; border-radius: 9px; background: #fff; }
+.result-grid span { display: block; color: #766b5b; font-size: .78rem; }
+.result-grid strong { display: block; margin-top: 4px; font-size: 1.35rem; }
+.best-record { min-height: 1.6em; color: #6b5a3f; }
+.result-actions { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+.primary-action, .secondary-action { min-height: 46px; padding-inline: 18px; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:focus-visible { outline: 3px solid #ffcf64; outline-offset: 3px; }
+
+@media (max-width: 820px) {
+  .home-screen { align-content: start; padding-top: 28px; }
+  .tower-select { gap: 10px; }
+  .tower-art { height: 280px; width: 92%; }
+  .game-screen { padding-left: 80px; }
+  .floor-rail { left: 8px; }
+  .floor-rail span { width: 52px; }
+  .result-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 620px) {
+  .tower-select { grid-template-columns: 1fr; width: min(330px, 100%); }
+  .tower-art { height: 230px; width: 190px; }
+  .game-screen { padding: 70px 10px 20px; }
+  .floor-rail {
+    position: static;
+    transform: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  .floor-rail span { width: auto; min-width: 40px; }
+  .game-stage { min-height: 640px; }
+  .game-hud { min-height: 640px; padding-inline: 14px; }
+  .hud-bottom { flex-direction: column; align-items: center; gap: 2px; font-size: .84rem; }
+  .result-actions { flex-direction: column; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}</code></pre>
+        <div class="code-points"><b>ここで確認：</b><span>空が画面全体</span><span>3塔が並ぶ</span><span>狭い画面で1列になる</span><span>GAMEの問題欄が読める</span></div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="javascript">
+      <div class="section-head">
+        <p class="eyebrow">JAVASCRIPT</p>
+        <h2>次に4つのJSを書く</h2>
+        <p>役割を分けます。<code>main.js</code>は画面移動、<code>game.js</code>はゲーム本体、<code>storage.js</code>は記録、<code>effects.js</code>は階移動などの短い演出です。</p>
+      </div>
+
+      <article class="example-file sub-file">
+        <div class="file-heading"><div><p class="eyebrow">FILE 03</p><h2><code>game/js/main.js</code></h2></div><span>ボタン・画面切替</span></div>
+        <pre class="code-block"><code>const screens = [...document.querySelectorAll('[data-screen]')];
+
+function showScreen(name) {
+  screens.forEach(screen => {
+    screen.hidden = screen.dataset.screen !== name;
+  });
+}
+
+document.querySelectorAll('[data-mode]').forEach(button => {
+  button.addEventListener('click', () => {
+    startGame(button.dataset.mode);
+  });
+});
+
+document.getElementById('gameHomeButton').addEventListener('click', () => {
+  cancelGame();
+  showScreen('home');
+});
+
+document.getElementById('resultHomeButton').addEventListener('click', () => {
+  cancelGame();
+  showScreen('home');
+});
+
+document.getElementById('retryButton').addEventListener('click', () => {
+  startGame(getCurrentMode());
+});
+
+showScreen('home');</code></pre>
+      </article>
+
+      <article class="example-file sub-file">
+        <div class="file-heading"><div><p class="eyebrow">FILE 04</p><h2><code>game/js/storage.js</code></h2></div><span>ベスト記録を保存</span></div>
+        <pre class="code-block"><code>const RECORD_KEY = 'typeTowerRecordsV1';
+
+function loadRecords() {
+  try {
+    return JSON.parse(localStorage.getItem(RECORD_KEY)) || {};
+  } catch (error) {
+    console.warn('記録を読み込めませんでした', error);
+    return {};
+  }
+}
+
+function saveRecord(mode, difficulty, result) {
+  const records = loadRecords();
+  const key = `${mode}:${difficulty}`;
+  const old = records[key] || {};
+
+  const next = {
+    bestTime: old.bestTime == null
+      ? result.time
+      : Math.min(old.bestTime, result.time),
+    maxCombo: Math.max(old.maxCombo || 0, result.maxCombo),
+    bestAccuracy: Math.max(old.bestAccuracy || 0, result.accuracy)
+  };
+
+  records[key] = next;
+
+  try {
+    localStorage.setItem(RECORD_KEY, JSON.stringify(records));
+  } catch (error) {
+    console.warn('記録を保存できませんでした', error);
+  }
+
+  return next;
+}</code></pre>
+      </article>
+
+      <article class="example-file sub-file">
+        <div class="file-heading"><div><p class="eyebrow">FILE 05</p><h2><code>game/js/effects.js</code></h2></div><span>空は固定・塔だけ動かす</span></div>
+        <pre class="code-block"><code>function wait(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function playFloorMove(direction) {
+  const scene = document.getElementById('towerScene');
+  const className = direction === 'up' ? 'move-up' : 'move-down';
+
+  scene.classList.remove('move-up', 'move-down');
+  void scene.offsetWidth;
+  scene.classList.add(className);
+
+  await wait(340);
+  scene.classList.remove(className);
+}
+
+async function flashAnswer(type) {
+  const card = document.getElementById('questionCard');
+  const className = type === 'correct' ? 'is-correct' : 'is-miss';
+
+  card.classList.remove('is-correct', 'is-miss');
+  void card.offsetWidth;
+  card.classList.add(className);
+
+  await wait(250);
+  card.classList.remove(className);
+}</code></pre>
+      </article>
+
+      <article class="example-file sub-file">
+        <div class="file-heading"><div><p class="eyebrow">FILE 06</p><h2><code>game/js/game.js</code></h2></div><span>問題・判定・階数・TIME・COMBO・RESULT</span></div>
+        <p class="file-purpose">一番長いファイルです。最初は漢字だけで動かしてから、<code>DATA_FILES</code>の残り2つをつなげれば3モードになります。</p>
+        <pre class="code-block"><code>const DATA_FILES = {
+  kanji: './data/kanji.json',
+  jaEn: './data/ja-en.json',
+  enJa: './data/en-ja.json'
+};
+
+const MODE_LABELS = {
+  kanji: '漢字の塔',
+  jaEn: '英訳の塔',
+  enJa: '和訳の塔'
+};
+
+const MODE_HINTS = {
+  kanji: '読みを入力',
+  jaEn: '英語を入力',
+  enJa: '日本語を入力'
+};
+
+const TIME_BY_DIFFICULTY = {
+  easy: 12,
+  normal: 10,
+  hard: 8
+};
+
+let selectedMode = 'kanji';
+let selectedDifficulty = 'normal';
+let questions = [];
+let currentQuestion = null;
+let floor = 1;
+let combo = 0;
+let maxCombo = 0;
+let correctCount = 0;
+let missCount = 0;
+let timeLeft = 10;
+let timerId = null;
+let startedAt = 0;
+let questionLocked = false;
+
+const answerForm = document.getElementById('answerForm');
+const answerInput = document.getElementById('answerInput');
+
+function getCurrentMode() {
+  return selectedMode;
+}
+
+async function startGame(mode) {
+  cancelGame();
+
+  selectedMode = mode;
+  selectedDifficulty = document.getElementById('difficultySelect').value;
+  floor = 1;
+  combo = 0;
+  maxCombo = 0;
+  correctCount = 0;
+  missCount = 0;
+  startedAt = performance.now();
+  questionLocked = false;
+
+  document.getElementById('modeLabel').textContent = MODE_LABELS[selectedMode];
+  document.getElementById('questionHint').textContent = MODE_HINTS[selectedMode];
+
+  updateFloorUI();
+  updateComboUI();
+  showScreen('game');
+
+  const loaded = await loadModeQuestions();
+  if (!loaded) return;
+
+  showNextQuestion();
+  answerInput.focus();
+}
+
+function cancelGame() {
+  clearInterval(timerId);
+  timerId = null;
+  questionLocked = true;
+}
+
+async function loadModeQuestions() {
+  try {
+    const response = await fetch(DATA_FILES[selectedMode]);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+    questions = await response.json();
+
+    if (!Array.isArray(questions) || questions.length === 0) {
+      throw new Error('問題データが空です');
+    }
+
+    return true;
+  } catch (error) {
+    console.error('問題を読み込めませんでした', error);
+    document.getElementById('questionText').textContent = '問題を読み込めませんでした';
+    return false;
+  }
+}
+
+function showNextQuestion() {
+  questionLocked = false;
+
+  const filtered = questions.filter(question => {
+    return question.difficulty === selectedDifficulty;
+  });
+
+  const pool = filtered.length ? filtered : questions;
+  const index = Math.floor(Math.random() * pool.length);
+  currentQuestion = pool[index];
+
+  document.getElementById('questionText').textContent = currentQuestion.question;
+  answerInput.value = '';
+  answerInput.focus();
+
+  startQuestionTimer();
+}
+
+answerForm.addEventListener('submit', async event => {
+  event.preventDefault();
+
+  if (questionLocked || !currentQuestion) return;
+
+  const answer = answerInput.value.trim();
+  if (!answer) return;
+
+  if (normalizeAnswer(answer) === normalizeAnswer(currentQuestion.answer)) {
+    await handleCorrect();
+  } else {
+    await handleMiss();
+  }
+});
+
+function normalizeAnswer(value) {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, ' ');
+}
+
+async function handleCorrect() {
+  if (questionLocked) return;
+  questionLocked = true;
+  clearInterval(timerId);
+
+  correctCount += 1;
+  combo += 1;
+  maxCombo = Math.max(maxCombo, combo);
+  floor += 1;
+
+  updateComboUI();
+  updateFloorUI();
+
+  await Promise.all([
+    flashAnswer('correct'),
+    playFloorMove('up')
+  ]);
+
+  if (floor >= 10) {
+    finishGame();
+    return;
+  }
+
+  showNextQuestion();
+}
+
+async function handleMiss() {
+  if (questionLocked) return;
+  questionLocked = true;
+  clearInterval(timerId);
+
+  missCount += 1;
+  combo = 0;
+  floor = Math.max(1, floor - 1);
+
+  updateComboUI();
+  updateFloorUI();
+
+  await Promise.all([
+    flashAnswer('miss'),
+    playFloorMove('down')
+  ]);
+
+  showNextQuestion();
+}
+
+function updateFloorUI() {
+  document.getElementById('floorText').textContent = `${floor}F`;
+
+  document.querySelectorAll('[data-floor]').forEach(item => {
+    const isCurrent = Number(item.dataset.floor) === floor;
+    item.classList.toggle('is-current', isCurrent);
+  });
+}
+
+function updateComboUI() {
+  document.getElementById('comboText').textContent = combo;
+}
+
+function startQuestionTimer() {
+  clearInterval(timerId);
+
+  timeLeft = TIME_BY_DIFFICULTY[selectedDifficulty] || 10;
+  updateTimerUI();
+
+  timerId = setInterval(async () => {
+    timeLeft -= 1;
+    updateTimerUI();
+
+    if (timeLeft <= 0) {
+      clearInterval(timerId);
+      await handleMiss();
+    }
+  }, 1000);
+}
+
+function updateTimerUI() {
+  document.getElementById('timeText').textContent = timeLeft;
+}
+
+function finishGame() {
+  cancelGame();
+
+  const elapsedSeconds = (performance.now() - startedAt) / 1000;
+  const answered = correctCount + missCount;
+  const accuracy = answered === 0
+    ? 0
+    : Math.round((correctCount / answered) * 100);
+
+  document.getElementById('resultTitle').textContent = `${MODE_LABELS[selectedMode]} CLEAR`;
+  document.getElementById('resultCorrect').textContent = correctCount;
+  document.getElementById('resultMiss').textContent = missCount;
+  document.getElementById('resultAccuracy').textContent = `${accuracy}%`;
+  document.getElementById('resultMaxCombo').textContent = maxCombo;
+  document.getElementById('resultTime').textContent = `${elapsedSeconds.toFixed(1)}s`;
+
+  const best = saveRecord(selectedMode, selectedDifficulty, {
+    time: elapsedSeconds,
+    maxCombo,
+    accuracy
+  });
+
+  document.getElementById('bestRecordText').textContent = best
+    ? `BEST TIME ${best.bestTime.toFixed(1)}s / MAX COMBO ${best.maxCombo} / ACC ${best.bestAccuracy}%`
+    : '';
+
+  showScreen('result');
+}</code></pre>
+        <div class="code-points"><b>ここまでで：</b><span>正解 +1F</span><span>MISS -1F</span><span>10F CLEAR</span><span>TIME</span><span>COMBO</span><span>RESULT</span></div>
+      </article>
+    </section>
+
+    <section class="section section-soft" id="data">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">QUESTION DATA</p>
+          <h2>最後に3つのJSONを書く</h2>
+          <p><code>question</code>が画面に出る文字、<code>answer</code>が入力する正解、<code>difficulty</code>が難易度です。まずは数問で動作確認し、あとから問題数を増やします。</p>
+        </div>
+
+        <article class="example-file sub-file">
+          <div class="file-heading"><div><p class="eyebrow">FILE 07</p><h2><code>game/data/kanji.json</code></h2></div><span>漢字 → 読み</span></div>
+          <pre class="code-block"><code>[
+  { "question": "躊躇", "answer": "ちゅうちょ", "difficulty": "hard" },
+  { "question": "憂鬱", "answer": "ゆううつ", "difficulty": "normal" },
+  { "question": "紅葉", "answer": "こうよう", "difficulty": "easy" },
+  { "question": "彷徨", "answer": "ほうこう", "difficulty": "hard" },
+  { "question": "概念", "answer": "がいねん", "difficulty": "normal" },
+  { "question": "景色", "answer": "けしき", "difficulty": "easy" }
+]</code></pre>
+        </article>
+
+        <article class="example-file sub-file">
+          <div class="file-heading"><div><p class="eyebrow">FILE 08</p><h2><code>game/data/ja-en.json</code></h2></div><span>日本語 → 英語</span></div>
+          <pre class="code-block"><code>[
+  { "question": "りんご", "answer": "apple", "difficulty": "easy" },
+  { "question": "学校", "answer": "school", "difficulty": "easy" },
+  { "question": "経験", "answer": "experience", "difficulty": "normal" },
+  { "question": "環境", "answer": "environment", "difficulty": "normal" },
+  { "question": "責任", "answer": "responsibility", "difficulty": "hard" }
+]</code></pre>
+        </article>
+
+        <article class="example-file sub-file">
+          <div class="file-heading"><div><p class="eyebrow">FILE 09</p><h2><code>game/data/en-ja.json</code></h2></div><span>英語 → 日本語</span></div>
+          <pre class="code-block"><code>[
+  { "question": "apple", "answer": "りんご", "difficulty": "easy" },
+  { "question": "school", "answer": "学校", "difficulty": "easy" },
+  { "question": "experience", "answer": "経験", "difficulty": "normal" },
+  { "question": "environment", "answer": "環境", "difficulty": "normal" },
+  { "question": "responsibility", "answer": "責任", "difficulty": "hard" }
+]</code></pre>
+        </article>
+
+        <div class="example-note"><b>日本語入力について：</b>この例はIMEで日本語を入力してEnterで回答する方式です。ローマ字を1文字ずつかなへ変換する本格タイピング処理は別機能なので、最初の完成版では入れません。</div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="assets">
+      <div class="section-head">
+        <p class="eyebrow">AFTER IT WORKS</p>
+        <h2>動いた後に画像へ置き換える</h2>
+        <p>ゲーム処理が完成する前に素材作りへ時間を使いすぎないよう、最初は上のCSSの仮塔で確認します。動いたら背景と塔を画像へ置き換えます。</p>
+      </div>
+      <div class="replace-grid">
+        <article><b>空</b><p><code>.sky-layer</code>のbackgroundへ<code>url('../assets/images/sky.webp')</code>を追加。</p></article>
+        <article><b>HOMEの塔</b><p><code>.tower-kanji</code>などに塔画像をbackground-imageとして設定。</p></article>
+        <article><b>GAME内部</b><p><code>.stone-wall</code>を階ごとの塔内部画像へ置換。空レイヤーはそのまま固定。</p></article>
+        <article><b>敵</b><p><code>.enemy-shape</code>を<code>&lt;img&gt;</code>へ置き換え、問題カードより後ろのz-indexにする。</p></article>
+      </div>
+      <pre class="code-block short-code"><code>.tower-kanji {
+  background-image: url('../assets/images/tower-kanji.webp');
+  background-size: cover;
+  background-position: center bottom;
+}
+
+.sky-layer {
+  background-image: url('../assets/images/sky.webp');
+  background-size: cover;
+  background-position: center;
+}</code></pre>
+    </section>
+
+    <section class="section section-soft" id="check">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">FINAL CHECK</p>
+          <h2>ここまで通れば「一応ゲームになった」</h2>
+          <p>全部を一度に完璧にする必要はありません。まず下の順番で動けば、そこから見た目と問題数を仕上げられます。</p>
+        </div>
+        <div class="check-list">
+          <label><input type="checkbox"> 開いた瞬間に空と3つの塔が見える</label>
+          <label><input type="checkbox"> 各塔の下に開始ボタンがある</label>
+          <label><input type="checkbox"> 漢字の塔からGAMEへ進める</label>
+          <label><input type="checkbox"> 問題がJSONから表示される</label>
+          <label><input type="checkbox"> 正解で+1F、MISSで-1F</label>
+          <label><input type="checkbox"> 1Fより下へ行かない</label>
+          <label><input type="checkbox"> TIMEが0になるとMISS</label>
+          <label><input type="checkbox"> COMBOが増え、MISSで0になる</label>
+          <label><input type="checkbox"> 10FでRESULTへ進む</label>
+          <label><input type="checkbox"> RESULTからHOMEへ戻れる</label>
+          <label><input type="checkbox"> 英訳・和訳の塔も同じ処理で遊べる</label>
+          <label><input type="checkbox"> 階移動で空ではなく塔側だけが動く</label>
+        </div>
+        <div class="example-final">
+          <strong>詰まったら</strong>
+          <p>全部を見るのではなく、今作っているファイルだけ確認する。HTMLが出ない → index.html、見た目 → style.css、ボタンが効かない → main.js、ゲーム処理 → game.js、問題が出ない → JSON / fetch、の順で切り分けます。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row"><span>TYPE TOWER ほぼ完成する作成例</span><a href="index.html">制作方針へ戻る</a></div>
+  </footer>
+</body>
+</html>
