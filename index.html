@@ -1,45 +1,44 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#ffffff" />
-  <title>TYPE TOWER | 制作ロードマップ</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="home-screen-plan.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>TYPE TOWER | 制作方針</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="home-screen-plan.css">
 </head>
 <body>
   <header class="hero" id="top">
     <nav class="nav wrap" aria-label="メインナビゲーション">
       <a class="brand" href="#top"><span class="brand-mark">TT</span><span>TYPE TOWER</span></a>
       <div class="nav-links">
-        <a href="#home-screen-plan">HOME画面案</a>
+        <a href="index.html" aria-current="page">制作方針</a>
+        <a href="code.html">コード全文</a>
         <a href="github-guide.html">GitHub超入門</a>
         <a href="#now">今やること</a>
-        <a href="#schedule">日程</a>
         <a href="#roadmap">作る順番</a>
-        <a href="#team">3人の進め方</a>
         <a href="#finish">完成条件</a>
       </div>
     </nav>
 
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">3人 / 9月1日〜17日 / SCHOOL TEAM PROJECT</p>
-        <h1>迷ったら、<br><span>上から順番に作る。</span></h1>
-        <p class="lead">基本は3人で同じ機能を一緒に作る。問題追加・素材探しなど、簡単で他の作業とぶつからない部分だけ分担します。</p>
+        <p class="eyebrow">PLAN ONLY / NO CODE EXAMPLES</p>
+        <h1>このページは、<br><span>作り方だけを見る。</span></h1>
+        <p class="lead">ここにはコードの記入例を置きません。何を作るか、どの順番で進めるか、3人でどこまで確認するかだけをまとめます。実際に書くコードは別URLの「コード全文」に分けます。</p>
         <div class="hero-actions">
-          <a class="btn primary" href="#home-screen-plan">最初の画面案を見る</a>
-          <a class="btn ghost" href="#now">今やる作業を見る</a>
+          <a class="btn primary" href="#now">今やる作業を見る</a>
+          <a class="btn ghost" href="code.html">コード全文を開く</a>
         </div>
         <div class="meta-row">
           <span>作品名 <strong>TYPE TOWER</strong></span>
-          <span>開発方針 <strong>一緒に作るのが基本</strong></span>
-          <span>目標 <strong>9/11までにゲーム本体を固める</strong></span>
+          <span>開発方針 <strong>基本は3人で一緒に作る</strong></span>
+          <span>目標 <strong>ゲーム本体を先に完成させる</strong></span>
         </div>
       </div>
 
-      <div class="tower-card" aria-label="TYPE TOWER GAME画面の完成イメージ">
+      <div class="tower-card" aria-label="TYPE TOWERの進行イメージ">
         <div class="tower-top">GOAL</div>
         <div class="tower-floor active">10F</div>
         <div class="tower-floor">9F</div>
@@ -54,12 +53,37 @@
   </header>
 
   <main>
+    <section class="section wrap" id="page-rule">
+      <div class="section-head">
+        <p class="eyebrow">TWO PAGE RULE</p>
+        <h2>方針とコードを混ぜない</h2>
+        <p>制作中に「説明を読みたいのに長いコードが出てくる」「完成コードを見たいのに方針説明を探す」という状態をなくします。</p>
+      </div>
+      <div class="policy-grid">
+        <article class="policy-card primary-policy">
+          <span class="policy-label">このURL</span>
+          <h3>制作方針ページ</h3>
+          <p>画面構成、日程、作る順番、3人の進め方、完了条件だけを確認します。コード例は表示しません。</p>
+        </article>
+        <article class="policy-card">
+          <span class="policy-label">別URL</span>
+          <h3>コード全文ページ</h3>
+          <p>そのSTEPが終わった時点のファイル全文を確認します。実装するときだけ開きます。</p>
+        </article>
+        <article class="policy-card">
+          <span class="policy-label">使い分け</span>
+          <h3>先に方針、必要な時だけコード</h3>
+          <p>まずこのページで目的と完了条件を確認し、実際に書く段階になったらコード全文ページへ移動します。</p>
+        </article>
+      </div>
+    </section>
+
     <section class="section home-plan" id="home-screen-plan">
       <div class="wrap">
         <div class="section-head">
           <p class="eyebrow">FIRST VIEW / HOME SCREEN</p>
-          <h2>サイトを開いた瞬間、空の中に3つの塔が立っている</h2>
-          <p>最初に別のSTART画面やモード選択ページを挟みません。ページを開くと最初から3つの塔が見え、各塔の下にあるボタンを押すと、そのモードのゲームがそのまま始まる形にします。</p>
+          <h2>開いた瞬間、背景の中に3つの塔が見える</h2>
+          <p>別のSTART画面やモード選択ページは挟みません。最初の画面そのものを塔選択画面として使い、各塔の下にあるボタンからゲームを始めます。</p>
         </div>
 
         <div class="home-concept">
@@ -69,7 +93,6 @@
                 <small>TYPE TOWER</small>
                 <strong>挑戦する塔を選ぶ</strong>
               </div>
-
               <div class="tower-select-row">
                 <article class="tower-choice">
                   <div class="tower-visual"><span class="tower-banner">KANJI</span></div>
@@ -77,14 +100,12 @@
                   <p class="tower-mode">漢字 → 読み</p>
                   <button class="tower-start" type="button" tabindex="-1">この塔に挑戦</button>
                 </article>
-
                 <article class="tower-choice">
                   <div class="tower-visual"><span class="tower-banner">JA → EN</span></div>
                   <p class="tower-name">英訳の塔</p>
                   <p class="tower-mode">日本語 → 英語</p>
                   <button class="tower-start" type="button" tabindex="-1">この塔に挑戦</button>
                 </article>
-
                 <article class="tower-choice">
                   <div class="tower-visual"><span class="tower-banner">EN → JA</span></div>
                   <p class="tower-name">和訳の塔</p>
@@ -98,110 +119,36 @@
           <div class="home-spec-list">
             <article class="home-spec-card">
               <small>01 / BACKGROUND</small>
-              <h3>空はずっと固定</h3>
-              <p>HOMEでもGAMEでも、画面いっぱいの空を一番後ろに固定します。階を上がる演出でも空自体は大きく動かさず、塔側だけを動かします。</p>
+              <h3>背景は自分たちの素材を使う</h3>
+              <p>現在用意している背景動画を最背面でループさせます。方針サイト側では背景素材そのものの見た目を決めません。</p>
             </article>
             <article class="home-spec-card">
               <small>02 / TOWERS</small>
-              <h3>最初から3つの塔を横並び</h3>
-              <p>3モードを3つの塔として見せます。別のSELECT画面は作らず、どの塔に入るかをHOME画面で選びます。</p>
+              <h3>3つの塔を同時に見せる</h3>
+              <p>漢字・英訳・和訳を3つの塔として横並びにします。塔画像は自分たちで用意し、同じ高さの基準線に揃えます。</p>
             </article>
             <article class="home-spec-card">
-              <small>03 / BUTTON</small>
-              <h3>各塔の真下に開始ボタン</h3>
-              <p>塔そのものをクリック必須にはせず、分かりやすいボタンを各塔の下へ置きます。押した塔のモードを保存して、そのままGAMEへ移動します。</p>
+              <small>03 / LABEL</small>
+              <h3>塔名は塔の下、ボタンの上</h3>
+              <p>塔画像の中へ文字を焼き込まず、塔名を別のUIとして置きます。素材を差し替えても位置関係を保ちやすくします。</p>
             </article>
             <article class="home-spec-card">
-              <small>04 / GAME START</small>
-              <h3>押したら1Fから即ゲーム開始</h3>
-              <p>ボタン → selectedModeを設定 → HOMEを隠す → GAME表示 → floorを1へ初期化 → 最初の問題を表示、までを1つの開始処理にまとめます。</p>
+              <small>04 / BUTTON</small>
+              <h3>各塔の下に開始ボタン</h3>
+              <p>どの塔を選ぶか迷わないように、塔名のすぐ下に同じ形の開始ボタンを置きます。</p>
             </article>
           </div>
         </div>
 
         <div class="home-flow" aria-label="HOMEからGAME開始までの流れ">
-          <div><span>STEP A</span><b>サイトを開く</b><p>空背景 + 3つの塔が最初から表示される。</p></div>
-          <div><span>STEP B</span><b>塔を選ぶ</b><p>漢字 / 英訳 / 和訳のどれかのボタンを押す。</p></div>
-          <div><span>STEP C</span><b>モードを保存</b><p><code>selectedMode</code>へ選択したモードを入れる。</p></div>
-          <div><span>STEP D</span><b>ゲーム開始</b><p>1F・0COMBO・最初の問題から開始する。</p></div>
-        </div>
-
-        <div class="home-code">
-          <div>
-            <h3>HTMLの形</h3>
-            <pre><code>&lt;section data-screen="home"&gt;
-  &lt;div class="tower-select"&gt;
-    &lt;button data-mode="kanji"&gt;漢字の塔&lt;/button&gt;
-    &lt;button data-mode="jaEn"&gt;英訳の塔&lt;/button&gt;
-    &lt;button data-mode="enJa"&gt;和訳の塔&lt;/button&gt;
-  &lt;/div&gt;
-&lt;/section&gt;</code></pre>
-          </div>
-          <div>
-            <h3>JavaScriptの流れ</h3>
-            <pre><code>document.querySelectorAll('[data-mode]')
-  .forEach(button =&gt; {
-    button.addEventListener('click', () =&gt; {
-      startGame(button.dataset.mode);
-    });
-  });
-
-function startGame(mode) {
-  selectedMode = mode;
-  floor = 1;
-  showScreen('game');
-  loadModeQuestions();
-}</code></pre>
-          </div>
+          <div><span>STEP A</span><b>サイトを開く</b><p>背景と3つの塔が最初から表示される。</p></div>
+          <div><span>STEP B</span><b>塔を選ぶ</b><p>漢字・英訳・和訳のどれかを選ぶ。</p></div>
+          <div><span>STEP C</span><b>選択を保存</b><p>押した塔のモードをゲーム側へ渡す。</p></div>
+          <div><span>STEP D</span><b>ゲーム開始</b><p>1Fから最初の問題を表示して開始する。</p></div>
         </div>
 
         <div class="home-note">
-          <b>階を上がるとき：</b> 空背景は固定したまま、塔内部の背景・敵・階層だけを上方向へスライドさせます。通常の1F移動に動画は使わず、画像レイヤー + CSSアニメーションで動かす方針にします。問題カード・入力欄・TIMEなどのHUDは基本固定です。
-        </div>
-      </div>
-    </section>
-
-    <section class="section wrap" id="github-first">
-      <div class="section-head">
-        <p class="eyebrow">BEFORE DEVELOPMENT</p>
-        <h2>GitHubが初めてなら、まずここ</h2>
-        <p>GitHubとは何か、Branch、Commit、Pull Request、GitHub上での直接編集、github.devでのコード編集まで、初めてでも順番どおり進められるページを用意しています。</p>
-      </div>
-      <div class="core-rule">
-        <strong>最初に3人で確認</strong>
-        <p>Collaborator追加 → GitHub超入門を読む → 作業用Branchを作る → 制作ロードマップのSTEPへ進む。 <a href="github-guide.html"><b>GitHub超入門を開く →</b></a></p>
-      </div>
-    </section>
-
-    <section class="section section-soft" id="team-policy">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="eyebrow">HOW WE BUILD</p>
-          <h2>基本は3人で一緒に作る</h2>
-          <p>担当を完全に分けません。難しい部分・ゲームの中心部分は3人で考え、1人が操作役としてコードを書き、残り2人が確認・相談します。</p>
-        </div>
-
-        <div class="policy-grid">
-          <article class="policy-card primary-policy">
-            <span class="policy-label">基本</span>
-            <h3>ゲームの中心は3人で作る</h3>
-            <p>画面切替、タイピング判定、階数、タイマー、ゲームループ、バグ修正などは一緒に進める。</p>
-          </article>
-          <article class="policy-card">
-            <span class="policy-label">操作役</span>
-            <h3>コードを書く人は交代</h3>
-            <p>その時間は1人だけがgithub.devを操作。機能や時間ごとに操作役を交代し、全員がGitHubとコードを触る。</p>
-          </article>
-          <article class="policy-card">
-            <span class="policy-label">分担OK</span>
-            <h3>独立した単純作業だけ並行</h3>
-            <p>問題JSON追加、問題調査、ロゴ案、素材探し、テスト、動画素材など、同じコードを同時に触らない作業を分担する。</p>
-          </article>
-        </div>
-
-        <div class="core-rule">
-          <strong>Branchの考え方</strong>
-          <p><code>person-a</code> のような人別ではなく、<code>feature/typing</code>・<code>feature/questions</code>・<code>feature/result</code> のように<strong>作業単位</strong>で作る。</p>
+          <b>見た目の優先順位：</b>背景動画と塔素材を主役にし、塔名・開始ボタンは見やすく整える。まだ作っていないGAME画面やRESULT画面の見た目は、今の段階では先回りして作り込みません。
         </div>
       </div>
     </section>
@@ -210,7 +157,7 @@ function startGame(mode) {
       <div class="section-head">
         <p class="eyebrow">NEXT ACTION</p>
         <h2>今、何を作る？</h2>
-        <p>チェック状況から次の工程を自動表示します。迷ったら、まずここだけ見ます。</p>
+        <p>チェック状況から、まだ終わっていない最初のSTEPを表示します。</p>
       </div>
 
       <div class="next-action" aria-live="polite">
@@ -218,14 +165,14 @@ function startGame(mode) {
         <div class="next-copy">
           <p id="nextStepLabel">STEP 1</p>
           <h3 id="nextStepTitle">3画面の箱とHOMEの塔を作る</h3>
-          <p id="nextStepText">HOME / GAME / RESULT の3画面を用意し、HOMEには3つの塔と開始ボタンを置く。</p>
+          <p id="nextStepText">HOME・GAME・RESULTを用意し、HOMEに3つの塔と開始ボタンを置く。</p>
         </div>
         <a class="btn primary dark-btn" id="nextStepLink" href="#step-1">この工程を見る</a>
       </div>
 
       <div class="core-rule">
         <strong>最初の重要ルール</strong>
-        <p><b>最初は漢字の塔だけ動けばOK。</b> HOMEに3つの塔は置くが、まず「漢字の塔 → 問題表示 → 入力 → 判定 → 階数変化 → クリア → RESULT」を完成させ、残り2つは後から同じ仕組みにつなぐ。</p>
+        <p>HOMEには3つの塔を置きますが、ゲーム処理はまず漢字の塔だけで最後まで完成させます。英訳・和訳はゲームの芯が動いてからつなぎます。</p>
       </div>
     </section>
 
@@ -234,16 +181,15 @@ function startGame(mode) {
         <div class="section-head">
           <p class="eyebrow">SCHOOL SCHEDULE</p>
           <h2>学校の日程に合わせた進め方</h2>
-          <p>9/11までにゲーム本体を固め、9/15は動画に入る前に最終テストをします。遅れた場合は新機能を削って、最後まで遊べる状態を優先します。</p>
+          <p>ゲーム本体を先に固め、最後にテスト・動画・発表準備へ移ります。</p>
         </div>
-
         <div class="schedule-list">
-          <article class="schedule-item done-plan"><time>9/1</time><div><b>企画・方針決定</b><p>アプリ決め、共同開発の方針決め、GitHub準備。</p></div><span>準備</span></article>
-          <article class="schedule-item coding"><time>9/2〜9/4</time><div><b>ゲームの核</b><p>STEP 1〜5を中心に、漢字の塔でHOMEからRESULTまで遊べる状態を目指す。</p></div><span>3人で一緒</span></article>
-          <article class="schedule-item coding"><time>9/8〜9/9</time><div><b>ゲーム機能を追加</b><p>タイマー、コンボ、難易度、残り2つの塔、RESULTを順番に追加。</p></div><span>3人で一緒</span></article>
-          <article class="schedule-item coding"><time>9/10〜9/11</time><div><b>見た目・ロゴ・仕上げ</b><p>HOMEの空と3塔、GAME画面を参考イメージへ近づける。ロゴ、問題追加などは待ち時間に分担可能。</p></div><span>一部を分担</span></article>
-          <article class="schedule-item test"><time>9/15</time><div><b>最終テスト → 動画準備</b><p>最初に3人で通しプレイして重大バグを修正。その後、動画構成・撮影素材を決める。</p></div><span>予備日</span></article>
-          <article class="schedule-item video"><time>9/16〜9/17</time><div><b>動画制作・発表準備</b><p>撮影、編集、発表手順の確認。原則として新しいゲーム機能は追加しない。</p></div><span>動画</span></article>
+          <article class="schedule-item"><time>9/1</time><div><b>企画・GitHub準備</b><p>画面、ルール、共同作業方法を3人で確認する。</p></div><span>準備</span></article>
+          <article class="schedule-item build"><time>9/2〜9/4</time><div><b>ゲームの核</b><p>漢字の塔で、選択からRESULTまで通して遊べる状態を目指す。</p></div><span>実装</span></article>
+          <article class="schedule-item build"><time>9/8〜9/9</time><div><b>追加機能</b><p>タイマー、コンボ、難易度、英訳・和訳、記録表示を追加する。</p></div><span>実装</span></article>
+          <article class="schedule-item polish"><time>9/10〜9/11</time><div><b>見た目・素材・問題</b><p>HOME、GAME、階移動、ロゴ、塔素材、問題追加を仕上げる。</p></div><span>仕上げ</span></article>
+          <article class="schedule-item test"><time>9/15</time><div><b>最終テスト</b><p>3人で通しプレイし、進行不能や重大バグを優先して直す。</p></div><span>確認</span></article>
+          <article class="schedule-item video"><time>9/16〜9/17</time><div><b>動画・発表準備</b><p>撮影、編集、発表手順を確認する。原則、新しいゲーム機能は増やさない。</p></div><span>発表</span></article>
         </div>
       </div>
     </section>
@@ -253,149 +199,97 @@ function startGame(mode) {
         <div class="section-head light">
           <p class="eyebrow">BUILD ORDER</p>
           <h2>この順番で作る</h2>
-          <p>各STEPの完了条件を満たしてから次へ進みます。「3人でやる」と書いてある部分は、基本的に分担せず一緒に進めます。</p>
+          <p>このページでは目的と完了条件だけ確認します。実際に書く内容が必要になったら「コード全文」ページを開きます。</p>
         </div>
 
         <div class="roadmap">
           <article class="road-step" id="step-1" data-step="1">
-            <div class="road-num">1</div>
-            <div class="road-main">
-              <div class="road-title"><div><span>9/2</span><h3>3画面の箱 + HOMEの3つの塔を作る</h3></div><span class="status">最初にやる</span></div>
-              <p class="why">HOMEを開いた瞬間に空と3つの塔を見せます。別のSELECT画面は作りません。</p>
-              <div class="task-grid">
-                <div><b>作るもの</b><ul><li>HOME</li><li>GAME</li><li>RESULT</li><li>HOMEの3つの塔</li><li>各塔の開始ボタン</li></ul></div>
-                <div><b>完了条件</b><ul><li>開くと3つの塔が見える</li><li>漢字の塔ボタンでGAMEへ行ける</li><li>RESULTまで仮で移動できる</li><li>HOMEへ戻れる</li></ul></div>
-              </div>
-              <a class="home-plan-link" href="#home-screen-plan">HOME画面の詳しい設計を見る →</a>
-              <div class="work-mode"><b>3人でやる</b><span>空・塔・ボタンの構成を先に3人で合わせる。最初は漢字の塔だけ動けばよい。</span></div>
-              <label class="stage-check"><input type="checkbox" data-key="step1"> <span>STEP 1 完了</span></label>
+            <div class="road-num">1</div><div class="road-main">
+              <div class="road-title"><div><span>HOME</span><h3>3画面の箱 + HOMEの3つの塔</h3></div><span class="status">最初</span></div>
+              <p class="why">HOME・GAME・RESULTの3画面を用意し、HOMEには3つの塔を並べる。</p>
+              <div class="task-grid"><div><b>作るもの</b><ul><li>背景動画</li><li>3つの塔を置く場所</li><li>塔名と開始ボタン</li></ul></div><div><b>完了条件</b><ul><li>開いた瞬間に3つの塔が見える</li><li>漢字の塔からGAMEへ進める</li><li>他の2塔も見た目は置けている</li></ul></div></div>
+              <label class="stage-check"><input type="checkbox" data-key="step1"><span>STEP 1 完了</span></label>
             </div>
           </article>
 
           <article class="road-step" id="step-2" data-step="2">
-            <div class="road-num">2</div>
-            <div class="road-main">
-              <div class="road-title"><div><span>9/2</span><h3>漢字問題を表示する</h3></div></div>
-              <p class="why">まだ残り2つの塔は動かしません。まず漢字だけでデータ読み込みを完成させます。</p>
-              <div class="task-grid">
-                <div><b>作るもの</b><ul><li><code>kanji.json</code></li><li>問題のランダム表示</li><li>読みの答えデータ</li></ul></div>
-                <div><b>完了条件</b><ul><li>GAME画面に問題が1問出る</li><li>次の問題へ切り替えられる</li><li>最低10問でテストできる</li></ul></div>
-              </div>
-              <div class="work-mode"><b>基本は3人</b><span>JSON読込と表示は一緒に作る。動いた後の問題追加だけ分担してOK。</span></div>
-              <label class="stage-check"><input type="checkbox" data-key="step2"> <span>STEP 2 完了</span></label>
+            <div class="road-num">2</div><div class="road-main">
+              <div class="road-title"><div><span>DATA</span><h3>漢字問題を表示する</h3></div></div>
+              <p class="why">最初は漢字の塔だけで問題データの読み込みと表示を完成させる。</p>
+              <div class="task-grid"><div><b>作るもの</b><ul><li>漢字問題データ</li><li>問題のランダム表示</li><li>答えデータ</li></ul></div><div><b>完了条件</b><ul><li>GAME画面に問題が1問出る</li><li>別の問題へ切り替えられる</li><li>最低10問で確認できる</li></ul></div></div>
+              <label class="stage-check"><input type="checkbox" data-key="step2"><span>STEP 2 完了</span></label>
             </div>
           </article>
 
-          <article class="road-step featured" id="step-3" data-step="3">
-            <div class="road-num">3</div>
-            <div class="road-main">
-              <div class="road-title"><div><span>9/3</span><h3>タイピング判定を完成させる</h3></div><span class="status important">最重要</span></div>
-              <p class="why">ここがゲームの中心です。見た目より、入力と判定が安定して動くことを優先します。</p>
-              <div class="task-grid">
-                <div><b>作るもの</b><ul><li>入力欄</li><li>Enterで回答</li><li>正解 / MISS判定</li><li>次の問題へ進む</li></ul></div>
-                <div><b>完了条件</b><ul><li>正しい入力で正解になる</li><li>間違いをMISSにできる</li><li>連続で10問以上遊べる</li></ul></div>
-              </div>
-              <div class="work-mode"><b>3人でやる</b><span>分担しない。全員が「入力 → 判定 → 次の問題」の流れを理解してから次へ進む。</span></div>
-              <label class="stage-check"><input type="checkbox" data-key="step3"> <span>STEP 3 完了</span></label>
+          <article class="road-step" id="step-3" data-step="3">
+            <div class="road-num">3</div><div class="road-main">
+              <div class="road-title"><div><span>CORE</span><h3>タイピング判定を完成させる</h3></div></div>
+              <p class="why">入力、確定、正解・MISS、次の問題までを連続して遊べる状態にする。</p>
+              <div class="task-grid"><div><b>作るもの</b><ul><li>回答入力欄</li><li>正解判定</li><li>MISS判定</li></ul></div><div><b>完了条件</b><ul><li>正しい答えで正解になる</li><li>違う答えでMISSになる</li><li>続けて次の問題へ進める</li></ul></div></div>
+              <label class="stage-check"><input type="checkbox" data-key="step3"><span>STEP 3 完了</span></label>
             </div>
           </article>
 
           <article class="road-step" id="step-4" data-step="4">
-            <div class="road-num">4</div>
-            <div class="road-main">
-              <div class="road-title"><div><span>9/3〜9/4</span><h3>タワーの上下とクリアをつなぐ</h3></div></div>
-              <p class="why">タイピング結果をゲームとして成立させます。空は固定し、階移動では塔側だけが上下する前提です。</p>
-              <div class="task-grid">
-                <div><b>作るもの</b><ul><li>現在階の変数</li><li>正解で +1F</li><li>MISSで -1F</li><li>10FでCLEAR</li></ul></div>
-                <div><b>完了条件</b><ul><li>階数が画面に表示される</li><li>1F未満にならない</li><li>10F到達でRESULTへ進む</li></ul></div>
-              </div>
-              <div class="work-mode"><b>3人でやる</b><span>ゲームルールなので一緒に確認。背景スライド演出は後で足し、ここではfloor処理を優先。</span></div>
-              <label class="stage-check"><input type="checkbox" data-key="step4"> <span>STEP 4 完了</span></label>
+            <div class="road-num">4</div><div class="road-main">
+              <div class="road-title"><div><span>FLOOR</span><h3>正解 +1F / MISS -1F</h3></div></div>
+              <p class="why">現在階を管理し、正解・MISSと塔の上下をゲームルールとしてつなぐ。</p>
+              <div class="task-grid"><div><b>作るもの</b><ul><li>現在階</li><li>階数表示</li><li>10Fクリア</li></ul></div><div><b>完了条件</b><ul><li>正解で1階上がる</li><li>MISSで1階下がる</li><li>1F未満にならない</li><li>10Fでクリアになる</li></ul></div></div>
+              <label class="stage-check"><input type="checkbox" data-key="step4"><span>STEP 4 完了</span></label>
             </div>
           </article>
 
-          <article class="road-step milestone" id="step-5" data-step="5">
-            <div class="road-num">5</div>
-            <div class="road-main">
-              <div class="road-title"><div><span>9/4</span><h3>最初から最後まで遊べる状態にする</h3></div><span class="status success">最初の目標</span></div>
-              <p class="why">ここで一度「遊べるゲーム」にします。ここまで動く前に新機能を増やしません。</p>
-              <div class="task-grid">
-                <div><b>追加するもの</b><ul><li>正解数</li><li>ミス数</li><li>簡易RESULT</li><li>もう一度遊ぶ</li></ul></div>
-                <div><b>完了条件</b><ul><li>HOME → 漢字の塔 → CLEAR → RESULTが通る</li><li>リロードしても致命的に壊れない</li><li>3人全員が1ゲーム遊べる</li></ul></div>
-              </div>
-              <div class="work-mode"><b>3人でやる</b><span>3人全員で実際にプレイ。誰か1人でも進め方が分からなければ、その場で共有する。</span></div>
-              <label class="stage-check"><input type="checkbox" data-key="step5"> <span>STEP 5 完了</span></label>
+          <article class="road-step" id="step-5" data-step="5">
+            <div class="road-num">5</div><div class="road-main">
+              <div class="road-title"><div><span>LOOP</span><h3>漢字の塔を最後まで遊べる状態にする</h3></div></div>
+              <p class="why">見た目を増やす前に、塔選択からRESULTまでゲームの一本線を完成させる。</p>
+              <div class="task-grid"><div><b>確認する流れ</b><ul><li>HOMEから開始</li><li>問題に回答</li><li>10Fへ到達</li><li>RESULTへ進む</li></ul></div><div><b>完了条件</b><ul><li>最初から最後まで止まらない</li><li>再挑戦できる</li><li>塔選択へ戻れる</li></ul></div></div>
+              <label class="stage-check"><input type="checkbox" data-key="step5"><span>STEP 5 完了</span></label>
             </div>
           </article>
 
           <article class="road-step" id="step-6" data-step="6">
-            <div class="road-num">6</div>
-            <div class="road-main">
-              <div class="road-title"><div><span>9/8</span><h3>タイマー・コンボ・難易度を追加する</h3></div></div>
-              <p class="why">芯が完成してから、ゲーム性に必要な機能を足します。</p>
-              <div class="task-grid">
-                <div><b>追加するもの</b><ul><li>1問ごとのタイマー</li><li>コンボ</li><li>EASY / NORMAL / HARD</li></ul></div>
-                <div><b>完了条件</b><ul><li>時間切れがMISSになる</li><li>コンボが正しく増減する</li><li>難易度で問題を分けられる</li></ul></div>
-              </div>
-              <div class="work-mode"><b>3人でやる</b><span>タイマーの二重起動などが起こりやすいので、一緒に実装して全員でテストする。</span></div>
-              <label class="stage-check"><input type="checkbox" data-key="step6"> <span>STEP 6 完了</span></label>
+            <div class="road-num">6</div><div class="road-main">
+              <div class="road-title"><div><span>RULES</span><h3>TIME / COMBO / 難易度</h3></div></div>
+              <p class="why">完成したゲームループを壊さないよう、追加要素を1つずつ入れる。</p>
+              <div class="task-grid"><div><b>追加するもの</b><ul><li>制限時間</li><li>コンボ</li><li>難易度</li></ul></div><div><b>完了条件</b><ul><li>時間切れでMISSになる</li><li>コンボが正しく増減する</li><li>難易度変更が反映される</li></ul></div></div>
+              <label class="stage-check"><input type="checkbox" data-key="step6"><span>STEP 6 完了</span></label>
             </div>
           </article>
 
           <article class="road-step" id="step-7" data-step="7">
-            <div class="road-num">7</div>
-            <div class="road-main">
-              <div class="road-title"><div><span>9/8〜9/9</span><h3>残り2つの塔をゲームにつなぐ</h3></div></div>
-              <p class="why">HOMEには最初から3つの塔があります。この段階で英訳の塔・和訳の塔のボタンも、漢字の塔と同じゲーム処理へつなぎます。</p>
-              <div class="task-grid">
-                <div><b>追加するもの</b><ul><li>英訳の塔：日本語 → 英語</li><li>和訳の塔：英語 → 日本語</li><li>3ボタンのモード切替</li></ul></div>
-                <div><b>完了条件</b><ul><li>HOMEの3ボタンすべてから開始できる</li><li>モード変更で問題が混ざらない</li><li>ゲーム処理をコピーしすぎていない</li></ul></div>
-              </div>
-              <a class="home-plan-link" href="#home-screen-plan">3つの塔とボタンの設計を確認 →</a>
-              <div class="work-mode"><b>一部を分担OK</b><span>ボタン→selectedMode→startGameの処理は一緒に作る。日本語・英語の問題作成は分担して並行できる。</span></div>
-              <label class="stage-check"><input type="checkbox" data-key="step7"> <span>STEP 7 完了</span></label>
+            <div class="road-num">7</div><div class="road-main">
+              <div class="road-title"><div><span>MODES</span><h3>英訳・和訳の塔をつなぐ</h3></div></div>
+              <p class="why">漢字で完成した仕組みを使い、残り2モードへ広げる。</p>
+              <div class="task-grid"><div><b>追加するもの</b><ul><li>英訳問題</li><li>和訳問題</li><li>塔ごとの問題切替</li></ul></div><div><b>完了条件</b><ul><li>3つの塔すべてから開始できる</li><li>塔ごとに問題が違う</li><li>3モードとも最後まで遊べる</li></ul></div></div>
+              <label class="stage-check"><input type="checkbox" data-key="step7"><span>STEP 7 完了</span></label>
             </div>
           </article>
 
           <article class="road-step" id="step-8" data-step="8">
-            <div class="road-num">8</div>
-            <div class="road-main">
-              <div class="road-title"><div><span>9/9</span><h3>RESULT・記録保存を完成させる</h3></div></div>
-              <p class="why">プレイ結果が分かるようにして、もう一度遊びたくなる形にします。</p>
-              <div class="task-grid">
-                <div><b>表示するもの</b><ul><li>正解数 / ミス数</li><li>正答率</li><li>最大コンボ</li><li>クリア時間</li><li>ハイスコア</li></ul></div>
-                <div><b>完了条件</b><ul><li>値が毎回正しい</li><li>localStorageへ保存できる</li><li>保存失敗でもゲームは遊べる</li></ul></div>
-              </div>
-              <div class="work-mode"><b>基本は3人</b><span>記録計算と保存は一緒に作る。結果表示の文言調整などは最後に分担可能。</span></div>
-              <label class="stage-check"><input type="checkbox" data-key="step8"> <span>STEP 8 完了</span></label>
+            <div class="road-num">8</div><div class="road-main">
+              <div class="road-title"><div><span>RESULT</span><h3>RESULTと記録保存</h3></div></div>
+              <p class="why">プレイ結果を分かりやすく見せ、再読み込み後も記録が残る状態にする。</p>
+              <div class="task-grid"><div><b>表示するもの</b><ul><li>正解数とMISS数</li><li>正答率</li><li>最大コンボ</li><li>クリア時間</li></ul></div><div><b>完了条件</b><ul><li>実プレイと数字が合う</li><li>記録が保存される</li><li>保存失敗でもゲーム自体は遊べる</li></ul></div></div>
+              <label class="stage-check"><input type="checkbox" data-key="step8"><span>STEP 8 完了</span></label>
             </div>
           </article>
 
           <article class="road-step" id="step-9" data-step="9">
-            <div class="road-num">9</div>
-            <div class="road-main">
-              <div class="road-title"><div><span>9/10〜9/11</span><h3>HOMEとGAMEの見た目・階移動を仕上げる</h3></div></div>
-              <p class="why">HOMEは固定の空 + 3つの塔、GAMEは固定の空 + 塔内部。階移動では空を動かさず塔レイヤーをスライドさせます。</p>
-              <div class="task-grid">
-                <div><b>仕上げるもの</b><ul><li>HOMEの空 + 3塔 + ボタン</li><li>GAMEの塔断面と敵</li><li>フロア / TIME / COMBO</li><li>塔背景の上下スライド</li><li>正解 / MISS演出</li></ul></div>
-                <div><b>完了条件</b><ul><li>HOMEで3モードが一目で分かる</li><li>問題と入力欄が最も見やすい</li><li>階移動で空背景が不自然に動かない</li><li>演出で入力が止まらない</li></ul></div>
-              </div>
-              <div class="work-mode"><b>一部を分担OK</b><span>レイアウトと階移動は3人で合わせる。ロゴ案・塔素材・敵素材・効果音・問題追加など独立作業は分担する。</span></div>
-              <label class="stage-check"><input type="checkbox" data-key="step9"> <span>STEP 9 完了</span></label>
+            <div class="road-num">9</div><div class="road-main">
+              <div class="road-title"><div><span>VISUAL</span><h3>HOME / GAMEの見た目と階移動</h3></div></div>
+              <p class="why">機能が完成してから、背景、塔、敵、階移動、HUDを仕上げる。</p>
+              <div class="task-grid"><div><b>仕上げるもの</b><ul><li>背景動画</li><li>3つの塔素材</li><li>塔名と開始ボタン</li><li>GAME画面</li><li>階移動演出</li></ul></div><div><b>完了条件</b><ul><li>背景より問題が読みやすい</li><li>正解・MISSの移動方向が自然</li><li>主要UIが重ならない</li></ul></div></div>
+              <label class="stage-check"><input type="checkbox" data-key="step9"><span>STEP 9 完了</span></label>
             </div>
           </article>
 
           <article class="road-step" id="step-10" data-step="10">
-            <div class="road-num">10</div>
-            <div class="road-main">
-              <div class="road-title"><div><span>9/11・9/15</span><h3>問題追加 → テスト → 動画準備</h3></div><span class="status">最後</span></div>
-              <p class="why">新機能ではなく、問題数・安定性・見栄えを整えて提出できる状態にします。</p>
-              <div class="task-grid">
-                <div><b>やること</b><ul><li>問題を増やす</li><li>3人で通しプレイ</li><li>3つの塔から開始テスト</li><li>バグ修正</li><li>動画・発表の操作手順を決める</li></ul></div>
-                <div><b>完了条件</b><ul><li>重大な進行不能バグなし</li><li>3つの塔を通して遊べる</li><li>9/15のテスト後は新機能を増やさない</li></ul></div>
-              </div>
-              <div class="work-mode"><b>分担しやすい</b><span>問題追加・端末別テスト・誤字確認を分ける。ただし見つけた重大バグの修正は3人で共有する。</span></div>
-              <label class="stage-check"><input type="checkbox" data-key="step10"> <span>STEP 10 完了</span></label>
+            <div class="road-num">10</div><div class="road-main">
+              <div class="road-title"><div><span>FINAL</span><h3>問題追加・テスト・発表準備</h3></div></div>
+              <p class="why">新機能を増やさず、3モードを通して遊び、重大バグを潰す。</p>
+              <div class="task-grid"><div><b>確認するもの</b><ul><li>3モード通しプレイ</li><li>問題の誤字・答え違い</li><li>戻る・再挑戦</li><li>動画撮影手順</li></ul></div><div><b>完了条件</b><ul><li>進行不能バグがない</li><li>3人が通しで遊べる</li><li>安定してデモ撮影できる</li></ul></div></div>
+              <label class="stage-check"><input type="checkbox" data-key="step10"><span>STEP 10 完了</span></label>
             </div>
           </article>
         </div>
@@ -410,54 +304,48 @@ function startGame(mode) {
 
     <section class="section wrap" id="team">
       <div class="section-head">
-        <p class="eyebrow">TEAM FLOW</p>
-        <h2>学校で作業するときは、この流れ</h2>
-        <p>「今日は誰の担当？」ではなく、「今日はどの機能を3人で完成させる？」から始めます。</p>
+        <p class="eyebrow">TEAM WORK</p>
+        <h2>基本は3人で一緒に作る</h2>
+        <p>ゲームの中心部分は完全分業せず、3人で同じ目的を確認してから1人が操作役になります。操作役は交代します。</p>
       </div>
-
-      <div class="team-flow">
-        <div class="flow-step"><span>1</span><div><b>最初の5分</b><p>NEXTと完了条件を3人で確認する。</p></div></div>
-        <div class="flow-step"><span>2</span><div><b>操作役を1人決める</b><p>github.devで実際にコードを書く人を決める。固定担当にはしない。</p></div></div>
-        <div class="flow-step"><span>3</span><div><b>3人で実装</b><p>操作役が書き、残り2人は次に書く処理・ミス・画面を確認する。</p></div></div>
-        <div class="flow-step"><span>4</span><div><b>待ち時間だけ分担</b><p>問題追加・素材・ロゴ・テストなど、コードとぶつからない作業だけ並行する。</p></div></div>
-        <div class="flow-step"><span>5</span><div><b>GitHubへ反映</b><p>Commit → Pull Request → 変更確認 → Merge。Branch名は作業内容で付ける。</p></div></div>
-        <div class="flow-step"><span>6</span><div><b>3人で動作確認</b><p>mainを開いて全員が触る。動いたらSTEP完了にチェック。</p></div></div>
+      <div class="policy-grid">
+        <article class="policy-card primary-policy"><span class="policy-label">基本</span><h3>ゲームの中心は一緒に</h3><p>画面切替、判定、階数、タイマー、ゲームの流れ、重大バグは3人で確認しながら進める。</p></article>
+        <article class="policy-card"><span class="policy-label">交代</span><h3>操作役を固定しない</h3><p>1人だけがずっと書く形にせず、機能や時間ごとに操作役を交代する。</p></article>
+        <article class="policy-card"><span class="policy-label">分担OK</span><h3>独立した単純作業</h3><p>問題追加、問題調査、ロゴ案、素材探し、テスト、動画素材などは並行して進めてよい。</p></article>
       </div>
-
-      <div class="branch-examples">
-        <div><small>GOOD</small><code>feature/typing</code><code>feature/questions</code><code>feature/result</code></div>
-        <div><small>AVOID</small><code>kaito</code><code>member-a</code><code>member-b</code></div>
+      <div class="core-rule">
+        <strong>GitHubの分け方</strong>
+        <p>人ごとに作業場所を固定するのではなく、タイピング機能、問題追加、RESULTなど、作業内容ごとに分けます。同じファイルを別々に同時編集しないことを優先します。</p>
       </div>
     </section>
 
     <section class="section section-soft" id="finish">
       <div class="wrap">
-        <div class="section-head"><p class="eyebrow">DEFINITION OF DONE</p><h2>完成条件</h2><p>このラインを超えれば提出できる状態です。</p></div>
-        <div class="goal-grid">
-          <article class="card emphasis"><span class="card-num">01</span><h3>最後まで遊べる</h3><p>HOME → 3つの塔から選択 → GAME → CLEAR → RESULTが安定して通る。</p></article>
-          <article class="card"><span class="card-num">02</span><h3>3つの塔</h3><p>漢字の塔 / 英訳の塔 / 和訳の塔。各ボタンから対応モードを開始できる。</p></article>
-          <article class="card"><span class="card-num">03</span><h3>ゲーム性</h3><p>階数・タイマー・コンボ・難易度・塔の上下演出が正常に動く。</p></article>
-          <article class="card"><span class="card-num">04</span><h3>結果と品質</h3><p>RESULT・記録保存・見やすいUI・重大バグなし。</p></article>
+        <div class="section-head">
+          <p class="eyebrow">DONE DEFINITION</p>
+          <h2>完成条件</h2>
+          <p>「一部が動く」ではなく、3人が最初から最後まで安定して遊べる状態を完成とします。</p>
         </div>
-      </div>
-    </section>
-
-    <section class="section section-dark compact">
-      <div class="wrap split">
-        <div><p class="eyebrow">DO NOT ADD YET</p><h2>時間が余るまで作らない</h2></div>
-        <div class="chips"><span>ログイン</span><span>オンラインランキング</span><span>Supabase</span><span>対戦</span><span>3D</span><span>ストーリー</span><span>ガチャ</span><span>大量キャラ</span></div>
-      </div>
-    </section>
-
-    <section class="section wrap">
-      <div class="final-rule">
-        <strong>迷ったときの判断</strong>
-        <p><b>「今のSTEPを3人で完成させるために必要か？」</b>で判断する。必要なければ後回し。分担する場合も、同じファイルを同時に触る作業は避ける。</p>
+        <div class="finish-grid">
+          <article><b>3つの塔</b><p>漢字・英訳・和訳の3つすべてからゲームを始められる。</p></article>
+          <article><b>ゲームループ</b><p>問題表示、入力、判定、階数変化、10Fクリア、RESULTまで止まらない。</p></article>
+          <article><b>ルール</b><p>正解、MISS、TIME、COMBO、難易度が想定どおり動く。</p></article>
+          <article><b>記録</b><p>RESULTの数値が実プレイと合い、必要な記録が残る。</p></article>
+          <article><b>見た目</b><p>背景や塔素材を入れても問題文・入力・ボタンが読みやすい。</p></article>
+          <article><b>最終確認</b><p>3人が通しプレイし、進行不能の重大バグが残っていない。</p></article>
+        </div>
+        <div class="hero-actions">
+          <a class="btn primary" href="code.html">実装するときはコード全文へ</a>
+          <a class="btn ghost" href="github-guide.html">GitHubの操作を見る</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer><div class="wrap footer-row"><span>TYPE TOWER 制作ロードマップ</span><a href="#top">TOPへ戻る</a></div></footer>
-  <script src="app.js"></script>
+  <footer>
+    <div class="wrap footer-row"><span>TYPE TOWER 制作方針 — コード例なし</span><a href="#top">TOPへ戻る</a></div>
+  </footer>
+
+  <script src="roadmap.js"></script>
 </body>
 </html>
