@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>TYPE TOWER | コード全文</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="build-example.css">
+  <link rel="stylesheet" href="build-example-full.css">
+</head>
+<body>
+  <header class="example-header" id="top">
+    <nav class="nav wrap" aria-label="コード全文ナビゲーション">
+      <a class="brand" href="index.html"><span class="brand-mark">TT</span><span>TYPE TOWER</span></a>
+      <div class="nav-links">
+        <a href="index.html">制作方針（コードなし）</a>
+        <a href="#homeUiDecision">HOMEのコード</a>
+        <a href="#fullExampleApp" aria-current="page">STEP別コード全文</a>
+        <a href="github-guide.html">GitHub超入門</a>
+      </div>
+    </nav>
+
+    <div class="wrap example-hero">
+      <p class="eyebrow">FULL CODE ONLY</p>
+      <h1>実装するときは、<br><span>このページだけを見る。</span></h1>
+      <p class="lead">制作方針ページと分離し、ここにはSTEPごとのファイル全文をまとめます。「どこへ追記する？」「前の処理は消す？」を減らすため、そのSTEPが終わった時点の状態をファイルごとに確認できます。</p>
+      <div class="example-summary">
+        <span>URLを制作方針と分離</span>
+        <span>STEPごとにファイル全文</span>
+        <span>CSSも毎回全文</span>
+        <span>自分たちの書き方を優先</span>
+      </div>
+      <div class="source-rule">
+        <strong>最重要：自分たちが書いたコードを優先</strong>
+        <p>現在のゲーム本体で自分たちが書いた内容と、このページの例が違う書き方でも、同じ役割で正常に動くなら自分たちのコードを残してください。必要な機能だけを足す方針です。</p>
+      </div>
+      <div class="source-rule secondary">
+        <strong>背景・塔画像などの素材は自分たちで用意</strong>
+        <p>コード例では、背景画像や塔そのものの見た目を完成素材として固定しません。配置、ボタン、入力欄、HUDなど、ゲームを動かすためのUIを中心に扱います。</p>
+      </div>
+      <div class="source-rule secondary">
+        <strong>先に方針を確認したい場合</strong>
+        <p>コードを見ずに「何を作るか」「どこまでできたら次へ進むか」だけ確認したい場合は、<a href="index.html"><b>制作方針ページ</b></a>へ戻ってください。</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section wrap" id="homeUiDecision">
+      <div class="section-head">
+        <p class="eyebrow">CURRENT HOME CODE</p>
+        <h2>今作っているHOMEのHTMLとCSS</h2>
+        <p>背景動画、3つの塔、塔名、開始ボタンを置く現在の段階だけを先に確認できます。塔素材そのものは後から自分たちで入れます。</p>
+      </div>
+
+      <div class="source-rule">
+        <strong>配置</strong>
+        <p><b>背景：</b>画面全体に動画をループ表示。</p>
+        <p><b>3つの塔：</b>画面中央〜下側に横並び。</p>
+        <p><b>塔の名前：</b>塔画像の真下、開始ボタンの真上。</p>
+        <p><b>ボタン：</b>3つとも同じ形で揃え、押した塔のモードでGAMEへ進む。</p>
+      </div>
+
+      <details class="full-file" open>
+        <summary><span>index.html のHOME部分</span><small>現在の作業範囲</small></summary>
+        <pre><code>&lt;section data-screen="select"&gt;
+  &lt;video class="select-bg-video" autoplay muted loop playsinline&gt;
+    &lt;source src="videos/menu-bg.mp4" type="video/mp4"&gt;
+  &lt;/video&gt;
+
+  &lt;div class="select-bg-overlay"&gt;&lt;/div&gt;
+
+  &lt;div class="tower-select"&gt;
+    &lt;article class="tower-option"&gt;
+      &lt;div class="tower-image"&gt;&lt;/div&gt;
+      &lt;h2 class="tower-name"&gt;漢字の塔&lt;/h2&gt;
+      &lt;button data-mode="kanji"&gt;この塔に挑戦&lt;/button&gt;
+    &lt;/article&gt;
+
+    &lt;article class="tower-option"&gt;
+      &lt;div class="tower-image"&gt;&lt;/div&gt;
+      &lt;h2 class="tower-name"&gt;英訳の塔&lt;/h2&gt;
+      &lt;button data-mode="eiyaku"&gt;この塔に挑戦&lt;/button&gt;
+    &lt;/article&gt;
+
+    &lt;article class="tower-option"&gt;
+      &lt;div class="tower-image"&gt;&lt;/div&gt;
+      &lt;h2 class="tower-name"&gt;和訳の塔&lt;/h2&gt;
+      &lt;button data-mode="wayaku"&gt;この塔に挑戦&lt;/button&gt;
+    &lt;/article&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+      </details>
+
+      <details class="full-file" open>
+        <summary><span>css/style.css の記入例</span><small>現在のHOMEだけ</small></summary>
+        <pre><code>* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
+  color: #fff;
+}
+
+button {
+  font: inherit;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+[data-screen="select"] {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 100svh;
+  display: grid;
+  align-items: end;
+  padding: clamp(24px, 5vh, 52px) clamp(18px, 4vw, 58px);
+}
+
+.select-bg-video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.select-bg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 18, 38, .08) 0%,
+    rgba(5, 18, 38, .02) 48%,
+    rgba(5, 18, 38, .5) 100%
+  );
+}
+
+.tower-select {
+  position: relative;
+  z-index: 2;
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 3vw, 38px);
+  align-items: end;
+}
+
+.tower-option {
+  min-width: 0;
+  display: grid;
+  justify-items: center;
+  grid-template-rows: minmax(0, 1fr) auto auto;
+  gap: 10px;
+  text-align: center;
+}
+
+.tower-image {
+  width: 100%;
+  min-height: clamp(190px, 34vh, 360px);
+  pointer-events: none;
+}
+
+.tower-name {
+  margin: 0;
+  width: min(220px, 100%);
+  padding: 8px 16px 9px;
+  border: 1px solid rgba(222, 183, 102, .92);
+  border-radius: 7px;
+  background: rgba(9, 27, 52, .86);
+  color: #fff8e8;
+  font-size: clamp(1.05rem, 1.65vw, 1.38rem);
+  line-height: 1.2;
+  font-weight: 900;
+  letter-spacing: .04em;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, .45);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, .18);
+}
+
+.tower-option button {
+  width: min(220px, 100%);
+  min-height: 48px;
+  padding: 10px 18px;
+  border: 2px solid #ddb568;
+  border-radius: 7px;
+  background: #142f55;
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: .02em;
+  cursor: pointer;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, .22);
+  transition: transform .16s ease, background-color .16s ease, box-shadow .16s ease;
+}
+
+.tower-option button:hover {
+  transform: translateY(-2px);
+  background: #1a3e6f;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, .26);
+}
+
+.tower-option button:active {
+  transform: translateY(0);
+}
+
+.tower-option button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}</code></pre>
+      </details>
+    </section>
+
+    <section class="section wrap">
+      <div class="section-head">
+        <p class="eyebrow">HOW TO USE</p>
+        <h2>今のSTEPを選んで、ファイル全文を比較する</h2>
+        <p>各STEPの最初のファイルだけ最初から開いています。他のファイルはクリックすると全文を確認できます。</p>
+      </div>
+      <div class="full-flow">
+        <span>① 制作方針でSTEP確認</span>
+        <span>② このページで同じSTEPを開く</span>
+        <span>③ ファイル全文を比較</span>
+        <span>④ ブラウザで動作確認</span>
+      </div>
+    </section>
+
+    <div id="fullExampleApp"></div>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row"><span>TYPE TOWER コード全文</span><a href="#top">TOPへ戻る</a></div>
+  </footer>
+
+  <script src="build-example-full.js"></script>
+  <script src="build-example-assets-policy.js"></script>
+</body>
+</html>
