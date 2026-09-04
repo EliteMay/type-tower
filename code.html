@@ -15,7 +15,8 @@
       <a class="brand" href="index.html"><span class="brand-mark">TT</span><span>TYPE TOWER</span></a>
       <div class="nav-links">
         <a href="index.html">制作方針（コードなし）</a>
-        <a href="#homeUiDecision">HOMEのコード</a>
+        <a href="#currentFiles">現在のファイル</a>
+        <a href="#currentCode">現在のコード</a>
         <a href="#fullExampleApp" aria-current="page">STEP別コード全文</a>
         <a href="github-guide.html">GitHub超入門</a>
       </div>
@@ -24,20 +25,20 @@
     <div class="wrap example-hero">
       <p class="eyebrow">FULL CODE ONLY</p>
       <h1>実装するときは、<br><span>このページだけを見る。</span></h1>
-      <p class="lead">制作方針ページと分離し、ここにはSTEPごとのファイル全文をまとめます。「どこへ追記する？」「前の処理は消す？」を減らすため、そのSTEPが終わった時点の状態をファイルごとに確認できます。</p>
+      <p class="lead">現在のゲーム本体 `type-tower-a` を先に確認し、そのコードを残したまま次のSTEPへ足していくためのページです。過去の想定より現在のGitHub上の実ファイルを優先します。</p>
       <div class="example-summary">
-        <span>URLを制作方針と分離</span>
+        <span>現在の実ファイルを最優先</span>
         <span>STEPごとにファイル全文</span>
-        <span>CSSも毎回全文</span>
-        <span>自分たちの書き方を優先</span>
+        <span>自分たちの書き方を維持</span>
+        <span>素材の用途を分離</span>
       </div>
       <div class="source-rule">
         <strong>最重要：自分たちが書いたコードを優先</strong>
-        <p>現在のゲーム本体で自分たちが書いた内容と、このページの例が違う書き方でも、同じ役割で正常に動くなら自分たちのコードを残してください。必要な機能だけを足す方針です。</p>
+        <p>現在のゲーム本体で自分たちが書いた内容と、このページの将来STEP例が違う書き方でも、同じ役割で正常に動くなら自分たちのコードを残してください。必要な機能だけを足します。</p>
       </div>
       <div class="source-rule secondary">
-        <strong>背景・塔画像などの素材は自分たちで用意</strong>
-        <p>コード例では、背景画像や塔そのものの見た目を完成素材として固定しません。配置、ボタン、入力欄、HUDなど、ゲームを動かすためのUIを中心に扱います。</p>
+        <strong>素材の現在の用途</strong>
+        <p>`assets/videos/menu-bg.mp4` はSELECT画面用です。`sky-bg.jpg` と `tower-blue.jpg` / `tower-light.jpg` / `tower-dark.jpg` はGAME画面用として保持し、SELECT画面には使いません。</p>
       </div>
       <div class="source-rule secondary">
         <strong>先に方針を確認したい場合</strong>
@@ -47,88 +48,127 @@
   </header>
 
   <main>
-    <section class="section wrap" id="homeUiDecision">
+    <section class="section wrap" id="currentFiles">
       <div class="section-head">
-        <p class="eyebrow">CURRENT HOME CODE</p>
-        <h2>今作っているHOMEのHTMLとCSS</h2>
-        <p>背景動画、3つの塔、塔名、開始ボタンを置く現在の段階だけを先に確認できます。塔素材そのものは後から自分たちで入れます。</p>
-      </div>
-
-      <div class="source-rule">
-        <strong>配置</strong>
-        <p><b>背景：</b>画面全体に動画をループ表示。</p>
-        <p><b>3つの塔：</b>画面中央〜下側に横並び。</p>
-        <p><b>塔の名前：</b>塔画像の真下、開始ボタンの真上。</p>
-        <p><b>ボタン：</b>3つとも同じ形で揃え、押した塔のモードでGAMEへ進む。</p>
+        <p class="eyebrow">CURRENT FILE STATE</p>
+        <h2>現在の type-tower-a のファイル状況</h2>
+        <p>2026-09-04時点のmainを基準にしています。ここから先は、この構成を崩さず必要なファイルへ少しずつ実装します。</p>
       </div>
 
       <details class="full-file" open>
-        <summary><span>index.html のHOME部分</span><small>現在の作業範囲</small></summary>
-        <pre><code>&lt;section data-screen="select"&gt;
-  &lt;video class="select-bg-video" autoplay muted loop playsinline&gt;
-    &lt;source src="videos/menu-bg.mp4" type="video/mp4"&gt;
-  &lt;/video&gt;
+        <summary><span>現在のファイル構成</span><small>実リポジトリ基準</small></summary>
+        <pre><code>type-tower-a/
+├─ index.html
+├─ css/
+│  └─ style.css
+├─ js/
+│  ├─ main.js       ← モード選択・画面切替まで実装済み
+│  ├─ game.js       ← 現在は空
+│  ├─ effects.js    ← 現在は空
+│  └─ storage.js    ← 現在は空
+├─ data/
+│  ├─ kanji.json    ← 問題あり / 現在JSON構文エラーあり
+│  ├─ ja-en.json    ← 現在は空
+│  └─ en-ja.json    ← 問題あり
+└─ assets/
+   ├─ videos/
+   │  └─ menu-bg.mp4       ← SELECT背景
+   ├─ images/
+   │  ├─ sky-bg.jpg        ← GAME用
+   │  ├─ tower-blue.jpg    ← GAME用
+   │  ├─ tower-light.jpg   ← GAME用
+   │  ├─ tower-dark.jpg    ← GAME用
+   │  ├─ enemies/
+   │  └─ tower/
+   └─ sounds/</code></pre>
+      </details>
 
-  &lt;div class="select-bg-overlay"&gt;&lt;/div&gt;
+      <div class="source-rule">
+        <strong>今の次作業</strong>
+        <p>`kanji.json` は問題数自体は増えていますが、複数箇所でオブジェクト間のカンマが抜けています。STEP 2では最初にJSON構文を直し、その後 `game.js` で読み込み → GAME画面へ1問表示まで進めます。</p>
+      </div>
+    </section>
 
-  &lt;div class="tower-select"&gt;
-    &lt;article class="tower-option"&gt;
-      &lt;div class="tower-image"&gt;&lt;/div&gt;
-      &lt;h2 class="tower-name"&gt;漢字の塔&lt;/h2&gt;
-      &lt;button data-mode="kanji"&gt;この塔に挑戦&lt;/button&gt;
-    &lt;/article&gt;
+    <section class="section wrap" id="currentCode">
+      <div class="section-head">
+        <p class="eyebrow">CURRENT REAL CODE</p>
+        <h2>今の実ファイルをそのまま確認する</h2>
+        <p>ここは記入例ではなく、現在の `type-tower-a` の主要3ファイルをそのまま写したものです。まずこの形を残します。</p>
+      </div>
 
-    &lt;article class="tower-option"&gt;
-      &lt;div class="tower-image"&gt;&lt;/div&gt;
-      &lt;h2 class="tower-name"&gt;英訳の塔&lt;/h2&gt;
-      &lt;button data-mode="eiyaku"&gt;この塔に挑戦&lt;/button&gt;
-    &lt;/article&gt;
+      <details class="full-file" open>
+        <summary><span>index.html（現在全文）</span><small>実ファイル</small></summary>
+        <pre><code>&lt;!doctype html&gt;
+&lt;html lang="ja"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;TYPE TOWER&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+ &lt;section data-screen="select"&gt;
+   &lt;video class="select-bg-video" autoplay muted loop playsinline&gt;
+     &lt;source src="assets/videos/menu-bg.mp4" type="video/mp4"&gt;
+   &lt;/video&gt;
 
-    &lt;article class="tower-option"&gt;
-      &lt;div class="tower-image"&gt;&lt;/div&gt;
-      &lt;h2 class="tower-name"&gt;和訳の塔&lt;/h2&gt;
-      &lt;button data-mode="wayaku"&gt;この塔に挑戦&lt;/button&gt;
-    &lt;/article&gt;
-  &lt;/div&gt;
-&lt;/section&gt;</code></pre>
+   &lt;div class="tower-select"&gt;
+     &lt;article class="tower-option"&gt;
+       &lt;div class="tower-image tower-kanji"&gt;漢字の塔&lt;/div&gt;
+       &lt;button data-mode="kanji"&gt;この塔に挑戦&lt;/button&gt;
+     &lt;/article&gt;
+     &lt;article class="tower-option"&gt;
+       &lt;div class="tower-image tower-eiyaku"&gt;英訳の塔&lt;/div&gt;
+       &lt;button data-mode="eiyaku"&gt;この塔に挑戦&lt;/button&gt;
+     &lt;/article&gt;
+     &lt;article class="tower-option"&gt;
+       &lt;div class="tower-image tower-wayaku"&gt;和訳の塔&lt;/div&gt;
+       &lt;button data-mode="wayaku"&gt;この塔に挑戦&lt;/button&gt;
+     &lt;/article&gt;
+   &lt;/div&gt;
+ &lt;/section&gt;
+
+ &lt;section data-screen="game" hidden&gt;
+   &lt;button id="gameBackButton" class="back-button"&gt;塔選択へ戻る&lt;/button&gt;
+   &lt;div class="game-stage"&gt;
+     &lt;div class="game-hud"&gt;
+       &lt;div class="hud-top"&gt;&lt;div&gt;&lt;/div&gt;&lt;/div&gt;
+       &lt;div id="questionCard" class="question-card"&gt;
+         &lt;p&gt;読みを入力&lt;/p&gt;
+         &lt;h2 id="questionText"&gt;読み込み中…&lt;/h2&gt;
+       &lt;/div&gt;
+     &lt;/div&gt;
+   &lt;/div&gt;
+ &lt;/section&gt;
+&lt;section data-screen="result" hidden&gt;&lt;/section&gt;
+
+  &lt;script src="js/game.js"&gt;&lt;/script&gt;
+  &lt;script src="js/main.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
       </details>
 
       <details class="full-file" open>
-        <summary><span>css/style.css の記入例</span><small>現在のHOMEだけ</small></summary>
-        <pre><code>* {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  min-height: 100%;
-}
-
+        <summary><span>css/style.css（現在全文）</span><small>実ファイル</small></summary>
+        <pre><code>* { box-sizing: border-box; }
+html, body { min-height: 100%; }
 body {
   margin: 0;
-  overflow-x: hidden;
-  font-family: "Yu Gothic UI", "Yu Gothic", system-ui, sans-serif;
-  color: #fff;
+  font-family: "Yu Gothic UI", "Yu Gothic", sans-serif;
+  color: #172034;
 }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+[hidden] { display: none !important; }
 
-button {
-  font: inherit;
-}
-
-[hidden] {
-  display: none !important;
-}
-
+[data-screen] { min-height: 100vh; }
 [data-screen="select"] {
   position: relative;
-  isolation: isolate;
   overflow: hidden;
-  min-height: 100svh;
   display: grid;
-  align-items: end;
-  padding: clamp(24px, 5vh, 52px) clamp(18px, 4vw, 58px);
+  align-content: center;
+  padding: 34px clamp(18px, 4vw, 60px);
 }
-
 .select-bg-video {
   position: absolute;
   inset: 0;
@@ -138,104 +178,130 @@ button {
   object-fit: cover;
   pointer-events: none;
 }
-
-.select-bg-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    rgba(5, 18, 38, .08) 0%,
-    rgba(5, 18, 38, .02) 48%,
-    rgba(5, 18, 38, .5) 100%
-  );
-}
-
 .tower-select {
   position: relative;
-  z-index: 2;
-  width: min(1100px, 100%);
+  z-index: 1;
+  width: min(1080px, 100%);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(18px, 3vw, 38px);
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 3vw, 34px);
   align-items: end;
 }
-
-.tower-option {
-  min-width: 0;
-  display: grid;
-  justify-items: center;
-  grid-template-rows: minmax(0, 1fr) auto auto;
-  gap: 10px;
-  text-align: center;
-}
-
+.tower-option { text-align: center; }
 .tower-image {
-  width: 100%;
-  min-height: clamp(190px, 34vh, 360px);
-  pointer-events: none;
-}
-
-.tower-name {
-  margin: 0;
-  width: min(220px, 100%);
-  padding: 8px 16px 9px;
-  border: 1px solid rgba(222, 183, 102, .92);
-  border-radius: 7px;
-  background: rgba(9, 27, 52, .86);
-  color: #fff8e8;
-  font-size: clamp(1.05rem, 1.65vw, 1.38rem);
-  line-height: 1.2;
+  width: min(220px, 88%);
+  height: clamp(260px, 44vh, 430px);
+  margin: 0 auto 14px;
+  display: grid;
+  place-items: start center;
+  padding-top: 18px;
+  border-radius: 28px 28px 5px 5px;
+  color: #fff3cf;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-size: 1.35rem;
   font-weight: 900;
-  letter-spacing: .04em;
-  text-shadow: 0 2px 5px rgba(0, 0, 0, .45);
-  box-shadow: 0 5px 12px rgba(0, 0, 0, .18);
+  line-height: 1.2;
+  letter-spacing: .08em;
+  text-shadow:
+    0 2px 1px rgba(33, 22, 14, .95),
+    1px 0 1px rgba(33, 22, 14, .85),
+    -1px 0 1px rgba(33, 22, 14, .85),
+    0 -1px 1px rgba(33, 22, 14, .75),
+    0 4px 10px rgba(0, 0, 0, .5);
 }
-
-.tower-option button {
-  width: min(220px, 100%);
-  min-height: 48px;
-  padding: 10px 18px;
-  border: 2px solid #ddb568;
-  border-radius: 7px;
-  background: #142f55;
+.tower-option button,
+.result-actions button,
+.back-button {
+  min-height: 44px;
+  padding: 9px 16px;
+  border: 2px solid #d8ae58;
+  border-radius: 9px;
+  background: #17345f;
   color: #fff;
   font-weight: 900;
-  letter-spacing: .02em;
-  cursor: pointer;
-  box-shadow: 0 5px 12px rgba(0, 0, 0, .22);
-  transition: transform .16s ease, background-color .16s ease, box-shadow .16s ease;
 }
+.tower-option button:hover,
+.result-actions button:hover,
+.back-button:hover { background: #102744; }
 
-.tower-option button:hover {
-  transform: translateY(-2px);
-  background: #1a3e6f;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, .26);
+[data-screen="game"] {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 70px 24px 24px;
 }
-
-.tower-option button:active {
-  transform: translateY(0);
+.back-button { position: absolute; top: 18px; left: 18px; z-index: 10; }
+.game-stage {
+  position: relative;
+  width: min(920px, 100%);
+  min-height: min(680px, 86vh);
+  overflow: hidden;
+  border: 7px solid #aa8d64;
+  border-radius: 18px;
+  box-shadow: 0 24px 50px rgba(31,73,108,.24);
 }
-
-.tower-option button:focus-visible {
-  outline: 3px solid #fff;
-  outline-offset: 3px;
-}</code></pre>
+.game-hud {
+  position: relative;
+  z-index: 3;
+  min-height: min(680px, 86vh);
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  padding: 28px;
+}
+.hud-top { width: min(650px,92%); display: flex; justify-content: space-between; align-items: flex-start; }
+.question-card {
+  width: min(650px, 92%);
+  padding: clamp(24px,5vw,48px);
+  border: 4px solid #d2b981;
+  border-radius: 18px;
+  background: rgba(255,250,240,.96);
+  text-align: center;
+}
+.question-card p { margin: 0 0 6px; color: #77664e; font-weight: 800; }
+.question-card h2 { margin: 0; font-size: clamp(2.4rem,7vw,5rem); }</code></pre>
       </details>
+
+      <details class="full-file" open>
+        <summary><span>js/main.js（現在全文）</span><small>自分たちのコード</small></summary>
+        <pre><code>let selectedMode='kanji';
+
+document.querySelectorAll('[data-mode]').forEach(button=&gt;{
+  button.addEventListener('click',()=&gt;{
+    startGame(button.dataset.mode);
+  });
+});
+
+function startGame(mode) {
+  selectedMode=mode;
+  showScreen('game');
+}
+
+function showScreen(screenName) {
+  document.querySelectorAll('[data-screen]').forEach(section =&gt; {
+    section.hidden = (section.dataset.screen !== screenName);
+  });
+}
+showScreen('select');</code></pre>
+      </details>
+
+      <div class="source-rule">
+        <strong>空ファイルは無理に埋めない</strong>
+        <p>`game.js` / `effects.js` / `storage.js` は現在空です。まだ使わない機能を先回りして書かず、STEP 2ではまず `game.js` だけを使い始めます。</p>
+      </div>
     </section>
 
     <section class="section wrap">
       <div class="section-head">
         <p class="eyebrow">HOW TO USE</p>
         <h2>今のSTEPを選んで、ファイル全文を比較する</h2>
-        <p>各STEPの最初のファイルだけ最初から開いています。他のファイルはクリックすると全文を確認できます。</p>
+        <p>STEP別コードは将来形の参考です。現在の実ファイルと衝突した場合は、上の「現在のコード」を残して必要な処理だけ足してください。</p>
       </div>
       <div class="full-flow">
         <span>① 制作方針でSTEP確認</span>
-        <span>② このページで同じSTEPを開く</span>
-        <span>③ ファイル全文を比較</span>
+        <span>② 現在の実ファイルを確認</span>
+        <span>③ 同じSTEPの例から必要部分だけ足す</span>
         <span>④ ブラウザで動作確認</span>
       </div>
     </section>
