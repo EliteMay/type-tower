@@ -31,7 +31,7 @@
 表示するもの:
 
 - 現在の `type-tower-a` の主要ファイル状況
-- 現在作っているSELECT画面のHTML / CSS / JavaScript
+- 現在作っているHTML / CSS / JavaScript
 - STEP 1〜10それぞれのファイル全文
 - 自分たちが書いたコードを優先するための注意
 
@@ -43,32 +43,40 @@
 
 実装側のSource of Truthは `EliteMay/type-tower-a` の `main` です。
 
-現在はおおむね **STEP 1完了〜STEP 2準備中** の状態です。
+現在は **STEP 3完了相当 / STEP 4へ進む状態** です。
 
 ### SELECT画面
 
 - 最初に表示する画面は `select`
 - `assets/videos/menu-bg.mp4` を背景動画として自動再生・無限ループ
 - 漢字 / 英訳 / 和訳の3つの選択肢を横並び
-- 塔名は現在 `.tower-image` の領域内に文字として表示
-- 塔名はCSSで明朝系・淡い金色・影付きに調整済み
+- 塔名は `.tower-image` の領域内に文字として表示
+- 塔名はCSSで明朝系・淡い金色・影付き
 - ボタンを押すと `main.js` が選択モードを保持してGAMEへ切り替える
+- スマホ専用レイアウトは作らない
 
 ### GAME / RESULT
 
-- `game` と `result` の画面枠は `index.html` に存在
-- GAMEには戻るボタン・ゲームステージ・問題カードの箱まである
-- `js/game.js` は現在空ファイル
-- `js/effects.js` と `js/storage.js` も現在空ファイル
-- ゲーム処理、判定、階数、RESULT処理はこれから実装
+- `data/kanji.json` から漢字問題を読み込み、ランダムで1問表示できる
+- 入力欄へ答えを入れてEnterすると、正解 / MISSを判定できる
+- 判定後は次の問題へ進む
+- 戻るボタンでSELECTへ戻れる
+- GAME画面全体の背景は `assets/images/sky-bg.jpg`
+- ゲームステージ背景は選択した塔で切り替える
+  - `kanji` → `tower-blue.jpg`
+  - `eiyaku` → `tower-light.jpg`
+  - `wayaku` → `tower-dark.jpg`
+- `result` の画面枠はあるが、RESULT処理はまだ未実装
+- `js/effects.js` と `js/storage.js` はまだ空
+- 階数、10F CLEAR、RESULT処理はこれから実装
 
 ### データ
 
-- `data/kanji.json` : 問題は追加済み。ただし現在はオブジェクト間のカンマ不足があり、そのままでは正しいJSONとして読み込めない
+- `data/kanji.json` : JSON構文を修正済み。漢字問題を読み込み中
 - `data/en-ja.json` : 英語→日本語の問題データあり
 - `data/ja-en.json` : 現在空
 
-STEP 2へ進む前に、まず `kanji.json` を正しいJSONへ直してから漢字問題の読み込みを実装します。
+現段階では3つの塔のボタンからGAMEへ入れますが、問題データの切替はまだSTEP 7の担当です。STEP 3までは漢字問題を使います。
 
 ### 素材
 
@@ -87,8 +95,17 @@ assets/
 ```
 
 - `menu-bg.mp4` はSELECT画面用
-- `sky-bg.jpg` と3枚の塔内部画像はGAME画面用として保持
-- GAME画面を作る段階まで、これら4枚をSELECT画面へ流用しない
+- `sky-bg.jpg` はGAME画面全体の背景として使用中
+- `tower-blue.jpg` / `tower-light.jpg` / `tower-dark.jpg` はGAMEステージ背景として使用中
+- SELECT画面へGAME用画像を流用しない
+
+## コード例の重要ルール
+
+STEPを進めるたびに、それまで自分たちが作ったコードを古いサンプルへ戻さないことを最優先にします。
+
+コード全文ページでは、現在のSELECT背景動画・塔名CSS・STEP3の入力判定・GAME背景素材を基準として、STEP 4以降もこの状態を引き継いだ全文を表示します。
+
+つまり、STEP 4へ進んでもSTEP 1〜3で作った部分を消して作り直すのではなく、**現在コードへSTEP 4の処理を追加する**形で進めます。
 
 ## 一番重要な制作方針
 
@@ -98,14 +115,14 @@ assets/
 
 SELECTの漢字の塔 → 問題表示 → 入力 → 正解 / MISS → 階数変化 → 10F CLEAR → RESULT → SELECT
 
-このゲームループが最後まで動いてから、タイマー・コンボ・難易度・残り2つの塔・見た目を追加します。
+現在は「正解 / MISS」までできています。次は正解で+1F、MISSで-1Fの階数処理をつなぎます。
 
 ## 制作順
 
-1. 3画面の箱 + SELECTの3つの塔
-2. 漢字問題を表示
-3. タイピング判定
-4. 正解 +1F / MISS -1F / 10F CLEAR
+1. 3画面の箱 + SELECTの3つの塔 — 実装済み
+2. 漢字問題を表示 — 実装済み
+3. タイピング判定 — 実装済み
+4. 正解 +1F / MISS -1F / 10F CLEAR — 次
 5. 漢字の塔を最後まで遊べる状態にする
 6. TIME / COMBO / 難易度
 7. 英訳・和訳の塔を接続
@@ -149,7 +166,7 @@ GitHubでは人別ではなく、タイピング、問題追加、RESULTなど�
 - `home-screen-plan.css` : SELECT画面構想の表示
 - `code.html` : コード全文ページ
 - `build-example-full.js` : STEP別のファイル全文を生成
-- `build-example-assets-policy.js` : 現在実装との同期と素材方針をコード例へ反映
+- `build-example-assets-policy.js` : 現在実装をSTEP例へ引き継ぎ、古い例への巻き戻りを防ぐ
 - `build-example.css` / `build-example-full.css` : コード全文ページのデザイン
 - `github-guide.html` : GitHub共同開発ガイド
 
@@ -157,7 +174,7 @@ GitHubでは人別ではなく、タイピング、問題追加、RESULTなど�
 
 ## 進捗保存
 
-制作方針ページのSTEPチェックはブラウザ内に保存します。既存の保存状態がある場合はそれを優先します。保存状態がまだない場合は、現在の実装に合わせてSTEP 1を完了状態から開始します。
+制作方針ページのSTEPチェックはブラウザ内に保存します。現在の実装で完了しているSTEP 1〜3は基準状態として扱い、それ以降のチェック状態は既存保存から可能な範囲で引き継ぎます。
 
 ## 制作方針の正本
 
