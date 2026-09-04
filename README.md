@@ -12,8 +12,9 @@
 
 表示するもの:
 
-- HOME / GAME / RESULT の画面方針
-- 背景・塔・ボタンの配置方針
+- 現在のゲーム本体の進み具合
+- SELECT / GAME / RESULT の画面方針
+- 背景・塔名・ボタン・ゲーム素材の扱い
 - 学校日程
 - STEP 1〜10の制作順
 - 各STEPの目的と完了条件
@@ -29,28 +30,65 @@
 
 表示するもの:
 
-- 現在作っているHOME部分のHTML / CSS
+- 現在の `type-tower-a` の主要ファイル状況
+- 現在作っているSELECT画面のHTML / CSS / JavaScript
 - STEP 1〜10それぞれのファイル全文
-- HTML / CSS / JavaScript / JSONの完成形比較
 - 自分たちが書いたコードを優先するための注意
 
 制作方針を確認するときは `index.html`、実際に書く内容を確認するときだけ `code.html` を使います。
 
 旧URLの `build-example.html` / `build-example-files.html` / `build-example-full.html` は `code.html` へ移動します。
 
-## HOME画面の確定方針
+## 現在のゲーム本体
 
-TYPE TOWERを開いた最初の画面は、別のSTART画面やSELECT画面を挟みません。
+実装側のSource of Truthは `EliteMay/type-tower-a` の `main` です。
 
-画面いっぱいの背景動画を最背面に置き、その上へ3つの塔を並べます。各塔の下に塔名と開始ボタンを置き、ボタンを押すと対応するゲームが始まります。
+現在はおおむね **STEP 1完了〜STEP 2準備中** の状態です。
 
-3つの塔:
+### SELECT画面
 
-- 漢字の塔：漢字 → 読み
-- 英訳の塔：日本語 → 英語
-- 和訳の塔：英語 → 日本語
+- 最初に表示する画面は `select`
+- `assets/videos/menu-bg.mp4` を背景動画として自動再生・無限ループ
+- 漢字 / 英訳 / 和訳の3つの選択肢を横並び
+- 塔名は現在 `.tower-image` の領域内に文字として表示
+- 塔名はCSSで明朝系・淡い金色・影付きに調整済み
+- ボタンを押すと `main.js` が選択モードを保持してGAMEへ切り替える
 
-背景動画・塔画像などの素材は自分たちで用意し、制作方針側では素材そのものの見た目を決めません。
+### GAME / RESULT
+
+- `game` と `result` の画面枠は `index.html` に存在
+- GAMEには戻るボタン・ゲームステージ・問題カードの箱まである
+- `js/game.js` は現在空ファイル
+- `js/effects.js` と `js/storage.js` も現在空ファイル
+- ゲーム処理、判定、階数、RESULT処理はこれから実装
+
+### データ
+
+- `data/kanji.json` : 問題は追加済み。ただし現在はオブジェクト間のカンマ不足があり、そのままでは正しいJSONとして読み込めない
+- `data/en-ja.json` : 英語→日本語の問題データあり
+- `data/ja-en.json` : 現在空
+
+STEP 2へ進む前に、まず `kanji.json` を正しいJSONへ直してから漢字問題の読み込みを実装します。
+
+### 素材
+
+```text
+assets/
+├─ images/
+│  ├─ sky-bg.jpg
+│  ├─ tower-blue.jpg
+│  ├─ tower-light.jpg
+│  ├─ tower-dark.jpg
+│  ├─ enemies/
+│  └─ tower/
+├─ sounds/
+└─ videos/
+   └─ menu-bg.mp4
+```
+
+- `menu-bg.mp4` はSELECT画面用
+- `sky-bg.jpg` と3枚の塔内部画像はGAME画面用として保持
+- GAME画面を作る段階まで、これら4枚をSELECT画面へ流用しない
 
 ## 一番重要な制作方針
 
@@ -58,13 +96,13 @@ TYPE TOWERを開いた最初の画面は、別のSTART画面やSELECT画面を�
 
 まず漢字の塔1つだけで、次の流れを最後まで完成させます。
 
-HOMEの漢字の塔 → 問題表示 → 入力 → 正解 / MISS → 階数変化 → 10F CLEAR → RESULT → HOME
+SELECTの漢字の塔 → 問題表示 → 入力 → 正解 / MISS → 階数変化 → 10F CLEAR → RESULT → SELECT
 
 このゲームループが最後まで動いてから、タイマー・コンボ・難易度・残り2つの塔・見た目を追加します。
 
 ## 制作順
 
-1. 3画面の箱 + HOMEの3つの塔
+1. 3画面の箱 + SELECTの3つの塔
 2. 漢字問題を表示
 3. タイピング判定
 4. 正解 +1F / MISS -1F / 10F CLEAR
@@ -72,7 +110,7 @@ HOMEの漢字の塔 → 問題表示 → 入力 → 正解 / MISS → 階数変�
 6. TIME / COMBO / 難易度
 7. 英訳・和訳の塔を接続
 8. RESULT・記録保存
-9. HOME / GAMEの見た目と階移動
+9. SELECT / GAMEの見た目と階移動
 10. 問題追加・最終テスト・動画準備
 
 ## 3人開発の基本方針
@@ -97,7 +135,7 @@ GitHubでは人別ではなく、タイピング、問題追加、RESULTなど�
 - 9/1: 企画・GitHub準備
 - 9/2〜9/4: 漢字の塔でゲームの核を作る
 - 9/8〜9/9: TIME / COMBO / 難易度 / 残り2モード / RESULT
-- 9/10〜9/11: HOME / GAMEの見た目、素材、階移動、問題追加
+- 9/10〜9/11: SELECT / GAMEの見た目、素材、階移動、問題追加
 - 9/15: 最終テスト・重大バグ修正
 - 9/16〜9/17: 動画制作・発表準備
 
@@ -106,20 +144,20 @@ GitHubでは人別ではなく、タイピング、問題追加、RESULTなど�
 ## 主なファイル
 
 - `index.html` : コード例なしの制作方針ページ
-- `roadmap.js` : 制作方針ページの進捗チェックと次STEP表示
+- `roadmap.js` : 制作方針ページの進捗チェック・現在状態表示・次STEP表示
 - `styles.css` : 制作方針サイト共通デザイン
-- `home-screen-plan.css` : HOME画面構想の表示
+- `home-screen-plan.css` : SELECT画面構想の表示
 - `code.html` : コード全文ページ
 - `build-example-full.js` : STEP別のファイル全文を生成
-- `build-example-assets-policy.js` : 背景・塔素材を自分たちで用意する方針をコード例へ反映
+- `build-example-assets-policy.js` : 現在実装との同期と素材方針をコード例へ反映
 - `build-example.css` / `build-example-full.css` : コード全文ページのデザイン
-- `github-guide.html` : GitHub初心者向け共同開発ガイド
+- `github-guide.html` : GitHub共同開発ガイド
 
 `app.js` や旧作成例用ファイルは過去構成との互換のため残っていますが、制作方針ページでは読み込みません。
 
 ## 進捗保存
 
-制作方針ページのSTEPチェックはブラウザ内に保存します。以前の進捗キーを引き継ぐため、これまでチェックしていたSTEPは可能な範囲でそのまま残ります。
+制作方針ページのSTEPチェックはブラウザ内に保存します。既存の保存状態がある場合はそれを優先します。保存状態がまだない場合は、現在の実装に合わせてSTEP 1を完了状態から開始します。
 
 ## 制作方針の正本
 
