@@ -6,20 +6,20 @@ const nextStepLabel = document.getElementById('nextStepLabel');
 const nextStepTitle = document.getElementById('nextStepTitle');
 const nextStepText = document.getElementById('nextStepText');
 const nextStepLink = document.getElementById('nextStepLink');
-const storageKey = 'typeTowerRoadmapChecksV5';
-const legacyStorageKey = 'typeTowerRoadmapChecksV4';
-const implementedKeys = new Set(['step1', 'step2', 'step3']);
+const storageKey = 'typeTowerRoadmapChecksV6';
+const legacyStorageKey = 'typeTowerRoadmapChecksV5';
+const implementedKeys = new Set(['step1', 'step2', 'step3', 'step4']);
 
 const steps = [
   { title: 'SELECTと3画面の箱を確認する', text: '背景動画、3つの塔の選択肢、SELECT→GAMEの画面切替までを確認する。' },
   { title: '漢字問題を表示する', text: 'kanji.jsonを読み込み、漢字問題を1問ずつ表示する。' },
   { title: 'タイピング判定を完成させる', text: '入力してEnterすると正解かMISSかを判定し、次の問題へ進む。' },
-  { title: 'タワーの上下とクリアをつなぐ', text: '正解で1階上がり、MISSで1階下がり、10階でクリアする流れを完成させる。' },
-  { title: '漢字の塔を最後まで遊べる状態にする', text: '塔選択からRESULTまで、漢字の塔を最初から最後まで通して遊べる状態にする。' },
+  { title: 'タワーの上下とクリアをつなぐ', text: '正解で1階上がり、MISSで1階下がり、10階でRESULTへ進む。' },
+  { title: '漢字の塔を最後まで遊べる状態にする', text: 'RESULTに正解数・MISS数を出し、再挑戦と塔選択へ戻る流れを完成させる。' },
   { title: 'タイマー・コンボ・難易度を追加する', text: '完成したゲームの芯を壊さないように追加要素を1つずつつなぐ。' },
   { title: '残り2つの塔をゲームにつなぐ', text: '英訳の塔と和訳の塔も、漢字の塔と同じゲームの流れへ接続する。' },
   { title: 'RESULTと記録保存を完成させる', text: '正答率・最大コンボ・クリア時間などを表示し、記録が残る状態にする。' },
-  { title: 'SELECTとGAMEの見た目を仕上げる', text: '現在の背景素材を残したまま、敵、階移動、HUDを整える。' },
+  { title: 'SELECTとGAMEの見た目を仕上げる', text: '現在の背景素材を残したまま、階移動演出と二重入力防止を整える。' },
   { title: '問題追加・テスト・発表準備', text: '3モードを通して確認し、重大バグを直して動画・発表準備へ進む。' }
 ];
 
@@ -35,6 +35,33 @@ function setStepStatus(stepNumber, text) {
   status.textContent = text;
 }
 
+function syncCodeGuideLabels() {
+  document.querySelectorAll('a[href="code.html"]').forEach(link => {
+    if (link.classList.contains('btn')) link.textContent = 'STEP追加コードを開く';
+    else link.textContent = 'STEP追加コード';
+  });
+
+  const heroLead = document.querySelector('.hero-copy .lead');
+  if (heroLead) {
+    heroLead.textContent = 'ここにはコードの記入例を置きません。何を作るか、どの順番で進めるか、3人でどこまで確認するかだけをまとめます。実際に書く内容は別URLの「STEP追加コード」に分けます。';
+  }
+
+  const pageCards = [...document.querySelectorAll('#page-rule .policy-card')];
+  if (pageCards[1]) {
+    pageCards[1].querySelector('h3').textContent = 'STEP追加コードページ';
+    pageCards[1].querySelector('p').textContent = 'ファイル全文ではなく、そのSTEPで新しく追加・変更する部分だけを確認します。';
+  }
+  if (pageCards[2]) {
+    pageCards[2].querySelector('h3').textContent = '先に方針、必要な時だけ追加コード';
+    pageCards[2].querySelector('p').textContent = 'まずこのページで目的と完了条件を確認し、実装時はSTEP追加コードページで指定された部分だけを書き足します。';
+  }
+
+  const roadmapDescription = document.querySelector('#roadmap .section-head p:last-child');
+  if (roadmapDescription) {
+    roadmapDescription.textContent = 'このページでは目的と完了条件だけ確認します。実際に書く内容は「STEP追加コード」で必要部分だけ確認します。';
+  }
+}
+
 function syncCurrentProjectState() {
   const homePlan = document.getElementById('home-screen-plan');
   if (homePlan && !document.getElementById('current-state')) {
@@ -45,7 +72,7 @@ function syncCurrentProjectState() {
       <div class="wrap">
         <div class="section-head">
           <p class="eyebrow">CURRENT REPOSITORY STATE</p>
-          <h2>STEP 3まで実装済み。次は階数処理</h2>
+          <h2>STEP 4まで実装済み。次はRESULT</h2>
           <p>制作方針は過去のサンプルではなく、現在の type-tower-a / main を基準にします。</p>
         </div>
         <div class="policy-grid">
@@ -56,33 +83,33 @@ function syncCurrentProjectState() {
           </article>
           <article class="policy-card">
             <span class="policy-label">GAME</span>
-            <h3>問題表示 + 入力判定まで完成</h3>
-            <p>kanji.jsonから問題を読み込み、入力してEnterすると正解 / MISSを判定し、次の問題へ進めます。</p>
+            <h3>入力判定 + 階数処理まで完成</h3>
+            <p>kanji.jsonから問題を読み込み、Enterで正解 / MISSを判定し、正解 +1F / MISS -1F、1F〜10F表示まで動きます。</p>
           </article>
           <article class="policy-card">
             <span class="policy-label">BACKGROUND</span>
-            <h3>GAME用画像を実際に使用中</h3>
+            <h3>GAME用画像を使用中</h3>
             <p>画面全体は sky-bg.jpg。ゲームステージは kanji=blue / eiyaku=light / wayaku=dark の画像へ切り替えます。</p>
           </article>
           <article class="policy-card">
             <span class="policy-label">DATA</span>
-            <h3>kanji.jsonの構文修正済み</h3>
-            <p>漢字問題は正常なJSONとして読み込める状態です。en-ja.jsonには問題があり、ja-en.jsonはまだ空です。</p>
+            <h3>漢字問題は読込可能</h3>
+            <p>kanji.jsonは正常に読み込めます。en-ja.jsonには問題があり、ja-en.jsonはまだ空です。</p>
           </article>
           <article class="policy-card">
-            <span class="policy-label">RULE</span>
-            <h3>前のSTEPを古い例で上書きしない</h3>
-            <p>STEP 4以降のコード全文も、現在のSELECT背景動画・塔名CSS・入力判定・GAME背景を引き継いだ状態から追加します。</p>
+            <span class="policy-label">CODE GUIDE</span>
+            <h3>STEPごとに追加部分だけ見る</h3>
+            <p>今後はファイル全文をSTEPごとに貼り直しません。基本は末尾へ追加し、途中へ書く必要がある場合だけ追加位置を明記します。</p>
           </article>
           <article class="policy-card">
             <span class="policy-label">NEXT</span>
-            <h3>STEP 4：正解 +1F / MISS -1F</h3>
-            <p>現在の判定処理へ階数を足し、1F未満に下げず、10F到達を判定できるところまで進めます。</p>
+            <h3>STEP 5：RESULTを完成させる</h3>
+            <p>10F到達後に正解数・MISS数を表示し、再挑戦と塔選択へ戻る流れまでつなぎます。</p>
           </article>
         </div>
         <div class="core-rule">
           <strong>現在の基準</strong>
-          <p>実ファイル上はSTEP 1〜3が完了相当です。進捗表示もこの3STEPを基準状態として扱います。</p>
+          <p>実ファイル上はSTEP 1〜4が完了相当です。進捗表示もこの4STEPを基準状態として扱います。</p>
         </div>
       </div>`;
     homePlan.before(section);
@@ -109,7 +136,7 @@ function syncCurrentProjectState() {
   const flowItems = [...document.querySelectorAll('#home-screen-plan .home-flow > div')];
   if (flowItems[3]) {
     const text = flowItems[3].querySelector('p');
-    if (text) text.textContent = '現在は問題表示・入力・正解/MISS判定まで。次のSTEPで階数をつなぐ。';
+    if (text) text.textContent = '現在は問題表示・入力判定・1F〜10Fの階数処理まで。次はRESULTを完成させる。';
   }
 
   const homeNote = document.querySelector('#home-screen-plan .home-note');
@@ -120,7 +147,8 @@ function syncCurrentProjectState() {
   setStepStatus(1, '実装済み');
   setStepStatus(2, '実装済み');
   setStepStatus(3, '実装済み');
-  setStepStatus(4, '次');
+  setStepStatus(4, '実装済み');
+  setStepStatus(5, '次');
 
   const step2Grid = document.querySelector('#step-2 .task-grid');
   if (step2Grid) {
@@ -134,7 +162,12 @@ function syncCurrentProjectState() {
 
   const step4Grid = document.querySelector('#step-4 .task-grid');
   if (step4Grid) {
-    step4Grid.innerHTML = '<div><b>次に追加するもの</b><ul><li>現在階 floor</li><li>正解で +1F</li><li>MISSで -1F</li><li>1F未満にしない</li><li>10F到達判定</li></ul></div><div><b>完了条件</b><ul><li>正解 / MISS判定が今まで通り動く</li><li>階数だけが正しく上下する</li><li>STEP1〜3の見た目・背景・入力が消えない</li></ul></div>';
+    step4Grid.innerHTML = '<div><b>実装済み</b><ul><li>現在階 floor</li><li>正解で +1F</li><li>MISSで -1F</li><li>1F未満にしない</li><li>1F〜10Fの表示</li></ul></div><div><b>確認</b><ul><li>正解 / MISS判定が今まで通り動く</li><li>階数が正しく上下する</li><li>10FでRESULT画面へ切り替わる</li></ul></div>';
+  }
+
+  const step5Grid = document.querySelector('#step-5 .task-grid');
+  if (step5Grid) {
+    step5Grid.innerHTML = '<div><b>次に追加するもの</b><ul><li>RESULTパネル</li><li>正解数 / MISS数</li><li>再挑戦</li><li>塔選択へ戻る</li></ul></div><div><b>完了条件</b><ul><li>10FでRESULTに数字が出る</li><li>もう一度挑戦できる</li><li>SELECTへ戻れる</li><li>STEP1〜4の処理が消えない</li></ul></div>';
   }
 
   const step7Grid = document.querySelector('#step-7 .task-grid');
@@ -144,7 +177,7 @@ function syncCurrentProjectState() {
 
   const step9Grid = document.querySelector('#step-9 .task-grid');
   if (step9Grid) {
-    step9Grid.innerHTML = '<div><b>既にあるもの</b><ul><li>SELECT背景動画</li><li>GAME用 sky-bg.jpg</li><li>GAME用 tower-blue / light / dark</li></ul><b>ここで追加するもの</b><ul><li>敵</li><li>HUD</li><li>階移動演出</li></ul></div><div><b>完了条件</b><ul><li>現在の背景素材を壊さない</li><li>背景より問題が読みやすい</li><li>正解・MISSの移動方向が自然</li><li>主要UIが重ならない</li></ul></div>';
+    step9Grid.innerHTML = '<div><b>既にあるもの</b><ul><li>SELECT背景動画</li><li>GAME用 sky-bg.jpg</li><li>GAME用 tower-blue / light / dark</li></ul><b>ここで追加するもの</b><ul><li>階移動演出</li><li>正解 / MISS演出</li><li>二重入力防止</li></ul></div><div><b>完了条件</b><ul><li>現在の背景素材を壊さない</li><li>正解・MISSの移動方向が自然</li><li>連打で二重判定しない</li></ul></div>';
   }
 }
 
@@ -211,6 +244,7 @@ resetButton?.addEventListener('click', () => {
   saveState();
 });
 
+syncCodeGuideLabels();
 syncCurrentProjectState();
 loadState();
 updateUI();
