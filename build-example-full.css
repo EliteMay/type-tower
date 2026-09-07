@@ -19,8 +19,10 @@
 .full-files{display:grid;gap:10px}
 .full-file{border:1px solid #ddd;border-radius:10px;background:#fff;overflow:hidden}
 .full-file summary{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 14px;cursor:pointer;background:#fafafa;font-weight:900}
-.full-file summary small{color:#777;font-size:.7rem;font-weight:800}
+.full-file summary small{color:#5b6570;font-size:.7rem;font-weight:800;text-align:right}
 .full-file[open] summary{border-bottom:1px solid #e5e5e5}
+.placement-note{margin:0;padding:11px 14px;border-bottom:1px solid #e5e5e5;background:#fff9ea;color:#5d5137;font-size:.82rem;line-height:1.65}
+.placement-note strong{color:#17345f}
 .full-file pre{margin:0;max-height:720px;overflow:auto;border:0;border-radius:0;background:#11151a;color:#eef3f7}
 .full-file code{font-size:.82rem;line-height:1.65}
 .user-origin{display:inline-flex;align-items:center;margin-left:8px;padding:2px 7px;border:1px solid #9dc4a9;border-radius:999px;background:#f4fbf6;color:#356246;font-size:.65rem;font-weight:900;vertical-align:middle}
@@ -28,4 +30,4 @@
 .full-check strong{display:block;margin-bottom:6px}
 .full-check ul{margin:0;padding-left:1.25rem;color:#555}
 @media(max-width:900px){.full-jump{grid-template-columns:repeat(5,1fr)}.full-flow{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:620px){.full-jump{position:static;grid-template-columns:repeat(2,1fr);padding:10px 16px}.full-step-head{grid-template-columns:48px 1fr;gap:10px}.full-step-number{width:44px;height:44px;font-size:.88rem}.full-flow{grid-template-columns:1fr}.full-file summary{align-items:flex-start;flex-direction:column}.full-file pre{max-height:560px}}
+@media(max-width:620px){.full-jump{position:static;grid-template-columns:repeat(2,1fr);padding:10px 16px}.full-step-head{grid-template-columns:48px 1fr;gap:10px}.full-step-number{width:44px;height:44px;font-size:.88rem}.full-flow{grid-template-columns:1fr}.full-file summary{align-items:flex-start;flex-direction:column}.full-file summary small{text-align:left}.full-file pre{max-height:560px}}
