@@ -17,6 +17,7 @@
         <a href="index.html">制作方針</a>
         <a href="#currentState">現在地</a>
         <a href="#writeRule">書き足し方</a>
+        <a href="#step5Important">STEP 5注意</a>
         <a href="#fullExampleApp" aria-current="page">STEP追加コード</a>
         <a href="github-guide.html">GitHub超入門</a>
       </div>
@@ -87,6 +88,35 @@
       <div class="source-rule secondary">
         <strong>行番号がずれたら目印コードを優先</strong>
         <p>本体へ前のSTEPを追加すると行番号は変わります。その場合は、表示された関数名・既存コード・HTML要素を探して追加してください。</p>
+      </div>
+    </section>
+
+    <section class="section wrap" id="step5Important">
+      <div class="section-head">
+        <p class="eyebrow">STEP 5 / IMPORTANT</p>
+        <h2>STEP 5で間違えやすい2か所</h2>
+        <p>追加ではなく「置換」する場所と、書くファイルが変わる場所を先に確認します。</p>
+      </div>
+
+      <div class="source-rule">
+        <strong>① `showScreen('result');` は残さない</strong>
+        <p>`js/game.js` の `if(floor&gt;=10){ ... }` 内では、既存の <code>showScreen('result');</code> を削除して <code>finishGame();</code> に置き換えます。2行とも書くのではありません。</p>
+      </div>
+      <div class="source-rule secondary">
+        <strong>完成形</strong>
+        <pre><code>if(floor&gt;=10){
+  finishGame();
+  return;
+}</code></pre>
+      </div>
+
+      <div class="source-rule">
+        <strong>② RESULTボタンのイベントは `main.js`</strong>
+        <p><code>retryButton</code> と <code>resultBackButton</code> の <code>addEventListener</code> は <strong>game.jsの末尾ではなく、js/main.jsの末尾</strong> に書きます。</p>
+      </div>
+      <div class="source-rule secondary">
+        <strong>ファイルの役割</strong>
+        <p><code>game.js</code>：問題・判定・階数・集計・finishGame()。<br><code>main.js</code>：画面切替・塔選択・戻る / 再挑戦ボタン。</p>
       </div>
     </section>
 
