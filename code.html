@@ -25,16 +25,16 @@
     <div class="wrap example-hero">
       <p class="eyebrow">ADD ONLY WHAT THIS STEP NEEDS</p>
       <h1>毎STEP、全文を貼り直さない。<br><span>必要なところだけ書き足す。</span></h1>
-      <p class="lead">ゲーム本体の今のコードを残し、各STEPで新しく必要になる部分だけを追加します。基本はファイルの一番後ろへ追加し、途中へ入れる必要がある場合だけ場所を明記します。</p>
+      <p class="lead">ゲーム本体の今のコードを残し、各STEPで新しく必要になる部分だけを追加します。追加場所は「大体の行番号」と「本体に実在するコードの直後 / 直前」をセットで表示します。</p>
       <div class="example-summary">
-        <span>基本は末尾へ追加</span>
-        <span>途中なら場所を明記</span>
+        <span>本体をSource of Truth</span>
+        <span>大体の行番号を表示</span>
+        <span>実コードを目印にする</span>
         <span>置換は必要最小限</span>
-        <span>前STEPを貼り直さない</span>
       </div>
       <div class="source-rule">
-        <strong>最重要：現在のゲーム本体をSource of Truthにする</strong>
-        <p>このページのコードは「追加する部分」の例です。`type-tower-a / main` に既にあるHTML / CSS / JavaScriptを消して、このページの例へ丸ごと置き換えないでください。</p>
+        <strong>最重要：type-tower-a / main を正とする</strong>
+        <p>関数名・変数名・実装状態はゲーム本体を基準にします。本体が変わった場合は、この方針サイト側の説明と追加コードを本体へ合わせます。</p>
       </div>
     </div>
   </header>
@@ -44,12 +44,17 @@
       <div class="section-head">
         <p class="eyebrow">CURRENT STATE</p>
         <h2>現在はSTEP 4まで実装済み</h2>
-        <p>2026-09-08確認時点の `type-tower-a / main` では、問題表示・入力判定・正解 +1F / MISS -1F・1F〜10F表示まで入っています。次に進めるのはSTEP 5です。</p>
+        <p>2026-09-08確認時点の `type-tower-a / main` では、問題表示・入力判定・正解 +1F / MISS -1F・1F〜10F表示まで入っています。次はSTEP 5のRESULTです。</p>
+      </div>
+
+      <div class="source-rule secondary">
+        <strong>今回作らないもの</strong>
+        <p>COMBO、難易度、記録保存は作りません。STEP 6はTIMEだけ、STEP 8は正答率とクリア時間などRESULT詳細だけにします。</p>
       </div>
 
       <div class="source-rule secondary">
         <strong>今あるものは残す</strong>
-        <p>SELECT背景動画、塔名CSS、GAMEの空背景、3種類の塔内部画像、STEP 3の入力欄、STEP 4の階数処理は既に本体へあります。以降のSTEPで消したり古い例へ戻したりしません。</p>
+        <p>SELECT背景動画、塔名CSS、GAME背景、3種類の塔内部画像、入力欄、階数処理は既に本体へあります。以降のSTEPで消したり古い例へ戻したりしません。</p>
       </div>
 
       <div class="full-flow">
@@ -63,21 +68,25 @@
     <section class="section wrap" id="writeRule">
       <div class="section-head">
         <p class="eyebrow">HOW TO WRITE</p>
-        <h2>コードの追加場所は3種類だけ</h2>
-        <p>「どこへ書くか」を毎回STEP内に表示します。特に記載がなければ、基本はそのファイルの一番後ろへ追加します。</p>
+        <h2>「何行目 + このコードの後ろ」で探す</h2>
+        <p>行番号だけだとコード追加後にずれるため、必ず本体に実在するコードを目印として併記します。</p>
       </div>
 
       <div class="source-rule">
-        <strong>① 末尾に追加</strong>
-        <p>CSSの新しいルール、新しいJavaScript関数など。既存コードの最後にそのまま書き足します。</p>
+        <strong>① 途中に追加する場合</strong>
+        <p>例：`js/game.js 約56行目`、`async function handleCorrect(){` の直後。という形で表示します。</p>
       </div>
       <div class="source-rule secondary">
-        <strong>② 途中に追加</strong>
-        <p>HTMLの特定要素の中、既存関数の中など。STEPに「この行の直後」「この要素の中」と場所を明記します。</p>
+        <strong>② ファイル末尾に追加する場合</strong>
+        <p>例：`js/main.js の末尾（現在約25行目以降）`、最後の `showScreen('select');` の後ろ。という形で表示します。</p>
       </div>
       <div class="source-rule secondary">
-        <strong>③ 一部だけ置換</strong>
-        <p>既存処理そのものを変える必要がある場合だけ使います。ファイル全文ではなく、対象の関数や1ブロックだけを変更します。</p>
+        <strong>③ 一部だけ置換する場合</strong>
+        <p>対象の行や関数名を指定し、その部分だけ置換します。ファイル全文は置き換えません。</p>
+      </div>
+      <div class="source-rule secondary">
+        <strong>行番号がずれたら目印コードを優先</strong>
+        <p>本体へ前のSTEPを追加すると行番号は変わります。その場合は、表示された関数名・既存コード・HTML要素を探して追加してください。</p>
       </div>
     </section>
 
@@ -85,13 +94,13 @@
       <div class="section-head">
         <p class="eyebrow">WORK FLOW</p>
         <h2>STEPごとの使い方</h2>
-        <p>制作方針で今のSTEPを確認してから、このページの同じSTEPを開き、記載された追加部分だけを書きます。</p>
+        <p>制作方針で今のSTEPを確認してから、このページの同じSTEPを開き、指定された場所へ必要部分だけを書きます。</p>
       </div>
       <div class="full-flow">
         <span>① 今のSTEP確認</span>
-        <span>② 対象ファイル確認</span>
-        <span>③ 指定位置へ追加</span>
-        <span>④ 保存して動作確認</span>
+        <span>② ファイルと行数確認</span>
+        <span>③ 目印コードを探す</span>
+        <span>④ 追加して動作確認</span>
       </div>
     </section>
 
