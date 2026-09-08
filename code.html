@@ -44,25 +44,30 @@
     <section class="section wrap" id="currentState">
       <div class="section-head">
         <p class="eyebrow">CURRENT STATE</p>
-        <h2>現在はSTEP 4まで実装済み</h2>
-        <p>2026-09-08確認時点の `type-tower-a / main` では、問題表示・入力判定・正解 +1F / MISS -1F・1F〜10F表示まで入っています。次はSTEP 5のRESULTです。</p>
+        <h2>STEP 5のコードは本体へ反映済み</h2>
+        <p>2026-09-08確認時点の `type-tower-a / main` では、RESULT、正解数 / MISS数、再挑戦、塔選択へ戻る処理まで入っています。現在はSTEP 5の実ブラウザ動作確認待ちです。</p>
+      </div>
+
+      <div class="source-rule secondary">
+        <strong>STEP 6のTIMEはゲーム全体90秒</strong>
+        <p>問題ごとの10秒ではありません。ゲーム開始からRESULTまで90秒を通しで減らし、問題が変わっても残り時間はリセットしません。0秒でTIME UPとしてRESULTへ進みます。</p>
       </div>
 
       <div class="source-rule secondary">
         <strong>今回作らないもの</strong>
-        <p>COMBO、難易度、記録保存は作りません。STEP 6はTIMEだけ、STEP 8は正答率とクリア時間などRESULT詳細だけにします。</p>
+        <p>COMBO、難易度、記録保存は作りません。STEP 8は正答率とクリア時間などRESULT詳細だけにします。</p>
       </div>
 
       <div class="source-rule secondary">
         <strong>今あるものは残す</strong>
-        <p>SELECT背景動画、塔名CSS、GAME背景、3種類の塔内部画像、入力欄、階数処理は既に本体へあります。以降のSTEPで消したり古い例へ戻したりしません。</p>
+        <p>SELECT背景動画、塔名CSS、GAME背景、3種類の塔内部画像、入力欄、階数処理、問題重複を避ける問題プール処理は既に本体へあります。以降のSTEPで消したり古い例へ戻したりしません。</p>
       </div>
 
       <div class="full-flow">
         <span>STEP 1〜4<br>実装済み</span>
-        <span>STEP 5<br>次に作る</span>
-        <span>STEP 6〜9<br>順番に追加</span>
-        <span>STEP 10<br>最終テスト</span>
+        <span>STEP 5<br>反映済み・確認待ち</span>
+        <span>STEP 6<br>全体90秒TIME</span>
+        <span>STEP 7〜10<br>順番に追加</span>
       </div>
     </section>
 
@@ -79,7 +84,7 @@
       </div>
       <div class="source-rule secondary">
         <strong>② ファイル末尾に追加する場合</strong>
-        <p>例：`js/main.js の末尾（現在約25行目以降）`、最後の `showScreen('select');` の後ろ。という形で表示します。</p>
+        <p>例：`js/main.js の末尾`、最後の既存処理の後ろ。という形で表示します。</p>
       </div>
       <div class="source-rule secondary">
         <strong>③ 一部だけ置換する場合</strong>
@@ -94,16 +99,16 @@
     <section class="section wrap" id="step5Important">
       <div class="section-head">
         <p class="eyebrow">STEP 5 / IMPORTANT</p>
-        <h2>STEP 5で間違えやすい2か所</h2>
-        <p>追加ではなく「置換」する場所と、書くファイルが変わる場所を先に確認します。</p>
+        <h2>STEP 5で間違えやすかった2か所</h2>
+        <p>この2点は本体側を修正済みです。今後も同じ形を基準にします。</p>
       </div>
 
       <div class="source-rule">
-        <strong>① `showScreen('result');` は残さない</strong>
-        <p>`js/game.js` の `if(floor&gt;=10){ ... }` 内では、既存の <code>showScreen('result');</code> を削除して <code>finishGame();</code> に置き換えます。2行とも書くのではありません。</p>
+        <strong>① `showScreen('result');` はfinishGame()と重ねない</strong>
+        <p>`js/game.js` の `if(floor&gt;=10){ ... }` 内は、<code>finishGame();</code> だけを呼びます。</p>
       </div>
       <div class="source-rule secondary">
-        <strong>完成形</strong>
+        <strong>現在の形</strong>
         <pre><code>if(floor&gt;=10){
   finishGame();
   return;
@@ -112,11 +117,11 @@
 
       <div class="source-rule">
         <strong>② RESULTボタンのイベントは `main.js`</strong>
-        <p><code>retryButton</code> と <code>resultBackButton</code> の <code>addEventListener</code> は <strong>game.jsの末尾ではなく、js/main.jsの末尾</strong> に書きます。</p>
+        <p><code>retryButton</code> と <code>resultBackButton</code> の <code>addEventListener</code> は <strong>js/main.js</strong> に置きます。</p>
       </div>
       <div class="source-rule secondary">
         <strong>ファイルの役割</strong>
-        <p><code>game.js</code>：問題・判定・階数・集計・finishGame()。<br><code>main.js</code>：画面切替・塔選択・戻る / 再挑戦ボタン。</p>
+        <p><code>game.js</code>：問題・判定・階数・集計・finishGame()・TIME。<br><code>main.js</code>：画面切替・塔選択・戻る / 再挑戦ボタン。</p>
       </div>
     </section>
 
