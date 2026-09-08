@@ -46,13 +46,9 @@ function replaceVisibleWord(root,from,to){
 function syncCurrentProjectState(){
   replaceVisibleWord(document.body,'HOME','SELECT');
 
-  document.querySelectorAll('a[href="code.html"]').forEach(link=>{
-    link.textContent=link.classList.contains('btn') ? 'STEP追加コードを開く' : 'STEP追加コード';
-  });
-
   const heroLead=document.querySelector('.hero-copy .lead');
   if(heroLead){
-    heroLead.textContent='ここにはコード例を置きません。何を作るか、どの順番で進めるかだけをまとめます。実際に書く内容は「STEP追加コード」で、大体の行番号と本体コードの目印を確認して追加します。';
+    heroLead.textContent='画面構成、作る順番、学校日程、3人での進め方、完成条件をまとめた制作方針ページです。';
   }
 
   const homePlan=document.getElementById('home-screen-plan');
@@ -73,7 +69,7 @@ function syncCurrentProjectState(){
           <article class="policy-card"><span class="policy-label">RESULT</span><h3>STEP 5コードは本体へ反映済み</h3><p>正解数・MISS数、再挑戦、塔選択へ戻る処理まで入っています。実ブラウザでの通し確認が残っています。</p></article>
           <article class="policy-card"><span class="policy-label">TIME</span><h3>全体90秒にする</h3><p>STEP 6ではゲーム開始からRESULTまで90秒を通しで減らします。問題が変わっても90秒へ戻しません。</p></article>
           <article class="policy-card"><span class="policy-label">NOT NEEDED</span><h3>COMBO・難易度・保存は作らない</h3><p>RESULTは正答率とクリア時間を表示し、localStorage等へのゲーム記録保存は行いません。</p></article>
-          <article class="policy-card"><span class="policy-label">CODE GUIDE</span><h3>行番号 + 実コード目印で案内</h3><p>「処理の後」だけではなく、大体何行目かと、type-tower-aに実在するコードの直後 / 直前をセットで示します。</p></article>
+          <article class="policy-card"><span class="policy-label">POLICY</span><h3>方針と現在地を整理する</h3><p>画面方針、制作順、日程、完了条件、チームでの進め方をこのページで確認します。</p></article>
         </div>
       </div>`;
     homePlan.before(section);
