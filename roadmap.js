@@ -19,8 +19,8 @@ const steps=[
   {title:'全体TIME 90秒を確認する',text:'ゲーム開始からRESULTまで通しで90秒。問題が変わっても時間はリセットしない。'},
   {title:'3つの塔の問題切替を確認する',text:'kanji.json / ja-en.json / en-ja.json が塔ごとに正しく切り替わるか確認する。'},
   {title:'RESULT詳細を追加する',text:'正答率とクリア時間を表示する。保存機能は作らない。'},
-  {title:'SELECTとGAMEの見た目を仕上げる',text:'現在の背景素材を残したまま、階移動演出と二重入力防止を整える。'},
-  {title:'問題追加・テスト・発表準備',text:'3モードを通して確認し、重大バグを直して動画・発表準備へ進む。'}
+  {title:'HOMEとゲーム画面の見た目を仕上げる',text:'HOMEに大きいタイトル・用意済みロゴ・大きいSTARTボタンを追加し、SELECT / GAMEと階移動演出も仕上げる。'},
+  {title:'問題追加・テスト・発表準備',text:'HOMEから3モードのRESULTまで通して確認し、重大バグを直して動画・発表準備へ進む。'}
 ];
 
 function setStepStatus(stepNumber,text){
@@ -44,6 +44,8 @@ function replaceVisibleWord(root,from,to){
 }
 
 function syncCurrentProjectState(){
+  // index.htmlには旧方針のHOME表記が残っているため、現在実装の塔選択画面はSELECTへ同期する。
+  // この後に追加するfuture-home-planは「後で追加する本当のHOME」なので置換対象外。
   replaceVisibleWord(document.body,'HOME','SELECT');
 
   const heroLead=document.querySelector('.hero-copy .lead');
@@ -64,15 +66,40 @@ function syncCurrentProjectState(){
           <p>制作方針は現在の type-tower-a / main を基準にします。関数名・変数名・実装状態が変わった場合は、この方針サイト側を本体へ合わせます。</p>
         </div>
         <div class="policy-grid">
-          <article class="policy-card primary-policy"><span class="policy-label">SELECT</span><h3>背景動画 + 3つの塔選択</h3><p>menu-bg.mp4を背景にし、漢字・英訳・和訳の3ボタンからGAMEへ切り替えます。</p></article>
+          <article class="policy-card primary-policy"><span class="policy-label">SELECT</span><h3>背景動画 + 3つの塔選択</h3><p>現在の本体はSELECTから始まり、漢字・英訳・和訳の3ボタンからGAMEへ切り替えます。</p></article>
           <article class="policy-card"><span class="policy-label">GAME</span><h3>入力判定 + 階数処理まで反映済み</h3><p>Enterで正解 / MISSを判定し、正解 +1F / MISS -1F、10FでRESULTへ進みます。</p></article>
           <article class="policy-card"><span class="policy-label">TIME</span><h3>ゲーム全体90秒を実装済み</h3><p>ゲーム開始からRESULTまで90秒を通しで減らし、問題が変わっても残り時間を維持します。</p></article>
           <article class="policy-card"><span class="policy-label">DATA</span><h3>3つの問題JSONをモード別に接続</h3><p>漢字はkanji.json、英訳はja-en.json、和訳はen-ja.jsonをselectedModeで切り替えて読み込みます。</p></article>
+          <article class="policy-card"><span class="policy-label">LATER HOME</span><h3>HOMEは後半の仕上げで追加</h3><p>ゲームの入口に大きなタイトル・大きなロゴ・大きなSTARTボタンを追加し、STARTからSELECTへ進む形にします。</p></article>
           <article class="policy-card"><span class="policy-label">NOT NEEDED</span><h3>COMBO・難易度・保存は作らない</h3><p>RESULTは正答率とクリア時間を表示し、localStorage等へのゲーム記録保存は行いません。</p></article>
-          <article class="policy-card"><span class="policy-label">POLICY</span><h3>方針と現在地を整理する</h3><p>画面方針、制作順、日程、完了条件、チームでの進め方をこのページで確認します。</p></article>
         </div>
       </div>`;
     homePlan.before(section);
+  }
+
+  if(homePlan && !document.getElementById('future-home-plan')){
+    const futureHome=document.createElement('section');
+    futureHome.className='section wrap';
+    futureHome.id='future-home-plan';
+    futureHome.innerHTML=`
+      <div class="section-head">
+        <p class="eyebrow">LATER / HOME SCREEN</p>
+        <h2>最後に、ゲーム開始前のHOMEを追加する</h2>
+        <p>現在はSELECTから直接始まります。ゲームの基本機能を先に完成させ、後半の仕上げでHOMEをSELECTの前へ追加します。</p>
+      </div>
+      <div class="policy-grid">
+        <article class="policy-card primary-policy"><span class="policy-label">TITLE</span><h3>でっかいタイトル</h3><p>画面を開いた瞬間に作品名が分かるよう、TYPE TOWERのタイトルを大きく見せます。</p></article>
+        <article class="policy-card"><span class="policy-label">LOGO</span><h3>でっかいロゴ</h3><p>用意済みのロゴをHOMEの主役として大きく表示します。素材のファイル名・配置先は実装するときに本体の状態へ合わせます。</p></article>
+        <article class="policy-card"><span class="policy-label">START</span><h3>でっかいSTARTボタン</h3><p>迷わずゲームを始められる大きなSTARTボタンを1つ置き、押したら塔選択のSELECTへ進みます。</p></article>
+      </div>
+      <div class="home-flow" aria-label="最終的なHOMEからGAME開始までの流れ">
+        <div><span>STEP A</span><b>HOME</b><p>大きいタイトルとロゴを見せる。</p></div>
+        <div><span>STEP B</span><b>START</b><p>大きいSTARTボタンを押す。</p></div>
+        <div><span>STEP C</span><b>SELECT</b><p>漢字・英訳・和訳から塔を選ぶ。</p></div>
+        <div><span>STEP D</span><b>GAME</b><p>選んだ塔の問題で1Fから開始する。</p></div>
+      </div>
+      <div class="home-note"><b>追加時期：</b>STEP 9の見た目仕上げで追加する。今はHOMEを先に作り込まず、ゲーム本体の完成を優先する。</div>`;
+    homePlan.before(futureHome);
   }
 
   const specCards=[...document.querySelectorAll('#home-screen-plan .home-spec-card')];
@@ -88,6 +115,7 @@ function syncCurrentProjectState(){
   setStepStatus(5,'本体反映済み');
   setStepStatus(6,'本体反映済み');
   setStepStatus(7,'本体反映済み / 動作確認待ち');
+  setStepStatus(9,'HOMEもここで追加');
 
   const step5=document.getElementById('step-5');
   if(step5){
@@ -117,12 +145,23 @@ function syncCurrentProjectState(){
     step8.querySelector('.task-grid').innerHTML='<div><b>表示するもの</b><ul><li>正解数 / MISS数</li><li>正答率</li><li>クリア時間</li></ul></div><div><b>完了条件</b><ul><li>実プレイと数字が合う</li><li>クリア時間が表示される</li><li>localStorage等へ保存しない</li></ul></div>';
   }
 
+  const step9=document.getElementById('step-9');
+  if(step9){
+    step9.querySelector('h3').textContent='HOME追加 + SELECT / GAMEの見た目と階移動';
+    step9.querySelector('.why').textContent='ゲーム機能が固まってから、入口のHOMEと既存画面の見た目・階移動演出をまとめて仕上げる。';
+    step9.querySelector('.task-grid').innerHTML='<div><b>HOMEで追加するもの</b><ul><li>大きいTYPE TOWERタイトル</li><li>用意済みロゴを大きく表示</li><li>大きいSTARTボタン</li><li>START → SELECT</li></ul></div><div><b>同時に仕上げるもの</b><ul><li>SELECT / GAMEの見た目</li><li>階移動演出</li><li>二重入力防止</li><li>主要UIが重ならないこと</li></ul></div>';
+  }
+
   const finishCards=[...document.querySelectorAll('#finish .finish-grid article')];
+  if(finishCards[0]) finishCards[0].innerHTML='<b>HOME / 3つの塔</b><p>HOMEの大きなSTARTからSELECTへ進み、漢字・英訳・和訳の3つすべてからゲームを始められる。</p>';
   if(finishCards[2]) finishCards[2].innerHTML='<b>ルール</b><p>正解、MISS、ゲーム全体90秒のTIMEが想定どおり動く。</p>';
   if(finishCards[3]) finishCards[3].innerHTML='<b>RESULT</b><p>正解数、MISS数、正答率、クリア時間が実プレイと合う。記録保存は不要。</p>';
 
   const scheduleBuild=[...document.querySelectorAll('.schedule-item.build p')];
   if(scheduleBuild[1]) scheduleBuild[1].textContent='RESULT、全体90秒TIME、英訳・和訳、RESULT詳細を追加する。';
+
+  const schedulePolish=document.querySelector('.schedule-item.polish p');
+  if(schedulePolish) schedulePolish.textContent='HOMEの大きなタイトル・ロゴ・START、SELECT / GAME、階移動、問題追加を仕上げる。';
 }
 
 function loadSaved(){
@@ -161,7 +200,7 @@ function render(){
   if(nextIndex===-1){
     if(nextStepLabel) nextStepLabel.textContent='COMPLETE';
     if(nextStepTitle) nextStepTitle.textContent='全STEP完了';
-    if(nextStepText) nextStepText.textContent='最終通しプレイと発表準備を確認する。';
+    if(nextStepText) nextStepText.textContent='HOMEからRESULTまでの最終通しプレイと発表準備を確認する。';
     if(nextStepLink) nextStepLink.href='#finish';
     return;
   }
