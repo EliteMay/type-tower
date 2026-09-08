@@ -62,32 +62,20 @@ const STEPS = [
   },
   {
     number: 8,
-    status: '次',
+    status: '作業中',
     title: 'RESULT詳細を追加する',
-    intro: '保存機能は作りません。1回のプレイ結果として正答率とプレイ時間をRESULTへ追加します。',
+    intro: 'index.html の正答率 / TIME表示と `let startedAt = 0;` は本体へ追加済みです。残りはゲーム開始時刻の記録と finishGame() の更新です。',
     changes: [
       {
-        file: 'index.html',
-        placement: 'RESULTの `.result-grid` 内：MISSの項目の直後へ追加',
-        note: '`<div><span>MISS</span><strong id="resultMiss">0</strong></div>` の後ろが目印です。',
-        code: `<div><span>正答率</span><strong id="resultAccuracy">0%</strong></div>\n<div><span>TIME</span><strong id="resultTime">0.0s</strong></div>`
-      },
-      {
         file: 'js/game.js',
-        placement: 'state変数群：`let timeLeft = GAME_TIME;` の直後へ追加',
-        note: 'ゲーム開始からRESULTまでの実時間を測るために使います。',
-        code: `let startedAt = 0;`
-      },
-      {
-        file: 'js/game.js',
-        placement: 'prepareGame() 内：`startGameTimer();` の直前へ追加',
-        note: '問題データの読み込み後、実際にゲームを開始する時点を記録します。',
+        placement: '約37行目：prepareGame() の `if (loaded) {` 内。`resetQuestionPool();` の直後、`startGameTimer();` の直前へ追加',
+        note: '現在の本体は `resetQuestionPool();` → `startGameTimer();` → `showNextQuestion();` の順です。この2行の間へ入れます。',
         code: `startedAt = performance.now();`
       },
       {
         file: 'js/game.js',
-        placement: '現在の `function finishGame() { ... }` を関数ごと置換',
-        note: '現在のタイマー停止処理と正解数 / MISS数表示を残したまま、正答率と経過時間を追加します。',
+        placement: '約139行目：現在の `function finishGame() { ... }` を関数ごと置換',
+        note: '目印は `function updateFloor() { ... }` の直後、`function startGameTimer() {` の直前にある finishGame() です。',
         code: `function finishGame() {\n  if (timerId) {\n    clearInterval(timerId);\n    timerId = null;\n  }\n\n  const elapsed = startedAt ? (performance.now() - startedAt) / 1000 : 0;\n  const answered = correctCount + missCount;\n  const accuracy = answered === 0 ? 0 : Math.round(correctCount / answered * 100);\n\n  document.getElementById('resultCorrect').textContent = correctCount;\n  document.getElementById('resultMiss').textContent = missCount;\n  document.getElementById('resultAccuracy').textContent = accuracy + '%';\n  document.getElementById('resultTime').textContent = elapsed.toFixed(1) + 's';\n\n  showScreen('result');\n}`
       }
     ],
