@@ -14,7 +14,7 @@ const steps=[
   {title:'SELECTと3画面の箱を確認する',text:'背景動画、3つの塔、SELECT→GAMEの画面切替までを確認する。'},
   {title:'漢字問題を表示する',text:'kanji.jsonを読み込み、漢字問題を1問ずつ表示する。'},
   {title:'タイピング判定を完成させる',text:'Enterで正解かMISSかを判定し、次の問題へ進む。'},
-  {title:'タワーの上下とクリアをつなぐ',text:'正解で1階上がり、MISSで1階下がり、10階でRESULTへ進む。'},
+  {title:'タワーの上下とクリアをつなぐ',text:'正解で1階上がり、MISSで1階下がり、10Fの問題を正解したらRESULTへ進む。'},
   {title:'STEP 5の動作確認をする',text:'RESULTの正解数・MISS数、再挑戦、塔選択へ戻る動作を実ブラウザで確認する。'},
   {title:'全体TIME 90秒を確認する',text:'ゲーム開始からRESULTまで通しで90秒。問題が変わっても時間はリセットしない。'},
   {title:'3つの塔の問題切替を確認する',text:'kanji.json / ja-en.json / en-ja.json が塔ごとに正しく切り替わるか確認する。'},
@@ -67,7 +67,7 @@ function syncCurrentProjectState(){
         </div>
         <div class="policy-grid">
           <article class="policy-card primary-policy"><span class="policy-label">SELECT</span><h3>背景動画 + 3つの塔選択</h3><p>現在の本体はSELECTから始まり、漢字・英訳・和訳の3ボタンからGAMEへ切り替えます。</p></article>
-          <article class="policy-card"><span class="policy-label">GAME</span><h3>入力判定 + 階数処理まで反映済み</h3><p>Enterで正解 / MISSを判定し、正解 +1F / MISS -1F、10FでRESULTへ進みます。</p></article>
+          <article class="policy-card"><span class="policy-label">GAME</span><h3>入力判定 + 階数処理まで反映済み</h3><p>Enterで正解 / MISSを判定し、正解 +1F / MISS -1F。10Fへ到達後、10Fの問題を正解するとRESULTへ進みます。</p></article>
           <article class="policy-card"><span class="policy-label">TIME</span><h3>ゲーム全体90秒を実装済み</h3><p>ゲーム開始からRESULTまで90秒を通しで減らし、問題が変わっても残り時間を維持します。</p></article>
           <article class="policy-card"><span class="policy-label">DATA</span><h3>3つの問題JSONをモード別に接続</h3><p>漢字はkanji.json、英訳はja-en.json、和訳はen-ja.jsonをselectedModeで切り替えて読み込みます。</p></article>
           <article class="policy-card"><span class="policy-label">LATER HOME</span><h3>HOMEは後半の仕上げで追加</h3><p>ゲームの入口に大きなタイトル・大きなロゴ・大きなSTARTボタンを追加し、STARTからSELECTへ進む形にします。</p></article>
@@ -120,8 +120,8 @@ function syncCurrentProjectState(){
   const step5=document.getElementById('step-5');
   if(step5){
     step5.querySelector('h3').textContent='RESULT・再挑戦・塔選択へ戻る';
-    step5.querySelector('.why').textContent='本体へのコード反映は済んでいるため、10F到達からRESULT、再挑戦、SELECTへ戻る流れを確認する。';
-    step5.querySelector('.task-grid').innerHTML='<div><b>本体へ反映済み</b><ul><li>正解数 / MISS数</li><li>再挑戦</li><li>塔選択へ戻る</li></ul></div><div><b>確認すること</b><ul><li>10FでRESULTに数字が出る</li><li>再挑戦できる</li><li>SELECTへ戻れる</li></ul></div>';
+    step5.querySelector('.why').textContent='本体へのコード反映は済んでいるため、10Fの問題を正解してRESULTへ進む流れ、再挑戦、SELECTへ戻る流れを確認する。';
+    step5.querySelector('.task-grid').innerHTML='<div><b>本体へ反映済み</b><ul><li>正解数 / MISS数</li><li>再挑戦</li><li>塔選択へ戻る</li></ul></div><div><b>確認すること</b><ul><li>9F正解で10Fへ進む</li><li>10Fの問題を正解するとRESULTに数字が出る</li><li>再挑戦できる</li><li>SELECTへ戻れる</li></ul></div>';
   }
 
   const step6=document.getElementById('step-6');
@@ -154,7 +154,7 @@ function syncCurrentProjectState(){
 
   const finishCards=[...document.querySelectorAll('#finish .finish-grid article')];
   if(finishCards[0]) finishCards[0].innerHTML='<b>HOME / 3つの塔</b><p>HOMEの大きなSTARTからSELECTへ進み、漢字・英訳・和訳の3つすべてからゲームを始められる。</p>';
-  if(finishCards[2]) finishCards[2].innerHTML='<b>ルール</b><p>正解、MISS、ゲーム全体90秒のTIMEが想定どおり動く。</p>';
+  if(finishCards[2]) finishCards[2].innerHTML='<b>ルール</b><p>正解、MISS、10Fクリア、ゲーム全体90秒のTIMEが想定どおり動く。</p>';
   if(finishCards[3]) finishCards[3].innerHTML='<b>RESULT</b><p>正解数、MISS数、正答率、クリア時間が実プレイと合う。記録保存は不要。</p>';
 
   const scheduleBuild=[...document.querySelectorAll('.schedule-item.build p')];
