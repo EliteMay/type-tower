@@ -18,9 +18,9 @@ const steps=[
   {title:'STEP 5の動作確認をする',text:'RESULTの正解数・MISS数、再挑戦、塔選択へ戻る動作を実ブラウザで確認する。'},
   {title:'全体TIME 90秒を確認する',text:'ゲーム開始からRESULTまで通しで90秒。問題が変わっても時間はリセットしない。'},
   {title:'3つの塔の問題切替を確認する',text:'kanji.json / ja-en.json / en-ja.json が塔ごとに正しく切り替わるか確認する。'},
-  {title:'RESULT詳細を追加する',text:'正答率とクリア時間を表示する。保存機能は作らない。'},
-  {title:'HOMEとゲーム画面の見た目を仕上げる',text:'HOMEに大きいタイトル・用意済みロゴ・大きいSTARTボタンを追加し、SELECT / GAMEと階移動演出も仕上げる。'},
-  {title:'問題追加・テスト・発表準備',text:'HOMEから3モードのRESULTまで通して確認し、重大バグを直して動画・発表準備へ進む。'}
+  {title:'RESULT詳細を確認する',text:'正答率とクリア時間が実プレイと一致するか確認する。保存機能は作らない。'},
+  {title:'階移動演出と二重入力防止を確認する',text:'正解で上方向、MISSで下方向の演出が出て、Enter連打でも二重判定しないことを確認する。'},
+  {title:'問題追加・テスト・発表準備',text:'3モードのRESULTまで通して確認し、重大バグを直して動画・発表準備へ進む。'}
 ];
 
 function setStepStatus(stepNumber,text){
@@ -62,7 +62,7 @@ function syncCurrentProjectState(){
       <div class="wrap">
         <div class="section-head">
           <p class="eyebrow">CURRENT REPOSITORY STATE</p>
-          <h2>STEP 7まで本体へ反映済み。現在は動作確認中</h2>
+          <h2>STEP 9の演出・二重入力防止まで本体へ反映済み。現在は動作確認中</h2>
           <p>制作方針は現在の type-tower-a / main を基準にします。関数名・変数名・実装状態が変わった場合は、この方針サイト側を本体へ合わせます。</p>
         </div>
         <div class="policy-grid">
@@ -70,7 +70,8 @@ function syncCurrentProjectState(){
           <article class="policy-card"><span class="policy-label">GAME</span><h3>入力判定 + 階数処理まで反映済み</h3><p>Enterで正解 / MISSを判定し、正解 +1F / MISS -1F。10Fへ到達後、10Fの問題を正解するとRESULTへ進みます。</p></article>
           <article class="policy-card"><span class="policy-label">TIME</span><h3>ゲーム全体90秒を実装済み</h3><p>ゲーム開始からRESULTまで90秒を通しで減らし、問題が変わっても残り時間を維持します。</p></article>
           <article class="policy-card"><span class="policy-label">DATA</span><h3>3つの問題JSONをモード別に接続</h3><p>漢字はkanji.json、英訳はja-en.json、和訳はen-ja.jsonをselectedModeで切り替えて読み込みます。</p></article>
-          <article class="policy-card"><span class="policy-label">LATER HOME</span><h3>HOMEは後半の仕上げで追加</h3><p>ゲームの入口に大きなタイトル・大きなロゴ・大きなSTARTボタンを追加し、STARTからSELECTへ進む形にします。</p></article>
+          <article class="policy-card"><span class="policy-label">EFFECT</span><h3>STEP 9の演出と二重入力防止を反映</h3><p>正解 / MISSの判定演出、階移動演出、Enter連打による二重判定防止を本体へ反映しています。</p></article>
+          <article class="policy-card"><span class="policy-label">LATER HOME</span><h3>HOMEは別途あとで追加</h3><p>ゲームの入口に大きなタイトル・大きなロゴ・大きなSTARTボタンを追加し、STARTからSELECTへ進む形にします。</p></article>
           <article class="policy-card"><span class="policy-label">NOT NEEDED</span><h3>COMBO・難易度・保存は作らない</h3><p>RESULTは正答率とクリア時間を表示し、localStorage等へのゲーム記録保存は行いません。</p></article>
         </div>
       </div>`;
@@ -84,8 +85,8 @@ function syncCurrentProjectState(){
     futureHome.innerHTML=`
       <div class="section-head">
         <p class="eyebrow">LATER / HOME SCREEN</p>
-        <h2>最後に、ゲーム開始前のHOMEを追加する</h2>
-        <p>現在はSELECTから直接始まります。ゲームの基本機能を先に完成させ、後半の仕上げでHOMEをSELECTの前へ追加します。</p>
+        <h2>あとで、ゲーム開始前のHOMEを追加する</h2>
+        <p>現在はSELECTから直接始まります。STEP 9の演出・二重入力防止とは別の後工程として、HOMEをSELECTの前へ追加します。</p>
       </div>
       <div class="policy-grid">
         <article class="policy-card primary-policy"><span class="policy-label">TITLE</span><h3>でっかいタイトル</h3><p>画面を開いた瞬間に作品名が分かるよう、TYPE TOWERのタイトルを大きく見せます。</p></article>
@@ -98,7 +99,7 @@ function syncCurrentProjectState(){
         <div><span>STEP C</span><b>SELECT</b><p>漢字・英訳・和訳から塔を選ぶ。</p></div>
         <div><span>STEP D</span><b>GAME</b><p>選んだ塔の問題で1Fから開始する。</p></div>
       </div>
-      <div class="home-note"><b>追加時期：</b>STEP 9の見た目仕上げで追加する。今はHOMEを先に作り込まず、ゲーム本体の完成を優先する。</div>`;
+      <div class="home-note"><b>追加時期：</b>STEP 9とは別。基本機能と最終テストの目処が立ってから、仕上げとして追加する。</div>`;
     homePlan.before(futureHome);
   }
 
@@ -115,7 +116,8 @@ function syncCurrentProjectState(){
   setStepStatus(5,'本体反映済み');
   setStepStatus(6,'本体反映済み');
   setStepStatus(7,'本体反映済み / 動作確認待ち');
-  setStepStatus(9,'HOMEもここで追加');
+  setStepStatus(8,'本体反映済み / 動作確認待ち');
+  setStepStatus(9,'本体反映済み / 動作確認待ち');
 
   const step5=document.getElementById('step-5');
   if(step5){
@@ -141,27 +143,27 @@ function syncCurrentProjectState(){
   const step8=document.getElementById('step-8');
   if(step8){
     step8.querySelector('h3').textContent='RESULT詳細';
-    step8.querySelector('.why').textContent='1回のプレイ結果を分かりやすくする。保存機能は追加しない。';
-    step8.querySelector('.task-grid').innerHTML='<div><b>表示するもの</b><ul><li>正解数 / MISS数</li><li>正答率</li><li>クリア時間</li></ul></div><div><b>完了条件</b><ul><li>実プレイと数字が合う</li><li>クリア時間が表示される</li><li>localStorage等へ保存しない</li></ul></div>';
+    step8.querySelector('.why').textContent='正答率とプレイ時間のコードは本体へ反映済み。実プレイと数字が一致するか確認する。保存機能は追加しない。';
+    step8.querySelector('.task-grid').innerHTML='<div><b>本体へ反映済み</b><ul><li>正解数 / MISS数</li><li>正答率</li><li>プレイ時間</li></ul></div><div><b>確認すること</b><ul><li>実プレイと数字が合う</li><li>プレイ時間が表示される</li><li>localStorage等へ保存しない</li></ul></div>';
   }
 
   const step9=document.getElementById('step-9');
   if(step9){
-    step9.querySelector('h3').textContent='HOME追加 + SELECT / GAMEの見た目と階移動';
-    step9.querySelector('.why').textContent='ゲーム機能が固まってから、入口のHOMEと既存画面の見た目・階移動演出をまとめて仕上げる。';
-    step9.querySelector('.task-grid').innerHTML='<div><b>HOMEで追加するもの</b><ul><li>大きいTYPE TOWERタイトル</li><li>用意済みロゴを大きく表示</li><li>大きいSTARTボタン</li><li>START → SELECT</li></ul></div><div><b>同時に仕上げるもの</b><ul><li>SELECT / GAMEの見た目</li><li>階移動演出</li><li>二重入力防止</li><li>主要UIが重ならないこと</li></ul></div>';
+    step9.querySelector('h3').textContent='階移動演出 + 二重入力防止';
+    step9.querySelector('.why').textContent='スクショに出ていたSTEP 9の追加作業は本体へ反映済み。正解 / MISSの演出配線も本体側で修正済みなので、実ブラウザで確認する。HOMEはこのSTEPとは別の後工程。';
+    step9.querySelector('.task-grid').innerHTML='<div><b>本体へ反映済み</b><ul><li>正解で判定演出 + 上方向の階移動</li><li>MISSで判定演出 + 下方向の階移動</li><li>isJudgingによる二重入力防止</li><li>effects.jsをgame.jsより先に読み込み</li></ul></div><div><b>確認すること</b><ul><li>正解で上方向だけ動く</li><li>MISSで下方向だけ動く</li><li>Enter連打で二重判定しない</li><li>GAME背景が消えない</li></ul></div>';
   }
 
   const finishCards=[...document.querySelectorAll('#finish .finish-grid article')];
-  if(finishCards[0]) finishCards[0].innerHTML='<b>HOME / 3つの塔</b><p>HOMEの大きなSTARTからSELECTへ進み、漢字・英訳・和訳の3つすべてからゲームを始められる。</p>';
+  if(finishCards[0]) finishCards[0].innerHTML='<b>HOME / 3つの塔</b><p>最終的にはHOMEの大きなSTARTからSELECTへ進み、漢字・英訳・和訳の3つすべてからゲームを始められる。</p>';
   if(finishCards[2]) finishCards[2].innerHTML='<b>ルール</b><p>正解、MISS、10Fクリア、ゲーム全体90秒のTIMEが想定どおり動く。</p>';
   if(finishCards[3]) finishCards[3].innerHTML='<b>RESULT</b><p>正解数、MISS数、正答率、クリア時間が実プレイと合う。記録保存は不要。</p>';
 
   const scheduleBuild=[...document.querySelectorAll('.schedule-item.build p')];
-  if(scheduleBuild[1]) scheduleBuild[1].textContent='RESULT、全体90秒TIME、英訳・和訳、RESULT詳細を追加する。';
+  if(scheduleBuild[1]) scheduleBuild[1].textContent='RESULT、全体90秒TIME、英訳・和訳、RESULT詳細、階移動演出と二重入力防止まで進める。';
 
   const schedulePolish=document.querySelector('.schedule-item.polish p');
-  if(schedulePolish) schedulePolish.textContent='HOMEの大きなタイトル・ロゴ・START、SELECT / GAME、階移動、問題追加を仕上げる。';
+  if(schedulePolish) schedulePolish.textContent='HOMEの大きなタイトル・ロゴ・START、SELECT / GAMEの見た目、問題追加を仕上げる。';
 }
 
 function loadSaved(){
@@ -200,7 +202,7 @@ function render(){
   if(nextIndex===-1){
     if(nextStepLabel) nextStepLabel.textContent='COMPLETE';
     if(nextStepTitle) nextStepTitle.textContent='全STEP完了';
-    if(nextStepText) nextStepText.textContent='HOMEからRESULTまでの最終通しプレイと発表準備を確認する。';
+    if(nextStepText) nextStepText.textContent='3モードの最終通しプレイ、HOMEの仕上げ、発表準備を確認する。';
     if(nextStepLink) nextStepLink.href='#finish';
     return;
   }
