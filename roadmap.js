@@ -17,7 +17,7 @@ const steps=[
   {title:'タワーの上下とクリアをつなぐ',text:'通常モードで正解+1F、MISS-1F、10Fの問題を正解したらRESULTへ進む。'},
   {title:'RESULTの動作確認をする',text:'正解数・MISS数・正答率・TIME、再挑戦、SELECTへ戻る動作を実ブラウザで確認する。'},
   {title:'MODE / LEVEL / TIMEを確認する',text:'NORMAL / ENDLESS、Lv.1〜3、60 / 90 / 120秒 / 無制限を確認する。'},
-  {title:'3つの塔の問題切替を確認する',text:'漢字は漢字データ、英訳・和訳は共有英単語データを正しい向きで使うことを確認する。'},
+  {title:'3つの塔の問題切替を確認する',text:'漢字は漢字データ、英訳・和訳は共有英単語データを正しい向きで使い、和訳では漢字・ひらがなの両方を正解にする。'},
   {title:'ENDLESSとRESULT詳細を確認する',text:'ENDLESSが10Fで終わらず、時間切れまたは手動終了でRESULTへ進むことを確認する。'},
   {title:'演出と二重入力防止を確認する',text:'正解 / MISSの演出と、Enter連打でも二重判定しないことを確認する。'},
   {title:'問題追加・最終テスト・発表準備',text:'HOMEから3モードのRESULTまで通して確認し、重大バグを直して発表準備へ進む。'}
@@ -56,10 +56,10 @@ function syncCurrentProjectState(){
         <div class="policy-grid">
           <article class="policy-card primary-policy"><span class="policy-label">FLOW</span><h3>HOME → SELECT → SETTING → GAME → RESULT</h3><p>塔を選んだあとにGAME SETTINGを開き、MODE・LEVEL・TIMEを決めてからゲームを開始します。</p></article>
           <article class="policy-card"><span class="policy-label">MODE</span><h3>NORMAL / ENDLESS</h3><p>NORMALは10Fの問題正解でCLEAR。ENDLESSは10Fでは終わらず、時間切れか手動終了まで続きます。</p></article>
-          <article class="policy-card"><span class="policy-label">LEVEL</span><h3>Lv.1 / Lv.2 / Lv.3</h3><p>時間ではなく問題内容の難しさを3段階に分けます。漢字・英単語とも各レベル30問です。</p></article>
+          <article class="policy-card"><span class="policy-label">LEVEL</span><h3>Lv.1 / Lv.2 / Lv.3</h3><p>時間ではなく問題内容の難しさを3段階に分けます。漢字・英単語とも各レベル150問です。</p></article>
           <article class="policy-card"><span class="policy-label">TIME</span><h3>60 / 90 / 120秒 / 無制限</h3><p>初期値は90秒。問題が変わっても時間はリセットせず、無制限では∞を表示します。</p></article>
           <article class="policy-card"><span class="policy-label">LEARNING</span><h3>漢字は外国人、英訳・和訳は日本人向け</h3><p>漢字は読みを練習。英訳・和訳は文章ではなく英単語・語彙問題として扱います。</p></article>
-          <article class="policy-card"><span class="policy-label">DATA</span><h3>英訳・和訳は同じ単語データを共有</h3><p>english-words.json の日本語と英語を、選んだ塔に応じて逆向きに出題します。</p></article>
+          <article class="policy-card"><span class="policy-label">DATA</span><h3>英訳・和訳は同じ単語データを共有</h3><p>english-words.json を逆向きに使い、和訳では english-kana.json のひらがな回答も正解にします。</p></article>
           <article class="policy-card"><span class="policy-label">NOT NEEDED</span><h3>COMBO・ゲーム記録保存は作らない</h3><p>LEVELは今回追加しましたが、COMBOやlocalStorage等を使ったプレイ履歴・ハイスコア保存は要件外です。</p></article>
         </div>
       </div>`;
@@ -136,8 +136,8 @@ function syncCurrentProjectState(){
   const step7=document.getElementById('step-7');
   if(step7){
     step7.querySelector('h3').textContent='3つの塔 + レベル別問題データ';
-    step7.querySelector('.why').textContent='漢字はkanji-levels.json、英訳・和訳はenglish-words.jsonを共有し、selectedModeとlevelで問題を切り替える。';
-    step7.querySelector('.task-grid').innerHTML='<div><b>本体へ反映済み</b><ul><li>kanji → kanji-levels.json</li><li>eiyaku / wayaku → english-words.json</li><li>各Lv.30問</li></ul></div><div><b>確認すること</b><ul><li>漢字は読み問題</li><li>英訳は日本語→英単語</li><li>和訳は英単語→日本語</li><li>Lv.1〜3で内容が変わる</li></ul></div>';
+    step7.querySelector('.why').textContent='漢字はkanji-levels.json、英訳・和訳はenglish-words.jsonを共有し、和訳だけenglish-kana.jsonのひらがな回答も追加して判定する。';
+    step7.querySelector('.task-grid').innerHTML='<div><b>本体へ反映済み</b><ul><li>kanji → kanji-levels.json</li><li>eiyaku / wayaku → english-words.json</li><li>wayaku → english-kana.jsonも使用</li><li>各Lv.150問</li></ul></div><div><b>確認すること</b><ul><li>漢字は読み問題</li><li>英訳は日本語→英単語</li><li>和訳は英単語→日本語</li><li>和訳は漢字・ひらがなの両方が正解</li><li>Lv.1〜3で内容が変わる</li></ul></div>';
   }
 
   const step8=document.getElementById('step-8');
